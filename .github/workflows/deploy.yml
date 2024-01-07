@@ -1,0 +1,37 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  deploy:
+    name: "Deploy to production"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Setup ssh
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          cat >>~/.ssh/config << END
+          Host prod
+            HostName $SSH_HOST
+            User $SSH_USER
+            Port $SSH_PORT
+            IdentityFile ~/.ssh/key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+      - name: Cloning repository
+        run: ssh prod 'cd lyra && git pull https://${{ secrets.GIT_SECRET }}:x-oauth-basic@github.com/lyradcbot/lyra.git main --force'
+      - name: Building container
+        run: ssh prod 'bash -i -c "cd lyra && docker build --cpuset-cpus=0-55 --memory="16g" . -t lyra/bot"'
+      - name: Stopping container
+        run: ssh prod 'bash -i -c "docker rm --force lyra"'
+      - name: Starting container
+        run: ssh prod 'bash -i -c "docker run --add-host=mongoservice:127.0.0.1 --hostname gotenks -d --restart always --network="bridge" --cpuset-cpus=0-5 --memory="16g" --name lyra lyra/bot"'
