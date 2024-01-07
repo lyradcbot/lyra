@@ -2,6 +2,7 @@ require('colors');
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
+const mongoose = require('mongoose');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const config = require('./config.js');
 
@@ -41,5 +42,9 @@ for (const file of eventFiles) {
 	}
 }
 
-require('./deployCommands.js');
-client.login(config.client.token);
+mongoose.connect(config.database.uri)
+	.then(() => {
+		console.log('[DATABASE] Database Ready!'.green);
+		client.login(config.client.token);
+		require('./deployCommands.js');
+	});

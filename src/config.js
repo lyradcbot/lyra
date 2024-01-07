@@ -5,6 +5,6 @@ module.exports = {
 		token: process.env.CLIENT_TOKEN,
 	},
 	database: {
-		uri: process.env.MONG_URI,
+		uri: process.env.MONGO_URI,
 	},
 };
