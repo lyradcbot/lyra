@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Embed } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -30,7 +30,7 @@ module.exports = {
 		}
 
 
-		const embed = new Embed()
+		const embed = new EmbedBuilder()
 			.setTitle(`${await badge(user.flags.toArray())} ${user.tag}`)
 			.setColor('')
 			.addFields({
