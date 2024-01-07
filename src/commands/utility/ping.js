@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { connect, connection: db } = require('mongoose');
+const { connection: db } = require('mongoose');
 
 module.exports = {
 	data: new SlashCommandBuilder()
