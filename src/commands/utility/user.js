@@ -51,8 +51,8 @@ module.exports = {
 		}
 
 		if (member) {
-			embed.addField('Entrou aqui em:', `<t:${Math.round(member.joinedTimestamp / 1000)}> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`);
-			if (member.nickname) embed.addField('Apelido', `\`${member.nickname}\``);
+			embed.addFields({ text: 'Entrou aqui em:', value: `<t:${Math.round(member.joinedTimestamp / 1000)}> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`, inline: false });
+			if (member.nickname) embed.addFields({ text: 'Apelido', value:`\`${member.nickname}\`` });
 		}
 
 		interaction.reply({ embeds: [embed] });
