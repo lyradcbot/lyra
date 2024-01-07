@@ -33,11 +33,11 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setTitle(`${await badge(user.flags.toArray())} ${user.tag}`)
 			.addFields({
-				text: 'ID do Usuário',
+				name: 'ID do Usuário',
 				value: `\`${user.id}\``,
 				inline: false,
 			},
-			{	text: 'Conta criada em:',
+			{	name: 'Conta criada em:',
 				inline: false,
 				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
 			});
@@ -51,8 +51,8 @@ module.exports = {
 		}
 
 		if (member) {
-			embed.addFields({ text: 'Entrou aqui em:', value: `<t:${Math.round(member.joinedTimestamp / 1000)}> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`, inline: false });
-			if (member.nickname) embed.addFields({ text: 'Apelido', value:`\`${member.nickname}\`` });
+			embed.addFields({ name: 'Entrou aqui em:', value: `<t:${Math.round(member.joinedTimestamp / 1000)}> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`, inline: false });
+			if (member.nickname) embed.addFields({ name: 'Apelido', value:`\`${member.nickname}\`` });
 		}
 
 		interaction.reply({ embeds: [embed] });
