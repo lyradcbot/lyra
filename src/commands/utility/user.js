@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder, Embed } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -30,11 +30,16 @@ module.exports = {
 		}
 
 
-		const embed = new MessageEmbed()
+		const embed = new Embed()
 			.setTitle(`${await badge(user.flags.toArray())} ${user.tag}`)
 			.setColor('')
-			.addField('ID do Usuário', `\`${user.id}\``)
-			.addField('Conta criada em:', `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`);
+			.addFields({
+				text: 'ID do Usuário',
+				value: `\`${user.id}\``,
+			},
+			{	text: 'Conta criada em:',
+				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
+			});
 
 		console.log(user.flags.toArray());
 		console.log(member);
