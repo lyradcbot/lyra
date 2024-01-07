@@ -32,12 +32,13 @@ module.exports = {
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${await badge(user.flags.toArray())} ${user.tag}`)
-			.setColor('')
 			.addFields({
 				text: 'ID do Usuário',
 				value: `\`${user.id}\``,
+				inline: false,
 			},
 			{	text: 'Conta criada em:',
+				inline: false,
 				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
 			});
 
@@ -46,7 +47,7 @@ module.exports = {
 
 		if (user.banner) {
 			const banner = await user.bannerURL({ dynamic: true, size: 512 });
-			embed.setImage(banner);
+			embed.setImage({ url: banner });
 		}
 
 		if (member) {
