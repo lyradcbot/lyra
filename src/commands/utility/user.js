@@ -5,7 +5,7 @@ module.exports = {
 		.setName('user')
 		.setDescription('Provides information about the user.'),
 	async execute(interaction) {
-		let args;
+		const args = [];
 		let user = {};
 		if (!args[0]) {
 			user = interaction.user;
