@@ -64,7 +64,7 @@ module.exports = {
 					array.push({
 						label: 'a.name',
 						description: `ID: ${a.id} | Dono: ${owner.username}`,
-						value: 'a.id',
+						value: a.id,
 
 					});
 				}
