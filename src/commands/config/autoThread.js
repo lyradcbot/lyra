@@ -9,7 +9,7 @@ module.exports = {
 				.setName('adicionar')
 				.setDescription('O canal para criar as threads').addChannelOption(option =>
 					option.setName('canal')
-					  .setDescription('Id of another server')
+					  .setDescription('Nome do canal')
 					  .setRequired(true)
 						.addChannelTypes(ChannelType.GuildText)))
 		.addSubcommand(subcommand =>

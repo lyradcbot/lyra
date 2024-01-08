@@ -43,10 +43,6 @@ const createGuild = async (guildId) => {
 		bannedWords: {
 			words: [],
 			enabled: false,
-		},
-		chatGPT: {
-			channel: null,
-			enabled: false,
 		}
 	});
 	await guild.save();
@@ -242,28 +238,6 @@ const getBannedWords = async (guildId) => {
 	return guild.bannedWords.words;
 };
 
-const setChatGPT = async (guildId, enabled) => {
-	const guild = await getGuild(guildId);
-	guild.chatGPT.enabled = enabled;
-	await guild.save();
-};
-
-const setChatGPTChannel = async (guildId, channelId) => {
-	const guild = await getGuild(guildId);
-	guild.chatGPT.channel = channelId;
-	await guild.save();
-};
-
-const getChatGPTChannel = async (guildId) => {
-	const guild = await getGuild(guildId);
-	return guild.chatGPT.channel;
-};
-
-const getChatGPTStatus = async (guildId) => {
-	const guild = await getGuild(guildId);
-	return guild.chatGPT.enabled;
-};
-
 module.exports = {
 	createGuild,
 	getGuild,
@@ -298,8 +272,4 @@ module.exports = {
 	addBannedWord,
 	removeBannedWord,
 	getBannedWords,
-	setChatGPT,
-	setChatGPTChannel,
-	getChatGPTChannel,
-	getChatGPTStatus,
 };
