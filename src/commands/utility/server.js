@@ -68,7 +68,7 @@ module.exports = {
 			});
 
 
-			interaction.message.channel.send(`${console.log(array)}`);
+			interaction.reply(`${console.log(array)}`);
 
 			// menu.addOptions(array);
 
