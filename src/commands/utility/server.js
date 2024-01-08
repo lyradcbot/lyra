@@ -57,7 +57,7 @@ module.exports = {
 			interaction.client.guilds.cache.map(async (a) => {
 	 if (a.members.cache.get(interaction.user.id)) {
 
-					let owner = await client.users.fetch(a.ownerId);
+					let owner = await interaction.client.users.fetch(a.ownerId);
 
 					array.push({
 						label: a.name,
