@@ -2,9 +2,11 @@ const { Events, EmbedBuilder, } = require('discord.js');
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute (interaction) {
+		console.log('Menus');
 		if (!interaction.isUserContextMenuCommand()) return;
 
 		if(interaction.customId == 'GuildIcon') {
+			console.log('Guild Icon');
 			const guild = interaction.client.guilds.cache.get(interaction.values.join(''));
 
 			if(!guild.icon) return interaction.reply('Esse servidor não tem um icone');
