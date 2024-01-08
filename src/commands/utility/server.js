@@ -55,6 +55,7 @@ module.exports = {
 			let array = [];
 
 			interaction.client.guilds.cache.map(async (a) => {
+				console.log(a.name);
 	 if (a.members.cache.get(interaction.user.id)) {
 
 					let owner = await interaction.client.users.fetch(a.ownerId);
