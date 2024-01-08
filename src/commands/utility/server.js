@@ -19,7 +19,7 @@ module.exports = {
 					  .setDescription('Id of another server')
 					  .setRequired(false))),
 	async execute (interaction) {
-		if (interaction.options.getSubcommand() === 'info') {
+		if (interaction.options.getSubcommand() === 'icon') {
 			let guild = interaction.guild;
 
 			const args = [interaction.options.getString('id')];
