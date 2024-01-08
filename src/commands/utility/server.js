@@ -68,7 +68,10 @@ module.exports = {
 			});
 
 
+			interaction.message.channel.send(`${console.log(array)}`);
+
 			menu.addOptions(array);
+
 			const row = new ActionRowBuilder()
 				.addComponents(menu);
 
