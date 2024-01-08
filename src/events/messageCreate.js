@@ -4,6 +4,7 @@ const emoji = require('../modules/emojis.json');
 module.exports = {
 	name: Events.MessageCreate,
 	async execute (message) {
+		if (message.author.bot) return;
 		if (message.channel.type === ChannelType.DM) return;
 		const autoThreadEnabled = await message.client.db.guild.getAutoThreadStatus(message.guild.id);
 		if (autoThreadEnabled) {
@@ -17,7 +18,7 @@ module.exports = {
 				name: message.content.slice(0, 10) + '...',
 				autoArchiveDuration: 1440,
 				reason: 'AutoThread',
-			});
+			}).catch(async (e) => console.log(e));
 			const achiveButton = new ButtonBuilder()
 				.setCustomId(`archivet;${message.author.id}`)
 				.setLabel('Arquivar')
@@ -34,8 +35,7 @@ module.exports = {
 				content: `Thread criada automaticamente por ${message.author}`,
 				allowedMentions: { parse: [] },
 				components: [row],
-			});
+			}).catch(async (e) => console.log(e));
 		}
-		// TODO: Caso for fazer algo, o autoThread é o único sistema disponível para bots if (message.author.bot) return;
 	},
 };
