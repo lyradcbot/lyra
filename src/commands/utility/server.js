@@ -68,7 +68,7 @@ module.exports = {
 			});
 
 
-			interaction.reply(`${console.log(array)}`);
+			interaction.followUp(`${console.log(array)}`);
 
 			// menu.addOptions(array);
 
