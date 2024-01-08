@@ -68,7 +68,7 @@ module.exports = {
 			setTimeout(async () => interaction.followUp(`Array: ${array}`), 5000);
 
 
-			// menu.addOptions(array);
+			 menu.addOptions(array);
 
 			const row = new ActionRowBuilder()
 				.addComponents(menu);
