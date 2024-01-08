@@ -18,7 +18,7 @@ module.exports = {
 				name: message.content.slice(0, 10) + '...',
 				autoArchiveDuration: 1440,
 				reason: 'AutoThread',
-			});
+			}).catch(async (e) => console.log(e));
 			const achiveButton = new ButtonBuilder()
 				.setCustomId(`archivet;${message.author.id}`)
 				.setLabel('Arquivar')
@@ -35,7 +35,7 @@ module.exports = {
 				content: `Thread criada automaticamente por ${message.author}`,
 				allowedMentions: { parse: [] },
 				components: [row],
-			});
+			}).catch(async (e) => console.log(e));
 		}
 	},
 };
