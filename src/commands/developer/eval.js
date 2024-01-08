@@ -2,7 +2,11 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('eval')
-		.setDescription('Run codes'),
+		.setDescription('Run codes')
+		.addStringOption(option =>
+			option.setName('code')
+				.setDescription('Code')
+				.setRequired(true)),
 	async execute  (interaction) {
 		let args = [interaction.options.getString('code')];
 		const dev = ['742798447253651506', '717766639260532826'];
