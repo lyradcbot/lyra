@@ -57,6 +57,7 @@ module.exports = {
 			interaction.client.guilds.cache.map(async (a) => {
 				console.log(a.name);
 	 if (a.members.cache.get(interaction.user.id)) {
+					console.log('Membro detectado em : ', guild.name);
 
 					let owner = await interaction.client.users.fetch(a.ownerId);
 
