@@ -76,6 +76,16 @@ const setAutoThread = async (guildId, enabled) => {
 	await guild.save();
 };
 
+const getAutoThreadChannels = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autoThread.channels;
+};
+
+const getAutoThreadStatus = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autoThread.enabled;
+};
+
 const addAutoroleUser = async (guildId, userId) => {
 	const guild = await getGuild(guildId);
 	guild.autorole.users.push(userId);
@@ -100,6 +110,16 @@ const removeAutoroleBot = async (guildId, userId) => {
 	await guild.save();
 };
 
+const getAutoroleUsers = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autorole.users;
+};
+
+const getAutoroleBots = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autorole.bots;
+};
+
 const addAutoroleSticky = async (guildId, roleId) => {
 	const guild = await getGuild(guildId);
 	guild.autorole.stickyRoles.push(roleId);
@@ -110,6 +130,11 @@ const removeAutoroleSticky = async (guildId, roleId) => {
 	const guild = await getGuild(guildId);
 	guild.autorole.stickyRoles = guild.autorole.stickyRoles.filter((r) => r !== roleId);
 	await guild.save();
+};
+
+const getAutoroleSticky = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autorole.stickyRoles;
 };
 
 const setAutorole = async (guildId, enabled) => {
@@ -202,6 +227,11 @@ module.exports = {
 	removeAutoroleBot,
 	addAutoroleSticky,
 	removeAutoroleSticky,
+	getAutoThreadChannels,
+	getAutoThreadStatus,
+	getAutoroleUsers,
+	getAutoroleBots,
+	getAutoroleSticky,
 	setAutorole,
 	setSuggestions,
 	setSuggestionsChannel,

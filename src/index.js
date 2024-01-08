@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const config = require('./config.js');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 client.commands = new Collection();
 client.db = require('./database/db.js');
