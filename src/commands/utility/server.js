@@ -70,14 +70,15 @@ module.exports = {
 
 			interaction.message.channel.send(`${console.log(array)}`);
 
-			menu.addOptions(array);
+			// menu.addOptions(array);
 
 			const row = new ActionRowBuilder()
 				.addComponents(menu);
 
-			setTimeout(() => {
+			/* setTimeout(() => {
 				interaction.channel.send({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
 	   }, 2000);
+	   */
 		}
 		else {await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`);}
 	},
