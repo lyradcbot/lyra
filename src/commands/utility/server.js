@@ -69,7 +69,6 @@ module.exports = {
 			 }
 			});
 
-			menu.addOptions(array);
 			const row = new ActionRowBuilder()
 				.addComponents(menu);
 
