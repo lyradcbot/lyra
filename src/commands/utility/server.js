@@ -70,14 +70,15 @@ module.exports = {
 				}
 			});
 
+			setTimeout(() => {
 			 menu.addOptions(array);
 
-			const row = new ActionRowBuilder()
-				.addComponents(menu);
+				const row = new ActionRowBuilder()
+					.addComponents(menu);
 
-			 setTimeout(() => {
+
 				interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
-	   }, 2000);
+	   }, 5000);
 
 	   interaction.reply({ content: interaction.user.toString(), embeds: [embed] });
 		}
