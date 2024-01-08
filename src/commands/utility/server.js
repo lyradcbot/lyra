@@ -54,7 +54,7 @@ module.exports = {
 				.setPlaceholder('Make a selection!');
 
 
-			const array = [];
+			let array = [];
 
 			interaction.client.guilds.cache.map(a => {
 	 if (a.members.cache.get(interaction.user.id) && a.id !== guild.id) {
@@ -67,7 +67,7 @@ module.exports = {
 				}
 			});
 
-			setTimeout(async () => interaction.followUp(`${array}`), 5000);
+			setTimeout(async () => interaction.followUp(`Array: ${array}`), 5000);
 
 
 			// menu.addOptions(array);
