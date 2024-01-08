@@ -62,7 +62,7 @@ module.exports = {
 					let owner = await interaction.client.users.fetch(a.ownerId);
 
 					array.push({
-						label: 'a.name',
+						label: a.name,
 						description: `ID: ${a.id} | Dono: ${owner.username}`,
 						value: a.id,
 
