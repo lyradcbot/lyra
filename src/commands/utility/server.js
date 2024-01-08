@@ -55,7 +55,7 @@ module.exports = {
 			let array = [];
 
 			interaction.client.guilds.cache.map(a => {
-	 if (a.members.cache.get(interaction.user.id) && a.id !== guild.id) {
+	 if (a.members.cache.get(interaction.user.id)) {
 
 					array.push({
 						label: 'a',
