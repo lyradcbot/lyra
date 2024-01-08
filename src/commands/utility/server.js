@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -59,10 +59,12 @@ module.exports = {
 			interaction.client.guilds.cache.map(a => {
 	 if (a.members.cache.get(interaction.user.id) && a.id !== guild.id) {
 
-					array.push({
-						label: a.name,
-						value: a.id,
-					});
+					menu.addOption(
+						new StringSelectMenuOptionBuilder()
+							.setLabel('Bulbasaur')
+							.setDescription('The dual-type Grass/Poison Seed Pokémon.')
+							.setValue('bulbasaur')
+					);
 
 			 }
 			});
