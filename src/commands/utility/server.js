@@ -58,14 +58,14 @@ module.exports = {
 	 if (a.members.cache.get(interaction.user.id)) {
 
 					array.push({
-						label: 'a',
-						value: 'b',
+						label: a.name,
+						value: a.id,
 
 					});
 				}
 			});
 
-			setTimeout(async () => interaction.followUp(`Array: ${array}`), 5000);
+			setTimeout(async () => interaction.followUp(`Array: \`\`\`js\n${await array}\`\`\``), 5000);
 
 
 			 menu.addOptions(array);
