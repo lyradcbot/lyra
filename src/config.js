@@ -7,4 +7,9 @@ module.exports = {
 	database: {
 		uri: process.env.MONGO_URI,
 	},
+	devLogs: {
+		guildJoin: '1194007487557419078',
+		guildLeave: '1194007550002212934',
+		commands: '1194007592863801444'
+	}
 };

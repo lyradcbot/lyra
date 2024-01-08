@@ -1,4 +1,5 @@
-const { Events, ChannelType } = require('discord.js');
+const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
+const emoji = require('../modules/emojis.json');
 
 module.exports = {
 	name: Events.MessageCreate,
@@ -14,8 +15,22 @@ module.exports = {
 				autoArchiveDuration: 1440,
 				reason: 'AutoThread',
 			});
+			const achiveButton = new ButtonBuilder()
+				.setCustomId(`archivet;${message.author.id}`)
+				.setLabel('Arquivar')
+				.setEmoji(emoji.archive.replace(/</g, '').replace(/>/g, ''))
+				.setStyle(ButtonStyle.Secondary);
+			const editButton = new ButtonBuilder()
+				.setCustomId(`editt;${message.author.id}`)
+				.setLabel('Editar nome')
+				.setEmoji(emoji.lapis.replace(/</g, '').replace(/>/g, ''))
+				.setStyle(ButtonStyle.Primary);
+			const row = new ActionRowBuilder()
+				.addComponents(achiveButton, editButton);
 			await thread.send({
 				content: `Thread criada automaticamente por ${message.author}`,
+				allowedMentions: { parse: [] },
+				components: [row],
 			});
 		}
 	},

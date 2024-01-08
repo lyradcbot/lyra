@@ -76,6 +76,7 @@ module.exports = {
 			const channel = interaction.client.channels.cache.get(channelId);
 			const enabledChannels = await interaction.client.db.guild.getAutoThreadChannels(interaction.guild.id);
 			if (enabledChannels.find(ch => ch === channelId)) return interaction.reply('Esse canal já está na lista');
+			await interaction.client.db.guild.setAutoThread(interaction.guild.id, true);
 			await interaction.client.db.guild.addAutoThread(interaction.guild.id, channelId);
 			return interaction.reply(`Canal \`${channel.name}\` adicionado com sucesso.`);
 		}
