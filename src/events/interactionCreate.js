@@ -1,12 +1,23 @@
-const { Events, EmbedBuilder } = require('discord.js');
+const { Events, EmbedBuilder, ModalBuilder, ActionRowBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 const emoji = require('../modules/emojis.json');
 const config = require('../config');
 
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute (interaction) {
+		if (interaction.isModalSubmit()) {
+			if (interaction.customId.startsWith('editThread')) {
+				const thread = await interaction.channel;
+				const userId = interaction.customId.split(';')[1];
+				if (userId !== interaction.user.id) return interaction.reply({ content: `${emoji.error} Você não pode editar essa thread!`, ephemeral: true });
+				console.log(interaction.fields.fields.get('threadName').value);
+				const newName = interaction.fields.fields.get('threadName').value;
+				await interaction.reply({ content: `${emoji.success} Nome da thread editado com sucesso!`, ephemeral: true }).then(async () => {
+					await thread.setName(newName);
+				});
+			}
+		}
 		if (interaction.isButton()) {
-			console.log(interaction);
 			if (interaction.customId.startsWith('archivet')) {
 				const thread = await interaction.channel;
 				const userId = interaction.customId.split(';')[1];
@@ -19,10 +30,24 @@ module.exports = {
 				const thread = await interaction.channel;
 				const userId = interaction.customId.split(';')[1];
 				if (userId !== interaction.user.id) return interaction.reply({ content: `${emoji.error} Você não pode editar essa thread!`, ephemeral: true });
-				// TODO: Fazer modal para editar o nome
-				await interaction.reply({ content: 'Nome da thread alterado com sucesso!', ephemeral: true }).then(async () => {
-					await thread.setName(interaction.channel.name);
-				});
+				const modal = new ModalBuilder()
+					.setCustomId(`editThread;${userId}`)
+					.setTitle('Editar nome da thread');
+
+				const nameInput = new TextInputBuilder()
+					.setCustomId('threadName')
+					.setLabel('Qual será o novo nome da Thread?')
+					.setPlaceholder('Escreva aqui!')
+					.setMinLength(1)
+					.setMaxLength(100)
+					.setRequired(true)
+					.setValue(thread.name)
+					.setStyle(TextInputStyle.Short);
+
+				const firstActionRow = new ActionRowBuilder().addComponents(nameInput);
+				modal.addComponents(firstActionRow);
+
+				await interaction.showModal(modal);
 			}
 		}
 		if (interaction.isAutocomplete()) {
