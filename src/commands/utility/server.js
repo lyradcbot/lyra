@@ -67,8 +67,8 @@ module.exports = {
 				}
 			});
 
+			setTimeout(async () => interaction.followUp(`${console.log(array)}`), 5000);
 
-			interaction.followUp(`${console.log(array)}`);
 
 			// menu.addOptions(array);
 
