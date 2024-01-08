@@ -40,6 +40,10 @@ const GuildSchema = new Schema({
 		enabled: Boolean,
 		expires: Date,
 	},
+	bannedWords: {
+		words: Array,
+		enabled: Boolean,
+	},
 });
 
 module.exports = mongoose.model('Guild', GuildSchema);

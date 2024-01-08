@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
-	async execute(interaction) {
+	async execute  (interaction) {
 		const databasePing = async () => {
 			const cNano = process.hrtime();
 			await db.db.command({
