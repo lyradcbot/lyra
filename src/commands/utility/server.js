@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, SelectMenu } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,7 +22,7 @@ module.exports = {
 		if (interaction.options.getSubcommand() === 'icon') {
 			let guild = interaction.guild;
 
-			const args = [interaction.options.getString('id')];
+			let args = [interaction.options.getString('id')];
 			try {
 
 				if (args[0]) {
@@ -49,7 +49,7 @@ module.exports = {
 
 			interaction.reply({ content: interaction.user.toString(), embeds: [embed] });
 
-			const menu = new SelectMenu()
+			const menu = new StringSelectMenuBuilder()
 				.setCustomId('GuildIcon')
 				.setPlaceholder('Qual servidor você deseja ver o ícone?');
 
@@ -72,7 +72,7 @@ module.exports = {
 				.addComponents(menu);
 
 			setTimeout(() => {
-				if (array[0]) interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
+				interaction.channel.send({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
 	   }, 2000);
 		}
 		else {await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`);}
