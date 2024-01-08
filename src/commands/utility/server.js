@@ -7,7 +7,10 @@ module.exports = {
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('icon')
-				.setDescription('Show server icon')),
+				.setDescription('Show server icon')).addStringOption(option =>
+			option.setName('id')
+					  .setDescription('Id of another server')
+					  .setRequired(true)),
 	async execute(interaction) {
 
 		if (interaction.options.getSubcommand() === 'info') {
