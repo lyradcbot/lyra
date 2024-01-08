@@ -79,9 +79,9 @@
 78. Utilização do Downdetector
 79. Call com senha, permitindo a definição de uma chamada para as pessoas entrarem com a opção de adicionar uma senha no chat; dependendo da senha, direcionar para outra chamada configurada pelos administradores
 80. Gerador de imagem (imagem em markdown)
-![Gerador de imagem](/assets/gerador_dessa_imagem.png)
+![Gerador de imagem](/development/assets/gerador_dessa_imagem.png)
 81. No sistema de sorteios, habilitar uma opção para aparecer em uma página global, permitindo que qualquer pessoa de qualquer servidor possa ver o sorteio e potencialmente entrar no servidor
 82. Possibilidade de pagamento ou destaque para um servidor na página do bot
 83. No sistema de tickets, implementar um sistema para banir usuários de criar novos tickets
 84. Kibar isso, no caso mostrar o que mudou na mensagem
-![Kibar isso](/assets/modelo_logs.png)
+![Kibar isso](/development/assets/modelo_logs.png)
