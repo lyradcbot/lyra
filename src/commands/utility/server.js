@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, ComponentType } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -72,12 +72,27 @@ module.exports = {
 
 			setTimeout(() => {
 			 menu.addOptions(array);
-
 				const row = new ActionRowBuilder()
 					.addComponents(menu);
 
 
-				interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
+				const response = interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
+
+				const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 60000 });
+
+				collector.on('collect', async i => {
+					guild = interaction.guilds.cache.get(i.values[0]);
+					const embe = new EmbedBuilder()
+						.setTitle(`Icone de \`${guild.name}\``)
+						.setImage(guild.iconURL({ dynamic: true, size: 2048 }))
+					// .setTimestamp()
+					// .setColor(color)
+						.setFooter({ text: `${interaction.user.tag} (${interaction.user.id})` });
+
+					await i.reply({ embeds: [embe] });
+				});
+
+
 	   }, 5000);
 
 	   interaction.reply({ content: interaction.user.toString(), embeds: [embed] });
