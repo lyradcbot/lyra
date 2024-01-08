@@ -10,7 +10,6 @@ module.exports = {
 				const thread = await interaction.channel;
 				const userId = interaction.customId.split(';')[1];
 				if (userId !== interaction.user.id) return interaction.reply({ content: `${emoji.error} Você não pode editar essa thread!`, ephemeral: true });
-				console.log(interaction.fields.fields.get('threadName').value);
 				const newName = interaction.fields.fields.get('threadName').value;
 				await interaction.reply({ content: `${emoji.success} Nome da thread editado com sucesso!`, ephemeral: true }).then(async () => {
 					await thread.setName(newName);

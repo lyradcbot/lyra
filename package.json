@@ -15,7 +15,8 @@
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "mercadopago": "^2.0.6",
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "vulkava": "^1.6.2"
   },
   "devDependencies": {
     "eslint": "^8.56.0"
