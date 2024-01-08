@@ -44,6 +44,10 @@ const GuildSchema = new Schema({
 		words: Array,
 		enabled: Boolean,
 	},
+	chatGPT: {
+		channel: String,
+		enabled: Boolean,
+	}
 });
 
 module.exports = mongoose.model('Guild', GuildSchema);
