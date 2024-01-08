@@ -4,7 +4,7 @@ module.exports = {
 	async execute (interaction) {
 		if (!interaction.isUserContextMenuCommand()) return;
 
-		if(interaction.customId == '') {
+		if(interaction.customId == 'GuildIcon') {
 			const guild = interaction.client.guilds.cache.get(interaction.values.join(''));
 
 			if(!guild.icon) return interaction.reply('Esse servidor não tem um icone');
