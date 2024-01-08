@@ -10,8 +10,15 @@ module.exports = {
 				.setDescription('Show server icon')).addStringOption(option =>
 			option.setName('id')
 					  .setDescription('Id of another server')
-					  .setRequired(true)),
-	async execute(interaction) {
+					  .setRequired(false))
+		.addSubcommand(subcommand =>
+			subcommand
+				.setName('info')
+				.setDescription('Show server info')).addStringOption(option =>
+			option.setName('id')
+					  .setDescription('Id of another server')
+					  .setRequired(false)),
+	async execute (interaction) {
 
 		if (interaction.options.getSubcommand() === 'info') {
 			let guild = interaction.guild;

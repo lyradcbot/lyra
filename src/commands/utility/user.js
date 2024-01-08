@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('user')
 		.setDescription('Provides information about the user.'),
-	async execute(interaction) {
+	async execute (interaction) {
 		const args = [];
 		let user = {};
 		if (!args[0]) {
@@ -19,7 +19,7 @@ module.exports = {
 
 		const member = await interaction.guild.members.fetch(user.id, { cache: true }).catch((e) => console.log(e));
 
-		async function badge(flags) {
+		async function badge (flags) {
 
 			if (user.bot && !flags.includes('VERIFIED_BOT')) {
 				flags.push('BOT');
