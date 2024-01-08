@@ -51,21 +51,7 @@ module.exports = {
 
 			const menu = new StringSelectMenuBuilder()
 				.setCustomId('starter')
-				.setPlaceholder('Make a selection!')
-				.addOptions(
-					new StringSelectMenuOptionBuilder()
-						.setLabel('Bulbasaur')
-						.setDescription('The dual-type Grass/Poison Seed Pokémon.')
-						.setValue('bulbasaur'),
-					new StringSelectMenuOptionBuilder()
-						.setLabel('Charmander')
-						.setDescription('The Fire-type Lizard Pokémon.')
-						.setValue('charmander'),
-					new StringSelectMenuOptionBuilder()
-						.setLabel('Squirtle')
-						.setDescription('The Water-type Tiny Turtle Pokémon.')
-						.setValue('squirtle'),
-				);
+				.setPlaceholder('Make a selection!');
 
 
 			const array = [];
@@ -73,7 +59,7 @@ module.exports = {
 			interaction.client.guilds.cache.map(a => {
 	 if (a.members.cache.get(interaction.user.id) && a.id !== guild.id) {
 
-					menu.addOption(
+					menu.addOptions(
 						new StringSelectMenuOptionBuilder()
 							.setLabel('Bulbasaur')
 							.setDescription('The dual-type Grass/Poison Seed Pokémon.')
