@@ -3,10 +3,10 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const mongoose = require('mongoose');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, } = require('discord.js');
 const config = require('./config.js');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ intents: 3276799 });
 
 client.commands = new Collection();
 client.db = require('./database/db.js');
