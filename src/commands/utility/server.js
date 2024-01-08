@@ -50,8 +50,22 @@ module.exports = {
 			interaction.reply({ content: interaction.user.toString(), embeds: [embed] });
 
 			const menu = new StringSelectMenuBuilder()
-				.setCustomId('GuildIcon')
-				.setPlaceholder('Qual servidor você deseja ver o ícone?');
+				.setCustomId('starter')
+				.setPlaceholder('Make a selection!')
+				.addOptions(
+					new StringSelectMenuOptionBuilder()
+						.setLabel('Bulbasaur')
+						.setDescription('The dual-type Grass/Poison Seed Pokémon.')
+						.setValue('bulbasaur'),
+					new StringSelectMenuOptionBuilder()
+						.setLabel('Charmander')
+						.setDescription('The Fire-type Lizard Pokémon.')
+						.setValue('charmander'),
+					new StringSelectMenuOptionBuilder()
+						.setLabel('Squirtle')
+						.setDescription('The Water-type Tiny Turtle Pokémon.')
+						.setValue('squirtle'),
+				);
 
 
 			const array = [];
