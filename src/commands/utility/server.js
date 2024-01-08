@@ -59,16 +59,16 @@ module.exports = {
 			interaction.client.guilds.cache.map(a => {
 	 if (a.members.cache.get(interaction.user.id) && a.id !== guild.id) {
 
-					menu.addOptions(
-						new StringSelectMenuOptionBuilder()
-							.setLabel('Bulbasaur')
-							.setDescription('The dual-type Grass/Poison Seed Pokémon.')
-							.setValue('bulbasaur')
-					);
+					array.push({
+						label: 'a',
+						value: 'b',
 
-			 }
+					});
+				}
 			});
 
+
+			menu.addOptions(array);
 			const row = new ActionRowBuilder()
 				.addComponents(menu);
 
