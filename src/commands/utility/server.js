@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -48,25 +48,25 @@ module.exports = {
 
 
 			const menu = new StringSelectMenuBuilder()
-				.setCustomId('starter')
-				.setPlaceholder('Make a selection!');
+				.setCustomId('GuildIcon')
+				.setPlaceholder('Selecione o servidor');
 
 
 			let array = [];
 
-			interaction.client.guilds.cache.map(a => {
+			interaction.client.guilds.cache.map(async (a) => {
 	 if (a.members.cache.get(interaction.user.id)) {
+
+					let owner = await client.users.fetch(a.ownerId);
 
 					array.push({
 						label: a.name,
+						description: `ID: ${a.id} | Dono: ${owner.tag}`,
 						value: a.id,
 
 					});
 				}
 			});
-
-			setTimeout(async () => interaction.followUp(`Array: \`\`\`js\n${await array}\`\`\``), 5000);
-
 
 			 menu.addOptions(array);
 
@@ -74,7 +74,7 @@ module.exports = {
 				.addComponents(menu);
 
 			 setTimeout(() => {
-				interaction.channel.send({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
+				interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
 	   }, 2000);
 
 	   interaction.reply({ content: interaction.user.toString(), embeds: [embed] });
