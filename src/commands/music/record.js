@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -20,17 +20,25 @@ module.exports = {
 
 			await player.recorder.start({
 				id: interaction.channel.id,
-				bitrate: interaction.member.voice.channel.bitrate
+				bitrate: interaction.member.voice.channel.bitrate,
+				selfAudio: true
 			});
 
-			await interaction.reply(':red_circle: Iniciando a gravação de voz!');
+			const recording = new EmbedBuilder()
+				.setDescription(':red_circle: **|** Iniciando a gravação de voz!')
+				.setColor('Blurple');
+			await interaction.reply({ embeds: [recording] });
 
 			interaction.client.records.set(interaction.guild.id, interaction.channel.id);
 		}
 		else {
 			const player = interaction.client.vulkava.players.get(interaction.guild.id);
 			await player.recorder.stop();
-			await interaction.reply(':white_circle: Parando a gravação de voz!');
+			await player.destroy();
+			const recording = new EmbedBuilder()
+				.setDescription(':white_circle: **|** Parando a gravação de voz!')
+				.setColor('Blurple');
+			await interaction.reply({ embeds: [recording] });
 		}
 	}
 };
