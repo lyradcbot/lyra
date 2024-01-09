@@ -2,24 +2,28 @@ const emoji = require('../modules/emojis.json');
 const { Colors } = require('discord.js');
 
 module.exports = (client) => {
-	/*
 	client.vulkava.on('recordFinished', async (node, guildId, id) => {
+		console.log(node);
+		console.log(guildId);
+		console.log(id);
 		const file = await node.getRecord(guildId, id);
 
-		client.records.get(guildId).send({
+		client.guilds.cache.get(guildId);
+		const channel = client.channels.cache.get(id);
+
+		channel.send({
 			content: 'Record finished!',
 			files: [
-				{
+				  {
 					name: 'rec.mp3',
 					attachment: file
-				}
+				  }
 			]
-		});
+		  });
 
 		client.records.delete(guildId);
 		node.deleteRecord(guildId, id);
 	});
-    */
 	client.vulkava.on('trackStart', async (player, track) => {
 		const channel = client.channels.cache.get(player.textChannelId);
 		const playlist = {

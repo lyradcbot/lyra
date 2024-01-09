@@ -20,14 +20,14 @@ module.exports = {
 				hostname: '154.53.33.246',
 				port: 2333,
 				password: 'youshallnotpass',
-				transport: 'rest'
+				// transport: 'rest'
 			},
 			{
 				id: 'Loritta',
 				hostname: '144.217.129.37',
 				port: 2333,
 				password: 'youshallnotpass',
-				transport: 'rest'
+				// transport: 'rest'
 			}
 		],
 		spotify: {

@@ -8,6 +8,7 @@ const { Vulkava } = require('vulkava');
 const config = require('./config.js');
 
 const client = new Client({ intents: 3276799 });
+
 client.vulkava = new Vulkava({
 	nodes: config.lavalink.nodes,
 	defaultSearchSource: 'soundcloud',
@@ -20,7 +21,9 @@ client.vulkava = new Vulkava({
 	}
 });
 
-// client.records = new Map();
+client.records = new Map();
+client.nightCore = new Map();
+client.eightD = new Map();
 client.commands = new Collection();
 client.db = require('./database/db.js');
 require('./modules/playerEvents.js')(client);

@@ -19,13 +19,13 @@ module.exports = {
 			player.connect();
 
 			await player.recorder.start({
-				id: interaction.member.voice.channelId,
+				id: interaction.channel.id,
 				bitrate: interaction.member.voice.channel.bitrate
 			});
 
 			await interaction.reply(':red_circle: Iniciando a gravação de voz!');
 
-			interaction.client.records.set(interaction.guild.id, interaction.member.voice.channelId);
+			interaction.client.records.set(interaction.guild.id, interaction.channel.id);
 		}
 		else {
 			const player = interaction.client.vulkava.players.get(interaction.guild.id);
