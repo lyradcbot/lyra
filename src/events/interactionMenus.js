@@ -4,7 +4,7 @@ module.exports = {
 	async execute (interaction) {
 		console.log(interaction);
 		console.log('Menus');
-		if (!interaction.isUserContextMenuCommand()) return;
+		if (interaction.isUserContextMenuCommand()) return;
 
 		if(interaction.customId == 'GuildIcon') {
 			console.log('Guild Icon');
