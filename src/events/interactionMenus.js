@@ -2,6 +2,7 @@ const { Events, EmbedBuilder, } = require('discord.js');
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute (interaction) {
+		console.log(interaction);
 		console.log('Menus');
 		if (!interaction.isUserContextMenuCommand()) return;
 
