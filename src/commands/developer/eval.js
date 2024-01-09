@@ -3,10 +3,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('eval')
-		.setDescription('Run codes')
+		.setDescription('Execute códigos em JavaScript')
 		.addStringOption(option =>
 			option.setName('code')
-				.setDescription('Code')
+				.setDescription('Código a ser executado')
 				.setRequired(true)),
 	async execute  (interaction) {
 		let args = [interaction.options.getString('code')];
