@@ -4,12 +4,26 @@ const fs = require('node:fs');
 const path = require('node:path');
 const mongoose = require('mongoose');
 const { Client, Collection, } = require('discord.js');
+const { Vulkava } = require('vulkava');
 const config = require('./config.js');
 
 const client = new Client({ intents: 3276799 });
+client.vulkava = new Vulkava({
+	nodes: config.lavalink.nodes,
+	defaultSearchSource: 'soundcloud',
+	spotify: {
+		clientId: config.lavalink.spotify.clientId,
+		clientSecret: config.lavalink.spotify.clientSecret
+	},
+	sendWS: (guildId, payload) => {
+		client.guilds.cache.get(guildId)?.shard.send(payload);
+	}
+});
 
+// client.records = new Map();
 client.commands = new Collection();
 client.db = require('./database/db.js');
+require('./modules/playerEvents.js')(client);
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -24,7 +38,7 @@ for (const folder of commandFolders) {
 			client.commands.set(command.data.name, command);
 		}
 		else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`.red);
 		}
 	}
 }
@@ -43,11 +57,13 @@ for (const file of eventFiles) {
 	}
 }
 
-process.on('unhandledRejection', (err) => console.log(err));
+process.on('unhandledRejection', (err) => console.log(`${err}`.red));
 
-process.on('uncaughtException', (err) => console.log(err));
+process.on('uncaughtException', (err) => console.log(`${err}`.red));
 
-client.on('error', (err) => console.log(err));
+client.on('error', (err) => console.log(`${err}`.red));
+
+client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 
 mongoose.connect(config.database.uri)
 	.then(() => {

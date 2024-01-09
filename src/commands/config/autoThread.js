@@ -25,7 +25,7 @@ module.exports = {
 				.setName('status')
 				.setDescription('Show server info').addStringOption(option =>
 					option.setName('tipo')
-					  .setDescription('Id of another server')
+					  .setDescription('Se você deseja Ativar ou Desativar')
 					  .setRequired(true)
 						.addChoices(
 							{
