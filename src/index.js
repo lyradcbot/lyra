@@ -22,6 +22,8 @@ client.vulkava = new Vulkava({
 });
 
 client.records = new Map();
+client.bassboost = new Map();
+client.karaoke = new Map();
 client.nightCore = new Map();
 client.eightD = new Map();
 client.commands = new Collection();
