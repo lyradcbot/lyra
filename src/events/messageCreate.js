@@ -4,6 +4,7 @@ const emoji = require('../modules/emojis.json');
 module.exports = {
 	name: Events.MessageCreate,
 	async execute (message) {
+		await message.client.db.guild.checkGuild(message.guild.id);
 		if (message.author.bot) return;
 		if (message.channel.type === ChannelType.DM) return;
 		const autoThreadEnabled = await message.client.db.guild.getAutoThreadStatus(message.guild.id);

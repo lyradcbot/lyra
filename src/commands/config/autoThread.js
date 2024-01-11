@@ -3,7 +3,7 @@ const { SlashCommandBuilder, ChannelType } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('autothread')
-		.setDescription('Provides information about the server.')
+		.setDescription('Configura o sistema de threads.')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('adicionar')

@@ -34,6 +34,6 @@ jobs:
       - name: Stopping container
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
       - name: Starting container
-        run: ssh prod 'bash -i -c "docker run --add-host=mongoservice:172.17.0.1 --hostname gotenks -d --restart always --network="bridge" --cpuset-cpus=0-5 --memory="16g" --name lyra lyra/bot"'
+        run: ssh prod 'bash -i -c "docker run --add-host=mongoservice:172.17.0.1 --hostname gotenks -d --restart always --network="bridge" -p 3201:80 --cpuset-cpus=0-5 --memory="16g" --name lyra lyra/bot"'
       - name: Clear docker cache
         run: ssh prod 'bash -i -c "docker system prune --all --force"'

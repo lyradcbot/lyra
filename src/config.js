@@ -1,5 +1,6 @@
 module.exports = {
 	dev: ['742798447253651506', '717766639260532826'],
+	transcriptServer: 'https://transcript.lyrabot.online',
 	client: {
 		id: process.env.CLIENT_ID,
 		secret: process.env.CLIENT_SECRET,

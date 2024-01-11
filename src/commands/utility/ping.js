@@ -4,7 +4,7 @@ const { connection: db } = require('mongoose');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
-		.setDescription('Replies with Pong!'),
+		.setDescription('Mostra a latência do bot!'),
 	async execute  (interaction) {
 		const databasePing = async () => {
 			const cNano = process.hrtime();

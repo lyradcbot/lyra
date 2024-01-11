@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('record')
-		.setDescription('Inicia ou para a gravação de voz'),
+		.setDescription('Inicia ou encerra a gravação de voz'),
 	async execute (interaction) {
 		if (!interaction.client.records.has(interaction.guild.id)) {
 			if (!interaction.member.voice.channel) {
