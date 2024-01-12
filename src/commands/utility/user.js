@@ -51,7 +51,7 @@ module.exports = {
 
 		if (user.banner) {
 			const banner = await user.bannerURL({ dynamic: true, size: 512 });
-			embed.setImage({ url: banner });
+			embed.setImage(banner);
 		}
 
 		if (member) {
