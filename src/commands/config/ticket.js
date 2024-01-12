@@ -1,8 +1,9 @@
-const { SlashCommandBuilder, ChannelType, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder, ChannelType, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
 const emoji = require('../../modules/emojis.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
 		.setName('ticket')
 		.setDescription('Configure o sistema de tickets.')
 		.addSubcommand(subcommand =>

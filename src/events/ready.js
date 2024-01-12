@@ -1,4 +1,5 @@
-const { Events } = require('discord.js');
+const { Events, EmbedBuilder } = require('discord.js');
+const emoji = require('../modules/emojis.json');
 
 module.exports = {
 	name: Events.ClientReady,
@@ -21,6 +22,11 @@ module.exports = {
 				});
 				player.connect();
 				if (!player.playing) player.play();
+				const channel = await client.channels.cache.get(data.textChannelId);
+				const returnEmbed = new EmbedBuilder()
+					.setDescription(`${emoji.piscada} **|** Eu havia reiniciado, mas já estou retomando a música!`)
+					.setColor('Blurple');
+				await channel.send({ embeds: [returnEmbed] });
 			}
 		});
 	},

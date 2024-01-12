@@ -3,18 +3,18 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBui
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('server')
-		.setDescription('Mostra informações do servidor.')
+		.setDescription('Mostra informações do servidor!')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('icon')
-				.setDescription('Show server icon').addStringOption(option =>
+				.setDescription('Mostra o ícone do servidor').addStringOption(option =>
 					option.setName('id')
 					  .setDescription('Id of another server')
 					  .setRequired(false)))
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('info')
-				.setDescription('Show server info').addStringOption(option =>
+				.setDescription('Mostra informações do servidor').addStringOption(option =>
 					option.setName('id')
 					  .setDescription('Id of another server')
 					  .setRequired(false))),

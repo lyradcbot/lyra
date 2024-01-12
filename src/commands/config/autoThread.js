@@ -1,8 +1,9 @@
-const { SlashCommandBuilder, ChannelType } = require('discord.js');
+const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js');
 const emoji = require('../../modules/emojis.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
 		.setName('autothread')
 		.setDescription('Configura o sistema de threads.')
 		.addSubcommand(subcommand =>
