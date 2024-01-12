@@ -71,9 +71,10 @@ client.on('error', (err) => console.log(`${err}`.red));
 client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 
 mongoose.connect(config.database.uri)
-	.then(() => {
+	.then(async () => {
 		require('./modules/transcriptServer/index.js');
 		console.log('[DATABASE] Database Ready!'.green);
 		client.login(config.client.token);
+		await client.db.bot.checkBot();
 		require('./deployCommands.js');
 	});

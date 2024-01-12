@@ -1,7 +1,9 @@
-const guilds = require('./methods/guild.js');
+const guildManager = require('./methods/guild.js');
+const botManager = require('./methods/bot.js');
 
 const methods = {
-	guild: guilds,
+	guild: guildManager,
+	bot: botManager,
 };
 
 module.exports = methods;
