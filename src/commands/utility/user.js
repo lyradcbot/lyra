@@ -35,7 +35,7 @@ module.exports = {
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${user.tag}`)
-			.setDescription(await badge(user.flags.toArray()))
+			.setDescription(`Nome de Usuário: **${user.tag}** ` + await badge(user.flags.toArray()))
 			.addFields({
 				name: 'ID do Usuário',
 				value: `\`${user.id}\``,
