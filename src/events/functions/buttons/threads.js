@@ -5,7 +5,7 @@ module.exports = async (interaction) => {
 	if (interaction.customId.startsWith('archivet')) {
 		const thread = await interaction.channel;
 		const userId = interaction.customId.split(';')[1];
-		if (userId !== interaction.user.id) return interaction.reply({ content: `${emoji.error} Você não pode arquivar essa thread!`, ephemeral: true });
+		if (userId !== interaction.user.id) return interaction.reply({ content: `${emoji.error} ${interaction.member} **|** Você não pode arquivar essa thread!`, ephemeral: true });
 		await interaction.reply({ content: `${emoji.success} ${interaction.member} **|** Thread arquivada com sucesso!`, ephemeral: true }).then(async () => {
 			await thread.setArchived(true);
 		});
