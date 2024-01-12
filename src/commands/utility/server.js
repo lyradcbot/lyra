@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, StringSelectMenuBui
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('server')
-		.setDescription('Provides information about the server.')
+		.setDescription('Mostra informações do servidor.')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('icon')

@@ -1,4 +1,5 @@
 const { REST, Routes } = require('discord.js');
+const db = require('./database/db.js');
 const config = require('./config.js');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -31,7 +32,7 @@ const rest = new REST().setToken(config.client.token);
 			Routes.applicationCommands(config.client.id),
 			{ body: commands },
 		);
-
+		await db.bot.updateBot({ commands: { commands: data } });
 		console.log(`[SLASH] Recarregados ${data.length} slash commands.`.green);
 	}
 	catch (error) {

@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
+const emoji = require('../../modules/emojis.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -75,31 +76,31 @@ module.exports = {
 			const channelId = interaction.options.getChannel('canal').id;
 			const channel = interaction.client.channels.cache.get(channelId);
 			const enabledChannels = await interaction.client.db.guild.getAutoThreadChannels(interaction.guild.id);
-			if (enabledChannels.find(ch => ch === channelId)) return interaction.reply('Esse canal já está na lista');
+			if (enabledChannels.find(ch => ch === channelId)) return interaction.reply(`${emoji.error} ${interaction.member} **|** Esse canal já está na lista.`);
 			await interaction.client.db.guild.setAutoThread(interaction.guild.id, true);
 			await interaction.client.db.guild.addAutoThread(interaction.guild.id, channelId);
-			return interaction.reply(`Canal \`${channel.name}\` adicionado com sucesso.`);
+			return interaction.reply(`${emoji.success} ${interaction.member} **|** Canal \`${channel.name}\` adicionado com sucesso.`);
 		}
 		if (interaction.options.getSubcommand() === 'remover') {
 			const channelId = interaction.options.getString('canal');
-			if (channelId === '0') return interaction.reply('Digite o nome do canal que deseja remover.');
-			if (channelId === '1') return interaction.reply('Nenhum canal encontrado.');
+			if (channelId === '0') return interaction.reply(`${emoji.error} ${interaction.member} **|** Digite o nome do canal que deseja remover.`);
+			if (channelId === '1') return interaction.reply(`${emoji.error} ${interaction.member} **|** Nenhum canal encontrado.`);
 			const channel = interaction.guild.channels.cache.find(ch => ch.id === channelId);
 			if (!channel) return interaction.reply('Canal não encontrado.');
 			const enabledChannels = await interaction.client.db.guild.getAutoThreadChannels(interaction.guild.id);
-			if (!enabledChannels.find(ch => ch === channel.id)) return interaction.reply('Esse canal não está na lista');
+			if (!enabledChannels.find(ch => ch === channel.id)) return interaction.reply(`${emoji.error} ${interaction.member} **|** Esse canal não está na lista`);
 			await interaction.client.db.guild.removeAutoThread(interaction.guild.id, channel.id);
-			return interaction.reply(`Canal \`${channel.name}\` removido com sucesso.`);
+			return interaction.reply(`${emoji.success} ${interaction.member} **|** Canal \`${channel.name}\` removido com sucesso.`);
 		}
 		if (interaction.options.getSubcommand() === 'status') {
 			const status = interaction.options.getString('tipo');
 			if (status === 'on') {
 				await interaction.client.db.guild.setAutoThread(interaction.guild.id, true);
-				return interaction.reply('AutoThread ativado com sucesso.');
+				return interaction.reply(`${emoji.success} ${interaction.member} **|** AutoThread ativado com sucesso.`);
 			}
 			if (status === 'off') {
 				await interaction.client.db.guild.setAutoThread(interaction.guild.id, false);
-				return interaction.reply('AutoThread desativado com sucesso.');
+				return interaction.reply(`${emoji.success} ${interaction.member} **|** AutoThread desativado com sucesso.`);
 			}
 		}
 	}
