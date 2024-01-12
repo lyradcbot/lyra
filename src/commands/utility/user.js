@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('user')
-		.setDescription('Mostra informaçõe sobre o usuário.').addStringOption(option =>
+		.setDescription('Provides information about the user.').addStringOption(option =>
 			option.setName('id')
 			  .setDescription('Id of another user')
 			  .setRequired(false)),
@@ -34,7 +34,8 @@ module.exports = {
 
 
 		const embed = new EmbedBuilder()
-			.setTitle(`${await badge(user.flags.toArray())} ${user.tag}`)
+			.setTitle(`${user.tag}`)
+			.setDescription(await badge(user.flags.toArray()))
 			.addFields({
 				name: 'ID do Usuário',
 				value: `\`${user.id}\``,
