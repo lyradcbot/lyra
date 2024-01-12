@@ -1,5 +1,6 @@
 module.exports = {
 	dev: ['742798447253651506', '717766639260532826'],
+	transcriptServer: 'https://transcript.lyrabot.online',
 	client: {
 		id: process.env.CLIENT_ID,
 		secret: process.env.CLIENT_SECRET,
@@ -20,14 +21,14 @@ module.exports = {
 				hostname: '154.53.33.246',
 				port: 2333,
 				password: 'youshallnotpass',
-				transport: 'rest'
+				// transport: 'rest'
 			},
 			{
 				id: 'Loritta',
 				hostname: '144.217.129.37',
 				port: 2333,
 				password: 'youshallnotpass',
-				transport: 'rest'
+				// transport: 'rest'
 			}
 		],
 		spotify: {

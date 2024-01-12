@@ -8,6 +8,7 @@ const { Vulkava } = require('vulkava');
 const config = require('./config.js');
 
 const client = new Client({ intents: 3276799 });
+
 client.vulkava = new Vulkava({
 	nodes: config.lavalink.nodes,
 	defaultSearchSource: 'soundcloud',
@@ -20,7 +21,11 @@ client.vulkava = new Vulkava({
 	}
 });
 
-// client.records = new Map();
+client.records = new Map();
+client.bassboost = new Map();
+client.karaoke = new Map();
+client.nightCore = new Map();
+client.eightD = new Map();
 client.commands = new Collection();
 client.db = require('./database/db.js');
 require('./modules/playerEvents.js')(client);
@@ -67,6 +72,7 @@ client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 
 mongoose.connect(config.database.uri)
 	.then(() => {
+		require('./modules/transcriptServer/index.js');
 		console.log('[DATABASE] Database Ready!'.green);
 		client.login(config.client.token);
 		require('./deployCommands.js');

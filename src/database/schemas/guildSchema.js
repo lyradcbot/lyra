@@ -24,6 +24,8 @@ const GuildSchema = new Schema({
 	},
 	tickets: {
 		transcriptChannel: String,
+		autotrancsript: Boolean,
+		logsChannel: String,
 		ticketCategory: String,
 		ticketChannel: String,
 		ticketEmbed: {
@@ -35,6 +37,7 @@ const GuildSchema = new Schema({
 			image: String,
 		},
 		enabled: Boolean,
+		supportRole: Array
 	},
 	premium: {
 		enabled: Boolean,

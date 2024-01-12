@@ -24,6 +24,8 @@ const createGuild = async (guildId) => {
 		},
 		tickets: {
 			transcriptChannel: null,
+			autotrancsript: false,
+			logsChannel: null,
 			ticketCategory: null,
 			ticketChannel: null,
 			ticketEmbed: {
@@ -35,6 +37,7 @@ const createGuild = async (guildId) => {
 				image: null,
 			},
 			enabled: false,
+			supportRole: [],
 		},
 		premium: {
 			enabled: false,
@@ -46,6 +49,15 @@ const createGuild = async (guildId) => {
 		}
 	});
 	await guild.save();
+};
+
+const checkGuild = async (guildId) => {
+	const guild = await GuildModel.findOne({ guildId: guildId });
+	if (!guild) {
+		await createGuild(guildId);
+		const guild2 = await getGuild(guildId);
+		return guild2;
+	}
 };
 
 const getGuild = async (guildId) => {
@@ -197,10 +209,68 @@ const setTicketsTranscript = async (guildId, channelId) => {
 	await guild.save();
 };
 
-const setTicketsEmbed = async (guildId, embed) => {
+const setTicketsEmbed = async (guildId, title, description, color, footer, thumbnail, image) => {
 	const guild = await getGuild(guildId);
-	guild.tickets.ticketEmbed = embed;
+	guild.tickets.ticketEmbed.title = title;
+	guild.tickets.ticketEmbed.description = description;
+	guild.tickets.ticketEmbed.color = color;
+	guild.tickets.ticketEmbed.footer = footer;
+	guild.tickets.ticketEmbed.thumbnail = thumbnail;
+	guild.tickets.ticketEmbed.image = image;
 	await guild.save();
+};
+
+const setTicketsLogs = async (guildId, channelId) => {
+	const guild = await getGuild(guildId);
+	guild.tickets.logsChannel = channelId;
+	await guild.save();
+};
+
+const setTicketsSupportRole = async (guildId, roleId) => {
+	const guild = await getGuild(guildId);
+	guild.tickets.supportRole.push(roleId);
+	await guild.save();
+};
+
+const removeTicketsSupportRole = async (guildId, roleId) => {
+	const guild = await getGuild(guildId);
+	guild.tickets.supportRole = guild.tickets.supportRole.filter((r) => r !== roleId);
+	await guild.save();
+};
+
+const getTicketsSupportRole = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.supportRole;
+};
+
+const getTickets = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.enabled;
+};
+
+const getTicketsEmbed = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.ticketEmbed;
+};
+
+const getTicketsLogs = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.logsChannel;
+};
+
+const getTicketsChannel = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.ticketChannel;
+};
+
+const getTicketsCategory = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.ticketCategory;
+};
+
+const getTicketsTranscript = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.tickets.transcriptChannel;
 };
 
 const setPremium = async (guildId, enabled) => {
@@ -239,6 +309,7 @@ const getBannedWords = async (guildId) => {
 };
 
 module.exports = {
+	checkGuild,
 	createGuild,
 	getGuild,
 	addAutoThread,
@@ -266,6 +337,16 @@ module.exports = {
 	setTicketsCategory,
 	setTicketsTranscript,
 	setTicketsEmbed,
+	setTicketsLogs,
+	setTicketsSupportRole,
+	removeTicketsSupportRole,
+	getTicketsSupportRole,
+	getTickets,
+	getTicketsEmbed,
+	getTicketsLogs,
+	getTicketsChannel,
+	getTicketsCategory,
+	getTicketsTranscript,
 	setPremium,
 	setPremiumExpires,
 	setBannedWords,

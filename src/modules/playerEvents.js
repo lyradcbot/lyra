@@ -1,25 +1,28 @@
 const emoji = require('../modules/emojis.json');
-const { Colors } = require('discord.js');
+const { Colors, EmbedBuilder } = require('discord.js');
 
 module.exports = (client) => {
-	/*
 	client.vulkava.on('recordFinished', async (node, guildId, id) => {
 		const file = await node.getRecord(guildId, id);
 
-		client.records.get(guildId).send({
-			content: 'Record finished!',
+		client.guilds.cache.get(guildId);
+		const channel = client.channels.cache.get(id);
+		const embed = new EmbedBuilder()
+			.setDescription(`${emoji.volume} **|** A gravação terminou!`)
+			.setColor(Colors.Blurple);
+		channel.send({
+			embeds: [embed],
 			files: [
-				{
-					name: 'rec.mp3',
+				  {
+					name: 'recorded.mp3',
 					attachment: file
-				}
+				  }
 			]
-		});
+		  });
 
 		client.records.delete(guildId);
 		node.deleteRecord(guildId, id);
 	});
-    */
 	client.vulkava.on('trackStart', async (player, track) => {
 		const channel = client.channels.cache.get(player.textChannelId);
 		const playlist = {

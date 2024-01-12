@@ -56,7 +56,8 @@ module.exports = {
 
 			interaction.client.guilds.cache.map(async (a) => {
 				console.log(a.name);
-	 if (a.members.cache.get(interaction.user.id)) {
+				if (a.id === interaction.guild.id) return;
+				if (a.members.cache.get(interaction.user.id)) {
 					console.log('Membro detectado em : ', guild.name);
 
 					let owner = await interaction.client.users.fetch(a.ownerId);
@@ -65,7 +66,6 @@ module.exports = {
 						label: a.name,
 						description: `ID: ${a.id} | Dono: ${owner.username}`,
 						value: a.id,
-
 					});
 				}
 			});
@@ -74,7 +74,6 @@ module.exports = {
 			 menu.addOptions(array);
 				const row = new ActionRowBuilder()
 					.addComponents(menu);
-
 
 				interaction.followUp({ content: 'Achei que talvez você ficaria curioso de ver o ícone desses outros servidores também:', components: [row], ephemeral: true });
 
