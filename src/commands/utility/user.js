@@ -3,9 +3,12 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('user')
-		.setDescription('Provides information about the user.'),
+		.setDescription('Provides information about the user.').addStringOption(option =>
+			option.setName('id')
+			  .setDescription('Id of another user')
+			  .setRequired(false)),
 	async execute (interaction) {
-		const args = [];
+		const args = [interaction.options.getString('id')];
 		let user = {};
 		if (!args[0]) {
 			user = interaction.user;
