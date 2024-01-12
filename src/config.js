@@ -24,7 +24,7 @@ module.exports = {
 				// transport: 'rest'
 			},
 			{
-				id: 'Loritta',
+				id: 'Denky',
 				hostname: '144.217.129.37',
 				port: 2333,
 				password: 'youshallnotpass',
