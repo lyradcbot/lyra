@@ -29,7 +29,13 @@ module.exports = (client) => {
 			'description': `${emoji.music} **|** Tocando agora: \`${track.title.replace(/`/g, '')}\`.`,
 			'color': Colors.Blurple
 		};
-
+		const queue = [];
+		queue.push(track);
+		player.queue.tracks.map(track => {
+			queue.push(track);
+		});
+		await client.db.lavalink.checkPlayer(player.guildId);
+		await client.db.lavalink.updatePlayer(player.guildId, player.voiceChannelId, player.textChannelId, player.selfDeaf, queue);
 		await channel.send({
 			embeds: [playlist]
 		});
@@ -41,7 +47,8 @@ module.exports = (client) => {
 			'description': `${emoji.soundoff} **|** A fila de reprodução acabou, estou me desconectando do canal de voz.`,
 			'color': Colors.Blurple
 		};
-
+		await client.db.lavalink.checkPlayer(player.guildId);
+		await client.db.lavalink.updatePlayer(player.guildId, player.voiceChannelId, player.textChannelId, player.selfDeaf, []);
 		await channel.send({
 			embeds: [playlist]
 		});

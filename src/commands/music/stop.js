@@ -25,6 +25,8 @@ module.exports = {
 			.setColor('Blurple');
 		if (!player) return interaction.reply({ embeds: [stop] });
 		player.destroy();
+		await client.db.lavalink.checkPlayer(player.guildId);
+		await client.db.lavalink.updatePlayer(player.guildId, player.voiceChannelId, player.textChannelId, player.selfDeaf, []);
 		await interaction.reply({ embeds: [stop] });
 	}
 };

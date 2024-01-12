@@ -54,7 +54,6 @@ module.exports = {
 					embed.setTitle('Ajuda - Lyra');
 					embed.setThumbnail(interaction.client.user.displayAvatarURL({ dynamic: true, size: 4096 }));
 				}
-				// Adicione o footer apenas na ultima embed
 				if (embeds.indexOf(embedArray) === embeds.length - 1) {
 					embed.setTimestamp();
 					embed.setFooter({
@@ -64,7 +63,6 @@ module.exports = {
 				}
 				sendEmbed.push(embed);
 			});
-			console.log(sendEmbed);
 			await interaction.editReply({ embeds: sendEmbed });
 		}
 		else {
