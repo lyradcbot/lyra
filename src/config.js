@@ -18,7 +18,7 @@ module.exports = {
 		nodes: [
 			{
 				id: 'Sonora',
-				hostname: '154.53.33.246',
+				hostname: 'mongoservice',
 				port: 2333,
 				password: 'youshallnotpass',
 				// transport: 'rest'
