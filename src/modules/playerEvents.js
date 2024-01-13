@@ -1,5 +1,5 @@
 const emoji = require('../modules/emojis.json');
-const { Colors, EmbedBuilder } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = (client) => {
 	client.vulkava.on('recordFinished', async (node, guildId, id) => {
@@ -9,7 +9,7 @@ module.exports = (client) => {
 		const channel = client.channels.cache.get(id);
 		const embed = new EmbedBuilder()
 			.setDescription(`${emoji.volume} **|** A gravação terminou!`)
-			.setColor(Colors.Blurple);
+			.setColor('#cd949d');
 		channel.send({
 			embeds: [embed],
 			files: [
@@ -27,7 +27,7 @@ module.exports = (client) => {
 		const channel = client.channels.cache.get(player.textChannelId);
 		const playlist = {
 			'description': `${emoji.music} **|** Tocando agora: \`${track.title.replace(/`/g, '')}\`.`,
-			'color': Colors.Blurple
+			'color': '#cd949d'
 		};
 		const queue = [];
 		queue.push(track);
@@ -45,7 +45,7 @@ module.exports = (client) => {
 		const channel = client.channels.cache.get(player.textChannelId);
 		const playlist = {
 			'description': `${emoji.soundoff} **|** A fila de reprodução acabou, estou me desconectando do canal de voz.`,
-			'color': Colors.Blurple
+			'color': '#cd949d'
 		};
 		await client.db.lavalink.checkPlayer(player.guildId);
 		await client.db.lavalink.updatePlayer(player.guildId, player.voiceChannelId, player.textChannelId, player.selfDeaf, []);

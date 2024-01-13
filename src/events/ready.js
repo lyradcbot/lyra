@@ -26,7 +26,7 @@ module.exports = {
 					const channel = await client.channels.cache.get(data.textChannelId);
 					const returnEmbed = new EmbedBuilder()
 						.setDescription(`${emoji.piscada} **|** Eu havia reiniciado, mas já estou retomando a música!`)
-						.setColor('Blurple');
+						.setColor('#cd949d');
 					await channel.send({ embeds: [returnEmbed] });
 				}
 			});

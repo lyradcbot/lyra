@@ -7,7 +7,7 @@ module.exports = {
 	async execute (interaction) {
 		const joinChannel = new EmbedBuilder()
 			.setDescription(`🔊 ${interaction.member} **|** Você precisa entrar em um canal de voz para executar os comandos de música.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!interaction.member.voice.channel) {
 			return interaction.reply({
 				embeds: [joinChannel]
@@ -17,12 +17,12 @@ module.exports = {
 		if (!player) {
 			const noMusic = new EmbedBuilder()
 				.setDescription(`🔊 ${interaction.member} **|** Não há música tocando no momento.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({ embeds: [noMusic] });
 		}
 		const stop = new EmbedBuilder()
 			.setDescription(`⏹️ ${interaction.member} **|** A música atual foi parada.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [stop] });
 		player.destroy();
 		await interaction.client.db.lavalink.checkPlayer(player.guildId);

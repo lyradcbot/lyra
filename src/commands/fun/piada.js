@@ -37,7 +37,7 @@ module.exports = {
 				text: `ID do usuário: ${interaction.user.id}`,
 				iconURL: interaction.user.avatarURL({ dynamic: true, size: 4096 })
 			})
-			.setColor('Blue');
+			.setColor('#cd949d');
 		await interaction.editReply({ embeds: [embed] });
 	},
 };

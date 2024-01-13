@@ -8,7 +8,7 @@ module.exports = {
 	async execute (interaction) {
 		const joinChannel = new EmbedBuilder()
 			.setDescription(`${emoji.volume} ${interaction.member} **|** Você precisa entrar em um canal de voz para executar os comandos de música.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!interaction.member.voice.channel) {
 			return interaction.reply({
 				embeds: [joinChannel]
@@ -18,12 +18,12 @@ module.exports = {
 		if (!player) {
 			const noMusic = new EmbedBuilder()
 				.setDescription(`${emoji.volume} ${interaction.member} **|** Não há música tocando no momento.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({ embeds: [noMusic] });
 		}
 		const skip = new EmbedBuilder()
 			.setDescription(`${emoji.volume} ${interaction.member} **|** A música atual foi pulada.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
 		player.skip();
 		await interaction.reply({ embeds: [skip] });

@@ -43,7 +43,7 @@ module.exports = {
 				.setTitle(`Ícone de \`${guild.name}\``)
 				.setImage(guild.iconURL({ dynamic: true, size: 2048 }))
 				// .setTimestamp()
-				// .setColor(color)
+				 .setColor('#cd949d')
 				.setFooter({ text: `${interaction.user.tag} (${interaction.user.id})` });
 
 

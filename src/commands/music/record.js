@@ -26,7 +26,7 @@ module.exports = {
 
 			const recording = new EmbedBuilder()
 				.setDescription(':red_circle: **|** Iniciando a gravação de voz!')
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			await interaction.reply({ embeds: [recording] });
 
 			interaction.client.records.set(interaction.guild.id, interaction.channel.id);
@@ -37,7 +37,7 @@ module.exports = {
 			// await player.destroy();
 			const recording = new EmbedBuilder()
 				.setDescription(':white_circle: **|** Parando a gravação de voz!')
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			await interaction.reply({ embeds: [recording] });
 		}
 	}

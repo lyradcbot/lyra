@@ -16,7 +16,7 @@ module.exports = {
 				iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 })
 			})
 			.setTimestamp()
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		const commandsArray = [];
 		commands.map(command => {
 			commandsArray.push({
@@ -40,7 +40,7 @@ module.exports = {
 			}
 			embeds.map(async (embedArray) => {
 				const embed = new EmbedBuilder()
-					.setColor('Blurple');
+					.setColor('#cd949d');
 				embedArray.map(command => {
 					embed.addFields(
 						{

@@ -14,9 +14,9 @@ module.exports = {
 			user = interaction.user;
 		}
 		else {
-			if (isNaN(args[0])) return interaction.reply(`** <:way_errado:900128700908060755> » ${interaction.user} Usuário não encontrado.**`);
+			if (isNaN(args[0])) return interaction.reply(`${interaction.user}, Usuário não encontrado.`, { ephemeral: true });
 			user = await interaction.client.users.fetch(args[0]).catch(() => {
-				return interaction.reply(`** <:way_errado:900128700908060755> » ${interaction.user} Usuário não encontrado.**`);
+				return interaction.reply(`${interaction.user}, Usuário não encontrado.`, { ephemeral: true });
 			});
 		}
 
@@ -38,7 +38,7 @@ module.exports = {
 			.setColor('#cd949d')
 			.addFields({
 				name: 'ID do Usuário',
-				value: `\`${user.id}\` <@${user.id}>`,
+				value: `\`${user.id}\`  (<@${user.id}>)`,
 				inline: false,
 			},
 			{	name: 'Emblemas',

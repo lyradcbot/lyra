@@ -8,7 +8,7 @@ module.exports = {
 	async execute (interaction) {
 		const joinChannel = new EmbedBuilder()
 			.setDescription(`${emoji.volume} ${interaction.member} **|** Você precisa entrar em um canal de voz para executar os comandos de música.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!interaction.member.voice.channel) {
 			return interaction.reply({
 				embeds: [joinChannel]
@@ -18,7 +18,7 @@ module.exports = {
 		if (!player) {
 			const noMusic = new EmbedBuilder()
 				.setDescription(`${emoji.volume} ${interaction.member} **|** Não há música tocando no momento.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({ embeds: [noMusic] });
 		}
 		if (!interaction.client.eightD.has(interaction.guild.id)) {
@@ -26,7 +26,7 @@ module.exports = {
 			await player.filters.setRotation({ rotationHz: 0.2 });
 			const nightCore = new EmbedBuilder()
 				.setDescription(`${emoji.volume} ${interaction.member} **|** O modo 8D foi ativado.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({ embeds: [nightCore] });
 		}
 		else {
@@ -34,7 +34,7 @@ module.exports = {
 			await player.filters.setRotation({ rotationHz: 0 });
 			const nightCore = new EmbedBuilder()
 				.setDescription(`${emoji.volume} ${interaction.member} **|** O modo 8D foi desativado.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({ embeds: [nightCore] });
 		}
 	}

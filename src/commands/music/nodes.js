@@ -18,7 +18,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setTitle('Nodes')
 			.addFields(fields)
-			.setColor('Orange');
+			.setColor('#cd949d');
 		await interaction.reply({ embeds: [embed] });
 	}
 };

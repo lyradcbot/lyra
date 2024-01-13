@@ -29,7 +29,7 @@ module.exports = {
 		}
 		const embed = new EmbedBuilder()
 			.setDescription(` \`\`\`js\n${code.slice(0, 1010)}\`\`\``)
-			.setColor('#baecf9')
+			.setColor('#cd949d')
 			.setFooter({ text: `Tipo: ${tipo}` })
 			.setAuthor({ name: `Executado por ${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL() })
 			.setTimestamp();

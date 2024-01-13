@@ -40,7 +40,7 @@ module.exports = async (interaction) => {
 		const welcomeEmbed = new EmbedBuilder()
 			.setTitle('Bem-vindo ao seu ticket!')
 			.setDescription('A equipe em breve irá te atender.')
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		const closeButton = new ButtonBuilder()
 			.setStyle('Danger')
 			.setLabel('Fechar Ticket')
@@ -84,7 +84,7 @@ module.exports = async (interaction) => {
 		const successEmbed = new EmbedBuilder()
 			.setTitle('Ticket aberto!')
 			.setDescription(`O ticket foi aberto com sucesso! ${channel}`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		await interaction.editReply({ embeds: [successEmbed] });
 	}
 	if (interaction.customId.startsWith('closet')) {
@@ -146,7 +146,7 @@ module.exports = async (interaction) => {
 						text: `ID do usuário: ${interaction.user.id}`,
 						iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 })
 					})
-					.setColor('Yellow');
+					.setColor('#cd949d');
 				transcriptChannel.send({ embeds: [transEmbed] }).catch(() => {});
 			});
 		}
@@ -193,13 +193,13 @@ module.exports = async (interaction) => {
 					iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 })
 				})
 				.setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
-				.setColor('Yellow');
+				.setColor('#cd949d');
 			transcriptChannel.send({ embeds: [transEmbed] }).catch(() => {});
 		});
 		const successEmbed = new EmbedBuilder()
 			.setTitle('Transcrição gerada!')
 			.setDescription(`A transcrição do ticket foi gerada com sucesso! Confira em: ${transcriptChannel}`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		await interaction.editReply({ embeds: [successEmbed] });
 	}
 };

@@ -29,7 +29,7 @@ module.exports = {
 						value: `${devInfo1.globalName} \`(${devInfo1.id})\`\n${devInfo2.globalName} \`(${devInfo2.id})\``,
 					}
 				)
-				.setColor('Blurple')
+				.setColor('#cd949d')
 				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setFooter({
 					text: `${guild.name} (${guild.id})`,

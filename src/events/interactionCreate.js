@@ -71,7 +71,7 @@ module.exports = {
 				)
 				.setTimestamp()
 				.setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			await logChannel.send({ embeds: [embed] });
 		}
 		catch (error) {

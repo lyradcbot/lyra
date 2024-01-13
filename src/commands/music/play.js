@@ -13,7 +13,7 @@ module.exports = {
 	async execute (interaction) {
 		const joinChannel = new EmbedBuilder()
 			.setDescription(`${emoji.volume} ${interaction.member} **|** Você precisa entrar em um canal de voz para executar os comandos de música.`)
-			.setColor('Blurple');
+			.setColor('#cd949d');
 		if (!interaction.member.voice.channel) {
 			return interaction.reply({
 				embeds: [joinChannel]
@@ -24,7 +24,7 @@ module.exports = {
 		if (youtubeRegex.test(query) && !config.dev.includes(interaction.user.id)) {
 			const youtubeEmbed = new EmbedBuilder()
 				.setDescription(`${emoji.error} ${interaction.member} **|** Você não pode tocar músicas do YouTube.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({
 				embeds: [youtubeEmbed],
 			});
@@ -34,7 +34,7 @@ module.exports = {
 		if (res.loadType === 'LOAD_FAILED') {
 			const loadFailed = new EmbedBuilder()
 				.setDescription(`${emoji.error} ${interaction.member} **|** Ocorreu um erro ao carregar a música.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({
 				embeds: [loadFailed],
 			});
@@ -42,7 +42,7 @@ module.exports = {
 		else if (res.loadType === 'NO_MATCHES') {
 			const noMatches = new EmbedBuilder()
 				.setDescription(`${emoji.error} ${interaction.member} **|** Nenhuma música foi encontrada.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			return interaction.reply({
 				embeds: [noMatches],
 			});
@@ -64,7 +64,7 @@ module.exports = {
 			}
 			const playlist = new EmbedBuilder()
 				.setDescription(`${emoji.success} ${interaction.member} **|** A playlist: \`${res.playlistInfo.name.replace(/`/g, '')}\` foi adicionada a fila com sucesso com: \`${res.tracks.length}\` músicas.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			await interaction.reply({
 				embeds: [playlist],
 			});
@@ -75,7 +75,7 @@ module.exports = {
 			player.queue.add(track);
 			const queued = new EmbedBuilder()
 				.setDescription(`${emoji.success} ${interaction.member} **|** A música: \`${track.title.replace(/`/g, '')}\` foi adicionada a fila com sucesso.`)
-				.setColor('Blurple');
+				.setColor('#cd949d');
 			await interaction.reply({
 				embeds: [queued],
 			});
