@@ -61,7 +61,7 @@ module.exports = {
 			.setThumbnail(guild.iconURL({ dynamic: true, size: 4096 }))
 			.setTimestamp()
 			.setFooter({ text: `${client.user.tag} (${client.user.id})`, iconURL: client.user.avatarURL({ dynamic: true, size: 4096 }) })
-			.setColor('#cd949d''#cd949d''#cd949d');
+			.setColor('#cd949d');
 		await logChannel.send({ embeds: [embedLog] });
 	},
 };
