@@ -40,17 +40,13 @@ module.exports = {
 				value: `\`${user.id}\` <@${user.id}>`,
 				inline: false,
 			},
-			{	name: 'Conta criada em:',
-				inline: false,
-				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
-			},
-			{	name: 'Conta criada em:',
-				inline: false,
-				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
-			},
 			{	name: 'Emblemas',
 				inline: false,
 				value: await badge(user.flags.toArray()),
+			},
+			{	name: 'Conta criada em:',
+				inline: false,
+				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
 			});
 
 		console.log(user.flags.toArray());
@@ -60,6 +56,12 @@ module.exports = {
 			const banner = await user.bannerURL({ dynamic: true, size: 512 });
 			embed.setImage(banner);
 		}
+
+		if (user.avatar) {
+			const avatar = await user.displayAvatarURL({ dynamic: true, size: 2048 });
+			embed.setThumbnail(avatar);
+		}
+
 
 		if (member) {
 			embed.addFields({ name: 'Entrou aqui em:', value: `<t:${Math.round(member.joinedTimestamp / 1000)}> (<t:${Math.round(member.joinedTimestamp / 1000)}:R>)`, inline: false });
