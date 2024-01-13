@@ -35,15 +35,22 @@ module.exports = {
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${user.tag}`)
-			.setDescription(`Nome de Usuário: **${user.tag}** ` + await badge(user.flags.toArray()))
 			.addFields({
 				name: 'ID do Usuário',
-				value: `\`${user.id}\``,
+				value: `\`${user.id}\` <@${user.id}>`,
 				inline: false,
 			},
 			{	name: 'Conta criada em:',
 				inline: false,
 				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
+			},
+			{	name: 'Conta criada em:',
+				inline: false,
+				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
+			},
+			{	name: 'Emblemas',
+				inline: false,
+				value: await badge(user.flags.toArray()),
 			});
 
 		console.log(user.flags.toArray());
