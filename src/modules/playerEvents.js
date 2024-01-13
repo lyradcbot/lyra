@@ -56,7 +56,7 @@ module.exports = (client) => {
 	});
 
 	client.vulkava.on('error', (node, err) => {
-		console.error(`[ VULKAVA ] Error on node ${node.identifier}`, err.message);
+		console.error(`[VULKAVA] Error on node ${node.identifier} ${err.message}`.red);
 	});
 
 	client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
