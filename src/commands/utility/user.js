@@ -59,7 +59,7 @@ module.exports = {
 
 		if (user.avatar) {
 			const avatar = await user.displayAvatarURL({ dynamic: true, size: 2048 });
-			embed.setThumbnail(avatar);
+			embed.setThumbnail({ url: avatar });
 		}
 
 
