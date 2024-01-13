@@ -1,6 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const colorableDominant = require('colorable-dominant');
-const splashy = require('splashy')();
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -34,12 +32,10 @@ module.exports = {
 			return flags;
 		}
 
-		const predominantColors = await splashy.fromUrl(user.displayAvatarURL({ dynamic: true, size: 2048 }));
-		const palette = colorableDominant(predominantColors);
 
 		const embed = new EmbedBuilder()
 			.setTitle(`${user.tag}`)
-			.setColor(palette.color)
+			.setColor('#cd949d')
 			.addFields({
 				name: 'ID do Usuário',
 				value: `\`${user.id}\` <@${user.id}>`,
