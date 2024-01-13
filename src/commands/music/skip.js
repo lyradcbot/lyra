@@ -26,6 +26,7 @@ module.exports = {
 			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
 		player.skip();
+		console.log(player);
 		await interaction.reply({ embeds: [skip] });
 	}
 };
