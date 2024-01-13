@@ -7,7 +7,7 @@ module.exports = {
 		.setName('wikipedia')
 		.setDescription('Pesquisa sobre tudo.').addStringOption(option =>
 			option.setName('termo')
-			  .setDescription('O termo para pesquisar')
+			  .setDescription('O termo que deseja pesquisar.')
 			  .setRequired(true)),
 	async execute (interaction) {
 		await interaction.deferReply();

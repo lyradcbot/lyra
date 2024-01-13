@@ -5,6 +5,27 @@ module.exports = {
 	name: Events.InteractionCreate,
 	async execute (interaction) {
 		await interaction.client.db.guild.checkGuild(interaction.guild.id);
+		const manutationStatus = await interaction.client.db.bot.getManutation();
+		const dev = ['742798447253651506', '717766639260532826'];
+		if (manutationStatus.enabled === true && !dev.includes(interaction.user.id)) {
+			const embed = new EmbedBuilder()
+				.setTitle('Manutenção')
+				.setDescription('O bot foi colocado em manutenção por meu desenvolvedor.')
+				.addFields(
+					{
+						name: 'Motivo:',
+						value: manutationStatus.reason,
+					}
+				)
+				.setColor('Red')
+				.setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
+				.setFooter({
+					text: 'Nossa equipe está trabalhando fortemente! Obrigado pela compreensão!',
+					iconURL: interaction.client.user.displayAvatarURL({ dynamic: true, size: 4096 })
+				})
+				.setTimestamp();
+			return interaction.reply({ embeds: [embed] });
+		}
 		if (interaction.isModalSubmit()) {
 			require('./functions/modals/threadModal')(interaction);
 		}

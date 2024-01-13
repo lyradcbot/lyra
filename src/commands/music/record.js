@@ -34,7 +34,7 @@ module.exports = {
 		else {
 			const player = interaction.client.vulkava.players.get(interaction.guild.id);
 			await player.recorder.stop();
-			await player.destroy();
+			// await player.destroy();
 			const recording = new EmbedBuilder()
 				.setDescription(':white_circle: **|** Parando a gravação de voz!')
 				.setColor('Blurple');

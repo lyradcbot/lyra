@@ -1,5 +1,6 @@
-const { Events, ChannelType, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
+const { Events, ChannelType, EmbedBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
 const emoji = require('../modules/emojis.json');
+const config = require('../config.js');
 
 module.exports = {
 	name: Events.MessageCreate,
@@ -7,6 +8,36 @@ module.exports = {
 		await message.client.db.guild.checkGuild(message.guild.id);
 		if (message.author.bot) return;
 		if (message.channel.type === ChannelType.DM) return;
+		if (message.content === `<@!${message.client.user.id}>` || message.content === `<@${message.client.user.id}>`) {
+			const client = message.client;
+			const guild = message.guild;
+			const data = await client.db.bot.getCommands();
+			const commands = data.commands;
+			const command = commands.find(command => command.name === 'ajuda');
+			const devInfo1 = await client.users.fetch('717766639260532826');
+			const devInfo2 = await client.users.fetch('742798447253651506');
+			const embed = new EmbedBuilder()
+				.setTitle(`${emoji.hello} Olá, eu sou a ${client.user.username}!`)
+				.setDescription(`É um prazer estar em seu servidor! Para ver meus comandos, use </${command.name}:${command.id}>.`)
+				.addFields(
+					{
+						name: 'Links',
+						value: `[Convite](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands)\n[Servidor de Suporte](https://discord.gg/${config.supportServer})\n[Me adicione em seu servidor](https://discord.com/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands)`,
+					},
+					{
+						name: 'Desenvolvedores',
+						value: `${devInfo1.globalName} \`(${devInfo1.id})\`\n${devInfo2.globalName} \`(${devInfo2.id})\``,
+					}
+				)
+				.setColor('Blurple')
+				.setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 4096 }))
+				.setFooter({
+					text: `${guild.name} (${guild.id})`,
+					iconURL: guild.iconURL({ dynamic: true, size: 4096 })
+				});
+			await message.channel.send({ embeds: [embed] });
+		}
+
 		const autoThreadEnabled = await message.client.db.guild.getAutoThreadStatus(message.guild.id);
 		if (autoThreadEnabled) {
 			const autoThreadChannels = await message.client.db.guild.getAutoThreadChannels(message.guild.id);

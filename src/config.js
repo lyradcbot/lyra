@@ -1,6 +1,7 @@
 module.exports = {
 	dev: ['742798447253651506', '717766639260532826'],
 	transcriptServer: 'https://transcript.lyrabot.online',
+	supportServer: '',
 	client: {
 		id: process.env.CLIENT_ID,
 		secret: process.env.CLIENT_SECRET,
@@ -18,7 +19,7 @@ module.exports = {
 		nodes: [
 			{
 				id: 'Sonora',
-				hostname: '154.53.33.246',
+				hostname: 'mongoservice',
 				port: 2333,
 				password: 'youshallnotpass',
 				// transport: 'rest'
