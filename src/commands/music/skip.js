@@ -31,6 +31,8 @@ module.exports = {
 			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.track[0].title.replace(/`/g, '')}\`.`,
 			'color': '#cd949d'
 		};
+
+		console.log(player.track);
 		setTimeout(() => {
 			interaction.channel.send({
 				embeds: [playlist]
