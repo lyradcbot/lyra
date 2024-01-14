@@ -22,22 +22,11 @@ module.exports = {
 			return interaction.reply({ embeds: [noMusic] });
 		}
 		const skip = new EmbedBuilder()
-			.setDescription(`${emoji.volume} ${interaction.member} **|** A música atual foi pulada.`)
+			.setDescription(`<:music:1194308116901285921> **|** Tocando agora: \`${player.queue.tracks[0].title.replace(/`/g, '')}\`.`)
 			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
 
-		const playlist = {
-			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.queue.tracks[0].title.replace(/`/g, '')}\`.`,
-			'color': '#cd949d'
-		};
-
-		setTimeout(() => {
-			interaction.followUp({
-				embeds: [playlist]
-			});
-			player.skip();
-		}, 3000);
-
+		player.skip();
 
 		await interaction.reply({ embeds: [skip] });
 	}
