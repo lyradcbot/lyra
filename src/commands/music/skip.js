@@ -25,20 +25,20 @@ module.exports = {
 			.setDescription(`${emoji.volume} ${interaction.member} **|** A música atual foi pulada.`)
 			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
-		player.skip();
 
 		const playlist = {
 			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.queue.tracks[0].title.replace(/`/g, '')}\`.`,
 			'color': '#cd949d'
 		};
 
-		console.log(player.tracks);
 		setTimeout(() => {
 			interaction.channel.send({
 				embeds: [playlist]
 			});
-
+			player.skip();
 		}, 3000);
+
+		player.skip();
 
 		await interaction.reply({ embeds: [skip] });
 	}
