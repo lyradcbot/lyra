@@ -32,13 +32,12 @@ module.exports = {
 		};
 
 		setTimeout(() => {
-			interaction.channel.send({
+			interaction.folloUp({
 				embeds: [playlist]
 			});
 			player.skip();
 		}, 3000);
 
-		player.skip();
 
 		await interaction.reply({ embeds: [skip] });
 	}
