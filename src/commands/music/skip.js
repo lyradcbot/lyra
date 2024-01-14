@@ -26,7 +26,18 @@ module.exports = {
 			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
 		player.skip();
-		console.log(player);
+
+		const playlist = {
+			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.track.title.replace(/`/g, '')}\`.`,
+			'color': '#cd949d'
+		};
+		setTimeout(() => {
+			interaction.channel.send({
+				embeds: [playlist]
+			});
+
+		}, 3000);
+
 		await interaction.reply({ embeds: [skip] });
 	}
 };
