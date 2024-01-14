@@ -62,11 +62,11 @@ for (const file of eventFiles) {
 	}
 }
 
-process.on('unhandledRejection', (err) => console.log(`${err.message}`.red));
+process.on('unhandledRejection', (err) => console.log(`${err}`.red));
 
-process.on('uncaughtException', (err) => console.log(`${err.message}`.red));
+process.on('uncaughtException', (err) => console.log(`${err}`.red));
 
-client.on('error', (err) => console.log(`${err.message}`.red));
+client.on('error', (err) => console.log(`${err}`.red));
 
 client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 
