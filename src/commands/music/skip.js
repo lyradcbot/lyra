@@ -40,7 +40,7 @@ module.exports = {
 
 		}, 3000);
 */
-		console.log(player);
+		console.log(player.queue);
 		await interaction.reply({ embeds: [skip] });
 	}
 };
