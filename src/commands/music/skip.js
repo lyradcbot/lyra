@@ -32,7 +32,7 @@ module.exports = {
 			'color': '#cd949d'
 		};
 
-		console.log(player.track);
+		console.log(player.tracks);
 		setTimeout(() => {
 			interaction.channel.send({
 				embeds: [playlist]
