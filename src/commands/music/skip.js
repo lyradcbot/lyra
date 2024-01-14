@@ -32,7 +32,7 @@ module.exports = {
 		};
 
 		setTimeout(() => {
-			interaction.folloUp({
+			interaction.followUp({
 				embeds: [playlist]
 			});
 			player.skip();
