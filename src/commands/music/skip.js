@@ -28,7 +28,7 @@ module.exports = {
 		player.skip();
 
 		const playlist = {
-			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.track.title.replace(/`/g, '')}\`.`,
+			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.track[0].title.replace(/`/g, '')}\`.`,
 			'color': '#cd949d'
 		};
 		setTimeout(() => {
