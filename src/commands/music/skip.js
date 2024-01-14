@@ -26,7 +26,7 @@ module.exports = {
 			.setColor('#cd949d');
 		if (!player) return interaction.reply({ embeds: [skip] });
 		player.skip();
-
+		/*
 		const playlist = {
 			'description': `<:music:1194308116901285921> **|** Tocando agora: \`${player.track[0].title.replace(/`/g, '')}\`.`,
 			'color': '#cd949d'
@@ -39,7 +39,8 @@ module.exports = {
 			});
 
 		}, 3000);
-
+*/
+		console.log(player.tracks);
 		await interaction.reply({ embeds: [skip] });
 	}
 };
