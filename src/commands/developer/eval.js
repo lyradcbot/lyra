@@ -8,33 +8,36 @@ module.exports = {
 			option.setName('code')
 				.setDescription('Código a ser executado')
 				.setRequired(true)),
-	async execute  (interaction) {
-		let args = [interaction.options.getString('code')];
+	async execute (interaction) {
 		const dev = ['742798447253651506', '717766639260532826'];
 
-		if (!dev.includes(interaction.user.id)) return interaction.reply({ content: 'Esse comando só pode ser executado por Desenvolvedores.**' });
-		let code;
+		if (!dev.includes(interaction.user.id)) {
+			return interaction.reply({ content: 'Esse comando só pode ser executado por Desenvolvedores.' });
+		}
+
+		const code = interaction.options.getString('code');
+		let result, type;
+
 		try {
-			code = await eval(args.join(' '));
+			result = await eval(code);
+			type = typeof result;
+
+			if (typeof result !== 'string') {
+				result = require('util').inspect(result, { depth: 0 });
+			}
 		}
 		catch (e) {
-			code = e.toString();
+			result = e.toString();
+			type = 'error';
 		}
-		const tipo = typeof code;
-		try {
-			if (typeof code !== 'string') code = await require('util').inspect(code, { depth: 0 });
-		}
-		catch (e) {
-			code = e.toString();
-		}
+
 		const embed = new EmbedBuilder()
-			.setDescription(` \`\`\`js\n${code.slice(0, 1010)}\`\`\``)
+			.setDescription(`\`\`\`js\n${result.slice(0, 1010)}\`\`\``)
 			.setColor('#cd949d')
-			.setFooter({ text: `Tipo: ${tipo}` })
+			.setFooter({ text: `Tipo: ${type}` })
 			.setAuthor({ name: `Executado por ${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL() })
 			.setTimestamp();
 
 		interaction.reply({ embeds: [embed], ephemeral: true });
-
 	}
 };
