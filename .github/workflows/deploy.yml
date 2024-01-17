@@ -27,13 +27,15 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
-      - name: Cloning repository
+      - name: Resetar o repositório
+        run: ssh prod 'bash -i -c "cd lyra && git reset --hard origin/main"'
+      - name: Clonar repositório
         run: ssh prod 'cd lyra && git pull https://${{ secrets.GIT_SECRET }}:x-oauth-basic@github.com/lyradcbot/lyra.git main --force'
-      - name: Building container
+      - name: Construindo container
         run: ssh prod 'bash -i -c "cd lyra && docker build --cpuset-cpus=0-55 --memory="16g" . -t lyra/bot"'
-      - name: Stopping container
+      - name: Parando o container atual
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
-      - name: Starting container
+      - name: Iniciando o novo container
         run: ssh prod 'bash -i -c "docker run --add-host=mongoservice:172.17.0.1 --hostname gotenks -d --restart always --network="bridge" -p 3201:80 --cpuset-cpus=0-5 --memory="16g" --name lyra lyra/bot"'
-      - name: Clear docker cache
+      - name: Deletando o cache do docker
         run: ssh prod 'bash -i -c "docker system prune --all --force"'
