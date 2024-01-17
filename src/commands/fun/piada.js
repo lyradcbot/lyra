@@ -10,19 +10,6 @@ module.exports = {
 		await interaction.deferReply();
 		const rand = Math.floor(Math.random() * piadas.features.length);
 		const piada = piadas.features[rand];
-		/*
-        Retorna algo tipo:
-        {
-            "type": "Feature",
-            "properties": {
-                "pergunta": "Qual a diferença do gato para a Coca-Cola?",
-                "resposta": "O gato mia e a Coca Light.",
-                "createdAt": "2017\/09\/02 06:07:15.682",
-                "updatedAt": "2017\/09\/02 06:07:15.682"
-            },
-            "geometry": null
-        },
-        */
 		const embed = new EmbedBuilder()
 			.setTitle(`${emoji.piada} Piada`)
 			.setDescription(piada.properties.pergunta)

@@ -1,9 +1,11 @@
 const cheerio = require('cheerio');
-const express = require('express');
+const fastify = require('fastify')({ logger: true });
 const axios = require('axios');
 
-const app = express();
 const port = 80;
+
+// Implementação de cache simples (pode precisar de ajustes)
+const cache = new Map();
 
 function isBotGenerated (html) {
 	const $ = cheerio.load(html);
@@ -29,12 +31,17 @@ function isBotGenerated (html) {
 	return discordScript;
 }
 
-app.get('/transcript', async (req, res) => {
+fastify.get('/transcript', async (request, reply) => {
 	try {
-		const link = req.query.link;
+		const link = request.query.link;
 
 		if (!link) {
-			return res.status(400).send('Parâmetro "link" ausente na URL.');
+			return reply.status(400).send('Parâmetro "link" ausente na URL.');
+		}
+
+		// Verificar cache
+		if (cache.has(link)) {
+			return reply.header('Content-Type', 'text/html').send(cache.get(link));
 		}
 
 		const response = await axios.get(link);
@@ -42,21 +49,28 @@ app.get('/transcript', async (req, res) => {
 		const isGeneratedByBot = isBotGenerated(response.data);
 
 		if (!isGeneratedByBot) {
-			return res.status(400).send('A mensagem não foi gerada por um bot.');
+			return reply.status(400).send('A mensagem não foi gerada por um bot.');
 		}
 
-		res.send(response.data);
+		// Armazenar no cache e enviar resposta com Content-Type definido
+		cache.set(link, response.data);
+		reply.header('Content-Type', 'text/html').send(response.data);
 	}
 	catch (error) {
 		console.error(error);
-		res.status(500).send('Erro interno do servidor.');
+		reply.status(500).send('Erro interno do servidor.');
 	}
 });
 
-app.get('*', async (req, res) => {
-	res.redirect('https://lyrabot.online');
+fastify.get('*', async (request, reply) => {
+	reply.redirect('https://lyrabot.online');
 });
 
-app.listen(port, () => {
-	console.log(`[TRANSCRIPT] Servidor rodando em http://localhost:${port}`.green);
+// Inicie o servidor Fastify
+fastify.listen(port, '0.0.0.0', (err, address) => {
+	if (err) {
+		fastify.log.error(err);
+		process.exit(1);
+	}
+	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`.green);
 });
