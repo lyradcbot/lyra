@@ -31,5 +31,6 @@ module.exports = {
 				}
 			});
 		}, 10000);
+		setInterval(() => global.gc(), 10000);
 	},
 };
