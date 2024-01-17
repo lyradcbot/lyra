@@ -4,7 +4,8 @@
   "description": "Lyra is a Discord Bot",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "prod": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 node --optimize_for_size --expose-gc --gc-interval=100 ."
   },
   "keywords": [],
   "author": "euandrelucas",
