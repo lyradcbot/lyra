@@ -10,7 +10,14 @@ services:
       - bridge
     ports:
       - "3201:80"
-    cpus: "0-5"
-    mem_limit: "16g"
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 512M
+        reservations:
+          cpus: '1'
+          memory: 20M
     extra_hosts:
       - "mongoservice:172.17.0.1"
+      
