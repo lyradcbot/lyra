@@ -12,7 +12,7 @@ services:
     ports:
       - "3201:80"
     cpuset: "0-5"
-    mem_limit: "512m"
+    mem_limit: "16g"
     extra_hosts:
       - "localmachine:172.17.0.1"
 
