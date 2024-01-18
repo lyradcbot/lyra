@@ -36,6 +36,6 @@ jobs:
       - name: Parando o container atual
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
       - name: Iniciando o novo container
-        run: ssh prod 'bash -i -c "docker compose up -d"'
+        run: ssh prod 'bash -i -c "cd lyra && docker compose up -d"'
       - name: Deletando o cache do docker
         run: ssh prod 'bash -i -c "docker system prune --all --force"'
