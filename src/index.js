@@ -8,6 +8,10 @@ const { Vulkava } = require('vulkava');
 const config = require('./config.js');
 
 const client = new Client({
+	allowedMentions: {
+		parse: ['users', 'roles'],
+		repliedUser: true
+	},
 	intents: [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMembers,
@@ -15,7 +19,7 @@ const client = new Client({
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.MessageContent,
 		GatewayIntentBits.DirectMessages
-	]
+	],
 });
 
 client.vulkava = new Vulkava({
