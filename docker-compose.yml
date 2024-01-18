@@ -3,7 +3,7 @@ version: '3'
 services:
   lyra:
     build:
-      context: ./lyra
+      context: ./
     container_name: lyra
     hostname: gotenks
     restart: always
