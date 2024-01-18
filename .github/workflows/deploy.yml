@@ -32,10 +32,10 @@ jobs:
       - name: Clonar repositório
         run: ssh prod 'cd lyra && git pull https://${{ secrets.GIT_SECRET }}:x-oauth-basic@github.com/lyradcbot/lyra.git main --force'
       - name: Construindo container
-        run: ssh prod 'bash -i -c "cd lyra && docker build --cpuset-cpus=0-55 --memory="16g" . -t lyra/bot"'
+        run: ssh prod 'bash -i -c "cd lyra && docker compose build"'
       - name: Parando o container atual
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
       - name: Iniciando o novo container
-        run: ssh prod 'bash -i -c "docker run --add-host=mongoservice:172.17.0.1 --hostname gotenks -d --restart always --network="bridge" -p 3201:80 --cpuset-cpus=0-5 --memory="16g" --name lyra lyra/bot"'
+        run: ssh prod 'bash -i -c "docker compose up -d"'
       - name: Deletando o cache do docker
         run: ssh prod 'bash -i -c "docker system prune --all --force"'

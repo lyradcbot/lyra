@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  lyra:
+    image: lyra/bot
+    container_name: lyra
+    hostname: gotenks
+    restart: always
+    networks:
+      - bridge
+    ports:
+      - "3201:80"
+    cpus: "0-5"
+    mem_limit: "16g"
+    extra_hosts:
+      - "mongoservice:172.17.0.1"
