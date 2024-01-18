@@ -4,8 +4,8 @@
   "description": "Lyra is a Discord Bot",
   "main": "src/index.js",
   "scripts": {
-    "start": "node --always-opt --optimize_for_size --expose-gc --gc-interval=100 .",
-    "prod": "node --always-opt --optimize_for_size --expose-gc --gc-interval=100 ."
+    "start": "node --optimize_for_size --expose-gc --gc-interval=100 .",
+    "prod": "node --optimize_for_size --expose-gc --gc-interval=100 ."
   },
   "keywords": [],
   "author": "euandrelucas",
