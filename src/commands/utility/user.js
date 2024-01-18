@@ -15,9 +15,10 @@ module.exports = {
 		}
 		else {
 			if (isNaN(args[0])) return interaction.reply(`${interaction.user}, Usuário não encontrado.`, { ephemeral: true });
-			user = await interaction.client.users.fetch(args[0]).catch(() => {
-				return interaction.reply(`${interaction.user}, Usuário não encontrado.`, { ephemeral: true });
+			user = interaction.client.users.cache.get(args[0]) ? interaction.client.users.cache.get(args[0]) : await interaction.client.users.fetch(args[0], {
+				force: true
 			});
+			if (!user) return interaction.reply(`${interaction.user}, Usuário não encontrado.`, { ephemeral: true });
 		}
 
 		const member = await interaction.guild.members.fetch(user.id, { cache: true }).catch((e) => console.log(e));

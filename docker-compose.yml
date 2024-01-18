@@ -12,9 +12,9 @@ services:
     ports:
       - "3201:80"
     cpuset: "0-5"
-    mem_limit: "16g"
+    mem_limit: "512m"
     extra_hosts:
-      - "mongoservice:172.17.0.1"
+      - "localmachine:172.17.0.1"
 
 networks:
   bridge:

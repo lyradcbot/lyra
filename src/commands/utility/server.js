@@ -60,7 +60,9 @@ module.exports = {
 				if (a.members.cache.get(interaction.user.id)) {
 					console.log('Membro detectado em : ', guild.name);
 
-					let owner = await interaction.client.users.fetch(a.ownerId);
+					let owner = await interaction.client.users.cache.get(a.ownerId) ? interaction.client.users.cache.get(a.ownerId) : await interaction.client.users.fetch(a.ownerId, {
+						force: true
+					});
 
 					array.push({
 						label: a.name,

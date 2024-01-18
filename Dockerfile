@@ -4,8 +4,13 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
 # Instalação do libjemalloc
-RUN apt-get update && apt-get install libjemalloc-dev -y && apt-get clean
-ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so" 
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends libjemalloc2 \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Configuração do LD_PRELOAD
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
 
 # Instalação das dependências
 RUN npm ci --production

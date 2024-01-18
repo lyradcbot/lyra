@@ -12,8 +12,12 @@ module.exports = {
 		const data = await client.db.bot.getCommands();
 		const commands = data.commands;
 		const command = commands.find(command => command.name === 'ajuda');
-		const devInfo1 = await client.users.fetch('717766639260532826');
-		const devInfo2 = await client.users.fetch('742798447253651506');
+		const devInfo1 = await client.users.cache.get('717766639260532826') ? client.users.cache.get('717766639260532826') : await client.users.fetch('717766639260532826', {
+			force: true
+		});
+		const devInfo2 = await client.users.cache.get('742798447253651506') ? client.users.cache.get('742798447253651506') : await client.users.fetch('742798447253651506', {
+			force: true
+		});
 		const embed = new EmbedBuilder()
 			.setTitle(`${emoji.hello} Olá, eu sou a ${client.user.username}!`)
 			.setDescription(`É um prazer ser adicionada em seu servidor! Para ver meus comandos, use </${command.name}:${command.id}>.`)
@@ -41,7 +45,9 @@ module.exports = {
 				await channel.send({ embeds: [embed] });
 			});
 		});
-		const owner = await client.users.fetch(guild.ownerId);
+		const owner = await client.users.cache.get(guild.ownerId) ? client.users.cache.get(guild.ownerId) : await client.users.fetch(guild.ownerId, {
+			force: true
+		});
 		const logChannel = await client.channels.cache.get(config.devLogs.guildJoin);
 		const embedLog = new EmbedBuilder()
 			.setTitle('Fui adicionada em um servidor')
