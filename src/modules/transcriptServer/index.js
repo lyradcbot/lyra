@@ -67,7 +67,6 @@ fastify.get('*', async (request, reply) => {
 });
 
 // Inicie o servidor Fastify
-/*
 fastify.listen(port, '0.0.0.0', (err, address) => {
 	if (err) {
 		fastify.log.error(err);
@@ -75,9 +74,10 @@ fastify.listen(port, '0.0.0.0', (err, address) => {
 	}
 	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`.green);
 });
-*/
 
 // Inicie o servidor Fastify
-fastify.listen({ port: port }, (err, address) => {
+/*
+fastify.listen({ port: port, }, (err, address) => {
 	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`);
 });
+*/
