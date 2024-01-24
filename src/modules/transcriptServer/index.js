@@ -63,18 +63,9 @@ fastify.get('/transcript', async (request, reply) => {
 });
 
 fastify.get('*', async (request, reply) => {
-	reply.redirect('https://lyrabot.online');
+	reply.code(404).send('Rota não encontrada');
 });
 
-// Inicie o servidor Fastify
-/* fastify.listen(port, '0.0.0.0', (err, address) => {
-	if (err) {
-		fastify.log.error(err);
-		process.exit(1);
-	}
-	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`.green);
-});
-*/
 // Inicie o servidor Fastify
 fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
 	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`);
