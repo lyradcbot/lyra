@@ -1,5 +1,5 @@
 # Etapa 1: Instalar dependências
-FROM node:20 AS dependencies
+FROM node:16 AS dependencies
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
@@ -16,7 +16,7 @@ ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
 RUN npm ci --production
 
 # Etapa 2: Copiar código-fonte
-FROM node:20 AS app
+FROM node:16 AS app
 WORKDIR /usr/src/app
 
 # Copia as dependências instaladas na etapa anterior

@@ -65,7 +65,7 @@ fastify.get('/laranjo', async (request, reply) => {
 		const canvas = createCanvas(685, 494);
 		const ctx = canvas.getContext('2d');
 
-		const background = await loadImage('./assets/laranjo.jpg');
+		const background = await loadImage('./src/modules/imageGen/assets/images/laranjo.jpg');
 		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 		ctx.font = '30px sans-serif';
