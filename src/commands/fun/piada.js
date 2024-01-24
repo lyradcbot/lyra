@@ -5,7 +5,7 @@ const piadas = require('../../modules/jokes.json');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('piada')
-		.setDescription('Conta várias piadas.'),
+		.setDescription('Conta várias piadas diferentes.'),
 	async execute (interaction) {
 		await interaction.deferReply();
 		const rand = Math.floor(Math.random() * piadas.features.length);

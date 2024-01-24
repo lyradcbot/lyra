@@ -1,30 +1,24 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const emoji = require('../../modules/emojis.json');
-const piadas = require('../../modules/jokes.json');
+const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
+const config = require('../../config');
+const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('laranjo')
-		.setDescription('Faz uma piada com o laranjo.'),
+		.setDescription('Faz uma montagem com o laranjo.')
+		.addStringOption(option =>
+			option.setName('piada')
+				.setDescription('O texto da montagem.')
+				.setRequired(true)),
 	async execute (interaction) {
 		await interaction.deferReply();
-		const rand = Math.floor(Math.random() * piadas.features.length);
-		const piada = piadas.features[rand];
-		const embed = new EmbedBuilder()
-			.setTitle(`${emoji.piada} Piada`)
-			.setDescription(piada.properties.pergunta)
-			.addFields(
-				{
-					name: 'Resposta',
-					value: `||${piada.properties.resposta}||`,
-					inline: false
-				}
-			)
-			.setFooter({
-				text: `ID do usuário: ${interaction.user.id}`,
-				iconURL: interaction.user.avatarURL({ dynamic: true, size: 4096 })
-			})
-			.setColor('#cd949d');
-		await interaction.editReply({ embeds: [embed] });
+		const texto = interaction.options.getString('piada');
+		await axios.get(config.imageServer + '/laranjo?text=' + encodeURI(texto), { responseType: 'arraybuffer' }).then(async response => {
+			const base64 = Buffer.from(response.data, 'base64');
+			const attachment = new AttachmentBuilder(base64, {
+				name: 'laranjo.png'
+			});
+			await interaction.editReply({ files: [attachment] });
+		});
 	},
 };
