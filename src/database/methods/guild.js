@@ -122,6 +122,11 @@ const removeAutoroleBot = async (guildId, userId) => {
 	await guild.save();
 };
 
+const getAutoroleStatus = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autorole.enabled;
+};
+
 const getAutoroleUsers = async (guildId) => {
 	const guild = await getGuild(guildId);
 	return guild.autorole.users;
@@ -323,6 +328,7 @@ module.exports = {
 	removeAutoroleSticky,
 	getAutoThreadChannels,
 	getAutoThreadStatus,
+	getAutoroleStatus,
 	getAutoroleUsers,
 	getAutoroleBots,
 	getAutoroleSticky,

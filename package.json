@@ -20,6 +20,8 @@
     "fastify": "^4.25.2",
     "mercadopago": "^2.0.6",
     "mongoose": "^8.1.0",
+    "nubank-api": "^3.1.1",
+    "uuid": "^9.0.1",
     "vulkava": "^1.6.2"
   },
   "devDependencies": {
