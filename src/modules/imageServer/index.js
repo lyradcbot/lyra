@@ -27,13 +27,6 @@ fastify.register(cors, {
 	origin: '*',
 });
 
-fastify.get('/ping', async (request, reply) => {
-	const data = {
-		ping: fastify.server.metrics().requestDuration,
-	};
-	return reply.send(data);
-});
-
 fastify.get('/dieplague', async (request, reply) => {
 	try {
 		const avatarURL = request.query.avatar;
