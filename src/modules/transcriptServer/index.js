@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const fastify = require('fastify')({ logger: true });
+const fastify = require('fastify')();
 const axios = require('axios');
 
 const port = 80;

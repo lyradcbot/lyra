@@ -47,6 +47,12 @@ const GuildSchema = new Schema({
 		words: Array,
 		enabled: Boolean,
 	},
+	verification: {
+		type: String,
+		channel: String,
+		roles: Array,
+		enabled: Boolean,
+	}
 });
 
 module.exports = mongoose.model('Guild', GuildSchema);
