@@ -10,8 +10,9 @@ services:
     networks:
       - bridge
     ports:
-      - "3201:80"
-      - "3202:3000"
+      - "3201:3000"
+      - "3202:4000"
+      - "3203:5000"
     cpuset: "0-5"
     mem_limit: "16g"
     extra_hosts:

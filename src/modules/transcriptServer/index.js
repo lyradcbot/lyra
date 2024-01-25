@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const fastify = require('fastify')();
 const axios = require('axios');
 
-const port = 80;
+const port = 3000;
 
 // Implementação de cache simples (pode precisar de ajustes)
 const cache = new Map();
@@ -68,5 +68,5 @@ fastify.get('*', async (request, reply) => {
 
 // Inicie o servidor Fastify
 fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
-	console.log(`[NAPPA] Servidor rodando em ${address}`.green);
+	console.log(`[NAPPA] (transcript) Servidor rodando em ${address}`.green);
 });

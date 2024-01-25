@@ -4,7 +4,7 @@ const sharp = require('sharp');
 const path = require('path');
 const { createCanvas, loadImage, registerFont } = require('canvas');
 
-const port = 3000;
+const port = 4000;
 
 const cache = new Map();
 
@@ -21,6 +21,13 @@ function greyscale (ctx, x, y, width, height) {
 
 	ctx.putImageData(imageData, x, y);
 }
+
+fastify.get('/ping', async (request, reply) => {
+	const data = {
+		ping: fastify.server.metrics().requestDuration,
+	};
+	return reply.send(data);
+});
 
 fastify.get('/dieplague', async (request, reply) => {
 	try {
@@ -192,5 +199,5 @@ fastify.get('/undertalebox', async (request, reply) => {
 
 // Inicie o servidor Fastify
 fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
-	console.log(`[RADITZ] Servidor rodando em ${address}`.green);
+	console.log(`[RADITZ] (images) Servidor rodando em ${address}`.green);
 });
