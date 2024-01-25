@@ -1,4 +1,4 @@
-# Etapa 1: Instalar dependências e jemalloc
+# Etapa 1: Instalar dependências
 FROM node:18 AS dependencies
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
@@ -15,7 +15,7 @@ ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
 # Instalação das dependências
 RUN npm ci --production
 
-# Copia as dependências instaladas na etapa anterior, incluindo o jemalloc
+# Copia as dependências instaladas na etapa anterior
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 
 # Copia o restante do código-fonte
