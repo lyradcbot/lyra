@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install libjemalloc-dev -y && apt-get clean
 ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so" 
 
 # Install app dependencies
-COPY package.json package-lock.json .npmrc ./
+COPY package.json package-lock.json ./
 
 RUN npm ci --production
 
