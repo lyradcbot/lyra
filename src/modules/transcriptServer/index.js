@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const fastify = require('fastify')();
 const axios = require('axios');
+const cors = require('@fastify/cors');
 
 const port = 3000;
 
@@ -30,6 +31,10 @@ function isBotGenerated (html) {
 
 	return discordScript;
 }
+
+fastify.register(cors, {
+	origin: '*',
+});
 
 fastify.get('/transcript', async (request, reply) => {
 	try {

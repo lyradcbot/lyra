@@ -1,4 +1,5 @@
 const fastify = require('fastify')();
+const cors = require('@fastify/cors');
 const axios = require('axios');
 const sharp = require('sharp');
 const path = require('path');
@@ -21,6 +22,10 @@ function greyscale (ctx, x, y, width, height) {
 
 	ctx.putImageData(imageData, x, y);
 }
+
+fastify.register(cors, {
+	origin: '*',
+});
 
 fastify.get('/ping', async (request, reply) => {
 	const data = {

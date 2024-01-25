@@ -11,6 +11,7 @@
   "author": "euandrelucas",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "^8.5.0",
     "axios": "^1.6.5",
     "canvas": "^2.11.2",
     "captcha-generator-alphanumeric": "^1.10.2",

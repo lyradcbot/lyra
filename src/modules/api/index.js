@@ -1,7 +1,13 @@
 module.exports = async (client) => {
 	const fastify = require('fastify')();
+	const cors = require('@fastify/cors');
+
 	const { connection: db } = require('mongoose');
 	const port = 5000;
+
+	fastify.register(cors, {
+		origin: '*',
+	});
 
 	fastify.get('/status', async (request, reply) => {
 		const databasePing = async () => {
