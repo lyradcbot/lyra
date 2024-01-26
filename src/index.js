@@ -8,6 +8,8 @@ const { Vulkava } = require('vulkava');
 const config = require('./config.js');
 
 const client = new Client({
+	ws: { properties: { browser: 'Discord iOS' }
+	},
 	allowedMentions: {
 		parse: ['users', 'roles'],
 		repliedUser: true
