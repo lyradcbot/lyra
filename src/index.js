@@ -49,47 +49,39 @@ const loadCommands = async () => {
 	const foldersPath = path.join(__dirname, 'commands');
 	const commandFolders = await fs.readdir(foldersPath);
 
-	await Promise.all(
-		commandFolders.map(async (folder) => {
-			const commandsPath = path.join(foldersPath, folder);
-			const commandFiles = await fs.readdir(commandsPath);
+	for (const folder of commandFolders) {
+		const commandsPath = path.join(foldersPath, folder);
+		const commandFiles = await fs.readdir(commandsPath);
 
-			await Promise.all(
-				commandFiles
-					.filter((file) => file.endsWith('.js'))
-					.map(async (file) => {
-						const filePath = path.join(commandsPath, file);
-						const command = require(filePath);
-						if ('data' in command && 'execute' in command) {
-							client.commands.set(command.data.name, command);
-						}
-						else {
-							console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`.red);
-						}
-					})
-			);
-		})
-	);
+		for (const file of commandFiles.filter(file => file.endsWith('.js'))) {
+			const filePath = path.join(commandsPath, file);
+			const { data, execute } = require(filePath);
+
+			if (data && execute) {
+				client.commands.set(data.name, { data, execute });
+			}
+			else {
+				console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`.red);
+			}
+		}
+	}
 };
 
 const loadEvents = async () => {
 	const eventsPath = path.join(__dirname, 'events');
 	const eventFiles = await fs.readdir(eventsPath);
 
-	await Promise.all(
-		eventFiles
-			.filter((file) => file.endsWith('.js'))
-			.map(async (file) => {
-				const filePath = path.join(eventsPath, file);
-				const event = require(filePath);
-				if (event.once) {
-					client.once(event.name, event.execute);
-				}
-				else {
-					client.on(event.name, event.execute);
-				}
-			})
-	);
+	for (const file of eventFiles.filter(file => file.endsWith('.js'))) {
+		const filePath = path.join(eventsPath, file);
+		const { name, execute, once } = require(filePath);
+
+		if (once) {
+			client.once(name, execute);
+		}
+		else {
+			client.on(name, execute);
+		}
+	}
 };
 
 process.on('unhandledRejection', (err) => console.log(`${err}`.red));
@@ -104,13 +96,14 @@ const startBot = async () => {
 		await loadCommands();
 		await loadEvents();
 		require('./modules/transcriptServer/index.js');
+		require('./modules/imageServer/index.js');
 		await client.db.bot.checkBot();
 		require('./deployCommands.js');
 		await client.login(config.client.token);
 	}
 	catch (error) {
 		console.error(`[ERROR] An error occurred: ${error.message}`.red);
-		process.exit(1);
+		process.exitCode = 1;
 	}
 };
 

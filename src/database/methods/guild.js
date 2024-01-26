@@ -46,6 +46,12 @@ const createGuild = async (guildId) => {
 		bannedWords: {
 			words: [],
 			enabled: false,
+		},
+		verification: {
+			type: null,
+			channel: null,
+			roles: [],
+			enabled: false,
 		}
 	});
 	await guild.save();
@@ -120,6 +126,11 @@ const removeAutoroleBot = async (guildId, userId) => {
 	const guild = await getGuild(guildId);
 	guild.autorole.bots = guild.autorole.bots.filter((u) => u !== userId);
 	await guild.save();
+};
+
+const getAutoroleStatus = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.autorole.enabled;
 };
 
 const getAutoroleUsers = async (guildId) => {
@@ -308,6 +319,42 @@ const getBannedWords = async (guildId) => {
 	return guild.bannedWords.words;
 };
 
+const setVerification = async (guildId, enabled) => {
+	const guild = await getGuild(guildId);
+	guild.verification.enabled = enabled;
+	await guild.save();
+};
+
+const setVerificationType = async (guildId, type) => {
+	const guild = await getGuild(guildId);
+	guild.verification.type = type;
+	await guild.save();
+};
+
+const setVerificationChannel = async (guildId, channelId) => {
+	const guild = await getGuild(guildId);
+	guild.verification.channel = channelId;
+	await guild.save();
+};
+
+const addVerificationRole = async (guildId, roleId) => {
+	const guild = await getGuild(guildId);
+	console.log(guild);
+	guild.verification.roles.push(roleId);
+	await guild.save();
+};
+
+const removeVerificationRole = async (guildId, roleId) => {
+	const guild = await getGuild(guildId);
+	guild.verification.roles = guild.verification.roles.filter((r) => r !== roleId);
+	await guild.save();
+};
+
+const getVerification = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.verification.enabled;
+};
+
 module.exports = {
 	checkGuild,
 	createGuild,
@@ -323,6 +370,7 @@ module.exports = {
 	removeAutoroleSticky,
 	getAutoThreadChannels,
 	getAutoThreadStatus,
+	getAutoroleStatus,
 	getAutoroleUsers,
 	getAutoroleBots,
 	getAutoroleSticky,
@@ -353,4 +401,10 @@ module.exports = {
 	addBannedWord,
 	removeBannedWord,
 	getBannedWords,
+	setVerification,
+	setVerificationType,
+	setVerificationChannel,
+	addVerificationRole,
+	removeVerificationRole,
+	getVerification,
 };

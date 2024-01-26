@@ -7,6 +7,7 @@ module.exports = {
 	async execute (client) {
 		console.log(`[CLIENT] Pronto! Estou ligado em ${client.user.tag}`.green);
 		await client.vulkava.start(client.user.id);
+		require('../modules/api/index')(client);
 		setTimeout(() => {
 			client.guilds.cache.map(async (guild) => {
 				await client.db.lavalink.checkPlayer(guild.id);

@@ -1,13 +1,14 @@
 const cheerio = require('cheerio');
-const fastify = require('fastify')({ logger: true });
+const fastify = require('fastify')();
 const axios = require('axios');
+const cors = require('@fastify/cors');
 
-const port = 80;
+const port = 3000;
 
 // Implementação de cache simples (pode precisar de ajustes)
 const cache = new Map();
 
-function isBotGenerated (html) {
+const isBotGenerated = (html) => {
 	const $ = cheerio.load(html);
 
 	const profiles = $('script').filter((i, el) => {
@@ -22,14 +23,12 @@ function isBotGenerated (html) {
 	const scriptContent = profiles.html();
 	const botProfileIndex = scriptContent.indexOf('"bot":true');
 
-	if (botProfileIndex === -1) {
-		return false;
-	}
+	return botProfileIndex !== -1 && $('script[src*="discord-components-core"]').length > 0;
+};
 
-	const discordScript = $('script[src*="discord-components-core"]').length > 0;
-
-	return discordScript;
-}
+fastify.register(cors, {
+	origin: '*',
+});
 
 fastify.get('/transcript', async (request, reply) => {
 	try {
@@ -40,8 +39,9 @@ fastify.get('/transcript', async (request, reply) => {
 		}
 
 		// Verificar cache
-		if (cache.has(link)) {
-			return reply.header('Content-Type', 'text/html').send(cache.get(link));
+		const cachedData = cache.get(link);
+		if (cachedData) {
+			return reply.header('Content-Type', 'text/html').send(cachedData);
 		}
 
 		const response = await axios.get(link);
@@ -63,21 +63,14 @@ fastify.get('/transcript', async (request, reply) => {
 });
 
 fastify.get('*', async (request, reply) => {
-	reply.redirect('https://lyrabot.online');
+	reply.code(404).send('Rota não encontrada');
 });
 
 // Inicie o servidor Fastify
-fastify.listen(port, '0.0.0.0', (err, address) => {
+fastify.listen({ port, host: '0.0.0.0' }, (err, address) => {
 	if (err) {
-		fastify.log.error(err);
+		console.error(err);
 		process.exit(1);
 	}
-	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`.green);
+	console.log(`[NAPPA] (transcript) Servidor rodando em ${address}`.green);
 });
-
-// Inicie o servidor Fastify
-/*
-fastify.listen({ port: port, }, (err, address) => {
-	console.log(`[TRANSCRIPT] Servidor rodando em ${address}`);
-});
-*/
