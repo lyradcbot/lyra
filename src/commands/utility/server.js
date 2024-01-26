@@ -59,14 +59,9 @@ module.exports = {
 				if (a.id === interaction.guild.id) return;
 				if (a.members.cache.get(interaction.user.id)) {
 					console.log('Membro detectado em : ', guild.name);
-
-					let owner = await interaction.client.users.cache.get(a.ownerId) ? interaction.client.users.cache.get(a.ownerId) : await interaction.client.users.fetch(a.ownerId, {
-						force: true
-					});
-
 					array.push({
 						label: a.name,
-						description: `ID: ${a.id} | Dono: ${owner.username}`,
+						description: `Server ID: ${a.id}`,
 						value: a.id,
 					});
 				}

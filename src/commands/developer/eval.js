@@ -38,6 +38,6 @@ module.exports = {
 			.setAuthor({ name: `Executado por ${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL() })
 			.setTimestamp();
 
-		interaction.reply({ embeds: [embed], ephemeral: true });
+		interaction.reply({ embeds: [embed], ephemeral: false });
 	}
 };

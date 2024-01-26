@@ -54,7 +54,7 @@ module.exports = {
 		console.log(user.flags.toArray());
 		console.log(member);
 
-		if (user.banner) {
+		if (user.bannerURL({ dynamic: true, size: 512 })) {
 			const banner = await user.bannerURL({ dynamic: true, size: 512 });
 			embed.setImage(banner);
 		}
