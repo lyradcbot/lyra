@@ -5,11 +5,11 @@ const pid = require('pidusage');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('bot')
-		.setDescription('Bot commands')
+		.setDescription('Developer related commands')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('info')
-				.setDescription('Mostra informações sobre o bot')),
+				.setDescription('Veja as informações do bot')),
 	async execute  (interaction) {
 
 		const andre = await client.users.fetch('742798447253651506');
