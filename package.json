@@ -23,6 +23,8 @@
     "fastify": "^4.25.2",
     "mongoose": "^8.1.0",
     "nubank-api": "^3.1.1",
+    "os": "^0.1.2",
+    "pidusage": "^3.0.2",
     "sharp": "^0.33.2",
     "vulkava": "^1.6.2"
   },
