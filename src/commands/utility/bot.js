@@ -5,7 +5,7 @@ const pid = require('pidusage');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('bot')
-		.setDescription('Mostra a latência do bot!')
+		.setDescription('Bot commands')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('info')
