@@ -12,6 +12,7 @@ module.exports = {
 				.setDescription('Veja as informações do bot')),
 	async execute  (interaction) {
 
+		const client = interaction.client;
 		const andre = await client.users.fetch('742798447253651506');
 		const adg = await client.users.fetch('717766639260532826');
 		let cpu = await pid(process.pid).then(s =>{return s.cpu.toFixed(2) + ' %';});
