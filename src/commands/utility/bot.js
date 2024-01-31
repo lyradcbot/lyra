@@ -12,9 +12,8 @@ module.exports = {
 				.setDescription('Veja as informações do bot')),
 	async execute  (interaction) {
 
-		const client = interaction.client;
-		const andre = await client.users.fetch('742798447253651506');
-		const adg = await client.users.fetch('717766639260532826');
+		const andre = await interaction.client.users.fetch('742798447253651506');
+		const adg = await interaction.client.users.fetch('717766639260532826');
 		let cpu = await pid(process.pid).then(s =>{return s.cpu.toFixed(2) + ' %';});
 
 		let idioma = {
@@ -38,7 +37,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setTitle(idioma.botinfo.title)
 			.setColor('#6c92e4')
-			.setDescription(`> ${idioma.botinfo.description.replace(/{user}/g, interaction.user).replace(/{eu}/g, client.user.username).replace(/{total_servers}/g, client.guilds.cache.size).replace(/{cmds}/g, client.commands.size)}`)
+			.setDescription(`> ${idioma.botinfo.description.replace(/{user}/g, interaction.user).replace(/{eu}/g, interaction.client.user.username).replace(/{total_servers}/g, interaction.client.guilds.cache.size).replace(/{cmds}/g, interaction.client.commands.size)}`)
 			.addFields({
 				name: `<:server:925053236862406696> ${idioma.botinfo.maquina}`,
 				value: `> RAM: **${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}MB / ${Math.round((os.totalmem() / 1024 / 1024).toFixed(2) / 1024)} GB**\n> CPU: **${cpu}**\n> ${idioma.botinfo.processador}: **${os.cpus()[0].model}**`,
@@ -46,12 +45,12 @@ module.exports = {
 			},
 			{
 				name: `<:add:925040703229268030> ${idioma.botinfo.meadd}`,
-				value: `${idioma.botinfo.cliqueaqui}(https://discord.com/api/oauth2/authorize?client_id=850403894374694913&permissions=429966879974&scope=bot%20applications.commands) ${idioma.botinfo.toadd}`,
+				value: `${idioma.botinfo.cliqueaqui}(https://discord.com/api/oauth2/authorize?client_id=1188935519028138087&permissions=429966879974&scope=bot%20applications.commands) ${idioma.botinfo.toadd}`,
 				inline: true
 			},
 			{
 				name: `<:upvote:925040657356161136> ${idioma.botinfo.vote}`,
-				value: `${idioma.botinfo.cliqueaqui}(https://top.gg/bot/850403894374694913/vote) ${idioma.botinfo.tovote}`,
+				value: `${idioma.botinfo.cliqueaqui}(https://top.gg/bot/1188935519028138087/vote) ${idioma.botinfo.tovote}`,
 				inline: true
 			},
 			{
@@ -61,7 +60,7 @@ module.exports = {
 			},
 			{
 				name: `🏆 ${idioma.botinfo.agradeco}`,
-				value: `- ${idioma.botinfo.agradecimento.replace(/{user}/g, interaction.user).replace(/{andre}/g, andre.tag).replace(/{adg}/g, adg.tag).replace(/{total_servers}/g, client.guilds.cache.size)}`,
+				value: `- ${idioma.botinfo.agradecimento.replace(/{user}/g, interaction.user).replace(/{andre}/g, andre.tag).replace(/{adg}/g, adg.tag).replace(/{total_servers}/g, interaction.client.guilds.cache.size)}`,
 				inline: false
 			});
 
