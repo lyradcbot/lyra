@@ -29,7 +29,7 @@ module.exports = {
 				'tovote': 'para votar',
 				'servidor': 'Meu servidor de Suporte',
 				'log': 'para entrar no meu servidor de suporte',
-				'agradecimento': 'Agradeço ao **`{andre}`**, **`{adg}`** por terem me desenvolvido.\n- Agradeço a todas as pessoas** que utilizaram minhas funções\n- Agradeço a todos os **Administradores e donos** dos meus **{total_servers} servidores** por me adicionarem\n- E agradeço a você **{user}**, por estar usando meus comandos :heart:',
+				'agradecimento': 'Agradeço ao **`{andre}`**, **`{adg}`** por terem me desenvolvido.\n- Agradeço a **todas as pessoas** que utilizaram minhas funções\n- Agradeço a todos os **Administradores e donos** dos meus **{total_servers} servidores** por me adicionarem\n- E agradeço a você **{user}**, por estar usando meus comandos :heart:',
 				'agradeco': 'Agradecimentos:'
 			},
 		};
