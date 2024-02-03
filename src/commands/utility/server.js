@@ -9,14 +9,14 @@ module.exports = {
 				.setName('icon')
 				.setDescription('Mostra o ícone do servidor').addStringOption(option =>
 					option.setName('id')
-					  .setDescription('Id of another server')
+					  .setDescription('Id do servidor')
 					  .setRequired(false)))
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('info')
 				.setDescription('Mostra informações do servidor').addStringOption(option =>
 					option.setName('id')
-					  .setDescription('Id of another server')
+					  .setDescription('Id do servidor')
 					  .setRequired(false))),
 	async execute (interaction) {
 		if (interaction.options.getSubcommand() === 'icon') {

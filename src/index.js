@@ -95,8 +95,10 @@ const startBot = async () => {
 		console.log('[DATABASE] Database Ready!'.green);
 		await loadCommands();
 		await loadEvents();
-		// require('./modules/transcriptServer/index.js');
-		// require('./modules/imageServer/index.js');
+		if (process.env.NODE_ENV === 'dev' || !process.env.NODE_ENV) {
+			require('./modules/transcript/index.js');
+			require('./modules/images/index.js');
+		}
 		await client.db.bot.checkBot();
 		require('./deployCommands.js');
 		await client.login(config.client.token);
