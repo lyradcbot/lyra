@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const emoji = require('../../modules/emojis.json');
-const fetch = require('node:fetch');
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,6 +15,8 @@ module.exports = {
 		const word = interaction.options.getString('termo');
 
 		try {
+
+
 			const response = await fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURI(word)}`);
 
 			if (!response.ok) {
