@@ -14,5 +14,8 @@ RUN npm ci --production
 # Copy app source
 COPY . .
 
+# Expose port
+EXPOSE 4000
+
 # Start command
 CMD [ "npm", "run", "prod" ]
