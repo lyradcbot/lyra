@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const emoji = require('../../modules/emojis.json');
-const fetch = require('node-fetch');
+const fetch = require('node:fetch');
 
 module.exports = {
 	data: new SlashCommandBuilder()
