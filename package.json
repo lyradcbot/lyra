@@ -11,7 +11,7 @@
   "author": "euandrelucas",
   "license": "ISC",
   "dependencies": {
-    "@fastify/cors": "^8.5.0",
+    "@fastify/cors": "^9.0.1",
     "axios": "^1.6.7",
     "colors": "^1.4.0",
     "discord-html-transcripts": "^3.2.0",
