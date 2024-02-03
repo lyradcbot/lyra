@@ -31,10 +31,21 @@ jobs:
         run: ssh prod 'bash -i -c "cd lyra && git reset --hard origin/main"'
       - name: Clonar repositório
         run: ssh prod 'cd lyra && git pull https://${{ secrets.GIT_SECRET }}:x-oauth-basic@github.com/lyradcbot/lyra.git main --force'
-      - name: Construindo container
+      # Construindo containers
+      - name: Construindo container (bot)
         run: ssh prod 'bash -i -c "cd lyra && docker compose build"'
-      - name: Parando o container atual
+      - name: Construindo container (images)
+        run: ssh prod 'bash -i -c "cd lyra/src/modules/images && docker compose build"'
+      - name: Construindo container (transcript)
+        run: ssh prod 'bash -i -c "cd lyra/src/modules/transcript && docker compose build"'
+      # Parando containers
+      - name: Parando o container atual (bot)
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
+      - name: Parando o container atual (images)
+        run: ssh prod 'bash -i -c "docker rm --force lyraimages"'
+      - name: Parando o container atual (transcript)
+        run: ssh prod 'bash -i -c "docker rm --force lyratranscript"'
+      # Iniciando containers
       - name: Iniciando o novo container
         run: ssh prod 'bash -i -c "cd lyra && docker compose up -d"'
       - name: Deletando o cache do docker

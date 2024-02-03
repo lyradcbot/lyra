@@ -4,7 +4,6 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = (client) => {
 	client.vulkava.on('recordFinished', async (node, guildId, id) => {
 		const file = await node.getRecord(guildId, id);
-
 		client.guilds.cache.get(guildId);
 		const channel = client.channels.cache.get(id);
 		const embed = new EmbedBuilder()
@@ -19,7 +18,6 @@ module.exports = (client) => {
 				  }
 			]
 		  });
-
 		client.records.delete(guildId);
 		node.deleteRecord(guildId, id);
 	});
@@ -54,11 +52,10 @@ module.exports = (client) => {
 		});
 		player.destroy();
 	});
-
 	/*
 	client.vulkava.on('error', (node, err) => {
 		console.error(`[VULKAVA] Error on node ${node.identifier} ${err}`.red);
 	});
-*/
+	*/
 	client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 };

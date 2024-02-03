@@ -97,7 +97,7 @@ fastify.get('/perfeito', async (request, reply) => {
 	  const resizedAvatarBuffer = await sharp(avatarBuffer).resize(200, 200).toBuffer();
 
 	  // Obtém a imagem da máscara redonda e redimensiona para as mesmas dimensões do avatar
-	  const redondoBuffer = await sharp('./src/modules/imageServer/assets/images/mask.png').resize(200, 200).toBuffer();
+	  const redondoBuffer = await sharp('./assets/images/mask.png').resize(200, 200).toBuffer();
 
 	  // Compondo as imagens usando a máscara redonda
 	  const compositeBuffer = await sharp(backgroundBuffer)
@@ -131,7 +131,7 @@ fastify.get('/laranjo', async (request, reply) => {
 		const canvas = createCanvas(685, 494);
 		const ctx = canvas.getContext('2d');
 
-		const background = await loadImage('./src/modules/imageServer/assets/images/laranjo.jpg');
+		const background = await loadImage('./assets/images/laranjo.jpg');
 		ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 		ctx.font = '30px sans-serif';
@@ -153,7 +153,7 @@ fastify.get('/laranjo', async (request, reply) => {
 
 fastify.get('/undertalebox', async (request, reply) => {
 	try {
-		await registerFont('./src/modules/imageServer/assets/fonts/Minecraftia.ttf', { family: 'Minecraftia' });
+		await registerFont('./assets/fonts/Minecraftia.ttf', { family: 'Minecraftia' });
 
 		const texto = request.query.text;
 
@@ -171,7 +171,7 @@ fastify.get('/undertalebox', async (request, reply) => {
 			return reply.header('Content-Type', 'image/png').send(cachedImage);
 		}
 
-		const base = await loadImage('./src/modules/imageServer/assets/images/undertalebox.png');
+		const base = await loadImage('./assets/images/undertalebox.png');
 		const avatar = await loadImage(request.query.avatar);
 		const canvas = createCanvas(base.width, base.height);
 		const foto = canvas.getContext('2d');
