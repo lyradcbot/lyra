@@ -5,7 +5,7 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('wikipedia')
-		.setDescription('Pesquisa sobre tudo.')
+		.setDescription('Pesquisa sobre algo na wikipédia.')
 		.addStringOption(option =>
 			option.setName('termo')
 				.setDescription('O termo que deseja pesquisar.')
@@ -15,8 +15,6 @@ module.exports = {
 		const word = interaction.options.getString('termo');
 
 		try {
-
-
 			const response = await fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURI(word)}`);
 
 			if (!response.ok) {
