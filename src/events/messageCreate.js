@@ -8,7 +8,7 @@ module.exports = {
 		await message.client.db.guild.checkGuild(message.guild.id);
 		if (message.author.bot) return;
 		if (message.channel.type === ChannelType.DM) return;
-		if(message.content.includes('parabens aos envolvidos'.toLowerCase) || message.content.includes('parabéns aos envolvidos'.toLowerCase)) message.react('👏');
+		if(message.content.toLowerCase.includes('parabens aos envolvidos') || message.content.includes('parabéns aos envolvidos')) message.react('👏');
 		if (message.content === `<@!${message.client.user.id}>` || message.content === `<@${message.client.user.id}>`) {
 			const client = message.client;
 			const guild = message.guild;
