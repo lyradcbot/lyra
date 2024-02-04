@@ -6,8 +6,7 @@ module.exports = {
 	async execute (interaction) {
 		await interaction.client.db.guild.checkGuild(interaction.guild.id);
 		const manutationStatus = await interaction.client.db.bot.getManutation();
-		const dev = ['742798447253651506', '717766639260532826'];
-		if (manutationStatus.enabled === true && !dev.includes(interaction.user.id)) {
+		if (manutationStatus.enabled === true && !config.dev.includes(interaction.user.id)) {
 			const embed = new EmbedBuilder()
 				.setTitle('Manutenção')
 				.setDescription('O bot foi colocado em manutenção por meu desenvolvedor.')
@@ -32,6 +31,7 @@ module.exports = {
 		if (interaction.isButton()) {
 			require('./functions/buttons/tickets')(interaction);
 			require('./functions/buttons/threads')(interaction);
+			require('./functions/buttons/verification')(interaction);
 		}
 		if (interaction.isAutocomplete()) {
 			const command = interaction.client.commands.get(interaction.commandName);

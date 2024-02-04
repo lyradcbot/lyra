@@ -5,54 +5,6 @@ const createGuild = async (guildId) => {
 	const guild = new GuildModel({
 		_id: new mongoose.Types.ObjectId(),
 		guildId: guildId,
-		blocked: false,
-		logsChannel: null,
-		autoThread: {
-			channels: [],
-			enabled: false,
-		},
-		autorole: {
-			users: [],
-			bots: [],
-			stickyRoles: [],
-			enabled: false,
-		},
-		suggestions: {
-			channel: null,
-			suggestions: [],
-			enabled: false,
-		},
-		tickets: {
-			transcriptChannel: null,
-			autotrancsript: false,
-			logsChannel: null,
-			ticketCategory: null,
-			ticketChannel: null,
-			ticketEmbed: {
-				title: null,
-				description: null,
-				color: null,
-				footer: null,
-				thumbnail: null,
-				image: null,
-			},
-			enabled: false,
-			supportRole: [],
-		},
-		premium: {
-			enabled: false,
-			expires: null,
-		},
-		bannedWords: {
-			words: [],
-			enabled: false,
-		},
-		verification: {
-			type: null,
-			channel: null,
-			roles: [],
-			enabled: false,
-		}
 	});
 	await guild.save();
 };
@@ -352,7 +304,7 @@ const removeVerificationRole = async (guildId, roleId) => {
 
 const getVerification = async (guildId) => {
 	const guild = await getGuild(guildId);
-	return guild.verification.enabled;
+	return guild.verification;
 };
 
 module.exports = {

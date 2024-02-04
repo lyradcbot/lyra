@@ -4,25 +4,6 @@ const mongoose = require('mongoose');
 const createBot = async () => {
 	const bot = new BotModel({
 		_id: new mongoose.Types.ObjectId(),
-		manutation: {
-			enabled: false,
-			reason: null,
-			user: null,
-		},
-		versionLogs: {
-			version: null,
-			logs: null,
-			enabled: false,
-		},
-		blacklist: {
-			users: [],
-			guilds: [],
-			enabled: false,
-		},
-		commands: {
-			enabled: false,
-			commands: [],
-		},
 	});
 	await bot.save();
 };

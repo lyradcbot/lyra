@@ -5,23 +5,23 @@ const ObjectId = Schema.ObjectId;
 const botSchema = new Schema({
 	_id: ObjectId,
 	manutation: {
-		enabled: Boolean,
-		reason: String,
-		user: String,
+		enabled: { type: Boolean, default: false },
+		reason: { type: String, default: null },
+		user: { type: String, default: null },
 	},
 	versionLogs: {
-		version: String,
-		logs: String,
-		enabled: Boolean,
+		version: { type: String, default: null },
+		logs: { type: String, default: null },
+		enabled: { type: Boolean, default: false },
 	},
 	blacklist: {
-		users: Array,
-		guilds: Array,
-		enabled: Boolean,
+		users: { type: Array, default: [] },
+		guilds: { type: Array, default: [] },
+		enabled: { type: Boolean, default: false },
 	},
 	commands: {
-		enabled: Boolean,
-		commands: Array,
+		enabled: { type: Boolean, default: false },
+		commands: { type: Array, default: [] },
 	},
 });
 

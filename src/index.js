@@ -96,8 +96,8 @@ const startBot = async () => {
 		await loadCommands();
 		await loadEvents();
 		if (process.env.NODE_ENV === 'dev' || !process.env.NODE_ENV) {
-			require('./modules/transcript/index.js');
-			require('./modules/images/index.js');
+			require('../packages/transcript/index.js');
+			require('../packages/images/index.js');
 		}
 		await client.db.bot.checkBot();
 		require('./deployCommands.js');

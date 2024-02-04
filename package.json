@@ -7,12 +7,12 @@
     "start": "node --optimize_for_size --expose-gc --gc-interval=100 .",
     "prod": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 node --use-strict --harmony --optimize_for_size --no-lazy --no-warnings --no-deprecation  --expose-gc --gc-interval=1 ."
   },
-  "keywords": [],
   "author": "euandrelucas",
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^9.0.1",
     "axios": "^1.6.7",
+    "canvafy": "^7.0.4",
     "colors": "^1.4.0",
     "discord-html-transcripts": "^3.2.0",
     "discord.js": "^14.14.1",

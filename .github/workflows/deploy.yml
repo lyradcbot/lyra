@@ -35,9 +35,9 @@ jobs:
       - name: Construindo container (bot)
         run: ssh prod 'bash -i -c "cd lyra && docker compose build"'
       - name: Construindo container (images)
-        run: ssh prod 'bash -i -c "cd lyra/src/modules/images && docker compose build"'
+        run: ssh prod 'bash -i -c "cd lyra/packages/images && docker compose build"'
       - name: Construindo container (transcript)
-        run: ssh prod 'bash -i -c "cd lyra/src/modules/transcript && docker compose build"'
+        run: ssh prod 'bash -i -c "cd lyra/packages/transcript && docker compose build"'
       # Parando containers
       - name: Parando o container atual (bot)
         run: ssh prod 'bash -i -c "docker rm --force lyra"'
@@ -49,9 +49,9 @@ jobs:
       - name: Iniciando o novo container
         run: ssh prod 'bash -i -c "cd lyra && docker compose up -d"'
       - name: Iniciando o novo container (images)
-        run: ssh prod 'bash -i -c "cd lyra/src/modules/images && docker compose up -d"'
+        run: ssh prod 'bash -i -c "cd lyra/packages/images && docker compose up -d"'
       - name: Iniciando o novo container (transcript)
-        run: ssh prod 'bash -i -c "cd lyra/src/modules/transcript && docker compose up -d"'
+        run: ssh prod 'bash -i -c "cd lyra/packages/transcript && docker compose up -d"'
       # Limpando docker
       - name: Deletando o cache do docker
         run: ssh prod 'bash -i -c "docker system prune --all --force"'

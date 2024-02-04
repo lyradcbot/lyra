@@ -4,7 +4,7 @@ const emoji = require('../../modules/emojis.json');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('config')
-		.setDescription('Configura o bot')
+		.setDescription('Configurações do bot')
 		.addSubcommand(subcommand =>
 			subcommand.setName('manutation')
 				.setDescription('Configura a manutenção do bot')
