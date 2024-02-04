@@ -116,6 +116,7 @@ module.exports = async (interaction) => {
 	if (interaction.customId.startsWith('verify')) {
 		const verificationData = await interaction.client.db.guild.getVerification(interaction.guild.id);
 		const type = interaction.customId.split(';')[1];
+		if (interaction.customId === 'verify') return;
 		const member = interaction.member;
 		if (type === 'correct') {
 			await member.roles.add(verificationData.roles);
