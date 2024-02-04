@@ -1,3 +1,4 @@
+require('colors');
 const fastify = require('fastify')();
 const cors = require('@fastify/cors');
 const axios = require('axios');

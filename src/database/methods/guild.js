@@ -291,7 +291,6 @@ const setVerificationChannel = async (guildId, channelId) => {
 
 const addVerificationRole = async (guildId, roleId) => {
 	const guild = await getGuild(guildId);
-	console.log(guild);
 	guild.verification.roles.push(roleId);
 	await guild.save();
 };

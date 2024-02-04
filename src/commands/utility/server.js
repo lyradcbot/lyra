@@ -55,10 +55,8 @@ module.exports = {
 			let array = [];
 
 			interaction.client.guilds.cache.map(async (a) => {
-				console.log(a.name);
 				if (a.id === interaction.guild.id) return;
 				if (a.members.cache.get(interaction.user.id)) {
-					console.log('Membro detectado em : ', guild.name);
 					array.push({
 						label: a.name,
 						description: `Server ID: ${a.id}`,

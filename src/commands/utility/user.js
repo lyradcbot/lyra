@@ -51,9 +51,6 @@ module.exports = {
 				value: `<t:${Math.round(user.createdTimestamp / 1000)}> (<t:${Math.round(user.createdTimestamp / 1000)}:R>)`,
 			});
 
-		console.log(user.flags.toArray());
-		console.log(member);
-
 		if (user.bannerURL({ dynamic: true, size: 512 })) {
 			const banner = await user.bannerURL({ dynamic: true, size: 512 });
 			embed.setImage(banner);

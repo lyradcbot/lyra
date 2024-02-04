@@ -1,3 +1,4 @@
+require('colors');
 const cheerio = require('cheerio');
 const fastify = require('fastify')();
 const axios = require('axios');

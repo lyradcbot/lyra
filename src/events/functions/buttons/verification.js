@@ -6,7 +6,6 @@ module.exports = async (interaction) => {
 		await interaction.deferReply({ ephemeral: true });
 		const verificationData = await interaction.client.db.guild.getVerification(interaction.guild.id);
 		const member = interaction.member;
-		console.log(verificationData);
 		if (verificationData.enabled === false) return interaction.editReply({ content: 'O sistema de verificação está desativado.', ephemeral: true });
 		if (member.roles.cache.some(role => verificationData.roles.includes(role.id))) return interaction.editReply({ content: 'Você já está verificado.', ephemeral: true });
 		if (verificationData.type === 'letters') {
