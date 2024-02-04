@@ -6,7 +6,6 @@ const cors = require('@fastify/cors');
 
 const port = 3000;
 
-// Implementação de cache simples (pode precisar de ajustes)
 const cache = new Map();
 
 const isBotGenerated = (html) => {
@@ -39,7 +38,6 @@ fastify.get('/transcript', async (request, reply) => {
 			return reply.status(400).send('Parâmetro "link" ausente na URL.');
 		}
 
-		// Verificar cache
 		const cachedData = cache.get(link);
 		if (cachedData) {
 			return reply.header('Content-Type', 'text/html').send(cachedData);
@@ -53,7 +51,6 @@ fastify.get('/transcript', async (request, reply) => {
 			return reply.status(400).send('A mensagem não foi gerada por um bot.');
 		}
 
-		// Armazenar no cache e enviar resposta com Content-Type definido
 		cache.set(link, response.data);
 		reply.header('Content-Type', 'text/html').send(response.data);
 	}
@@ -68,7 +65,7 @@ fastify.get('*', async (request, reply) => {
 });
 
 // Inicie o servidor Fastify
-fastify.listen({ port, host: '0.0.0.0' }, (err, address) => {
+fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
 	if (err) {
 		console.error(err);
 		process.exit(1);
