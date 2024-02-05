@@ -184,5 +184,5 @@ fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
 		console.error(err);
 		process.exit(1);
 	}
-	console.log(`[RADITZ] (images) Servidor rodando em ${address}`.green);
+	console.log(`[RADITZ] (images) Servidor rodando em ${address}`.cyan);
 });

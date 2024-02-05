@@ -68,6 +68,6 @@ module.exports = async (client) => {
 	});
 
 	fastify.listen({ port: port, host: '0.0.0.0' }, (err, address) => {
-	  console.log(`[GOGETA] (api) Servidor rodando em ${address}`.green);
+	  console.log(`[GOGETA] (api) Servidor rodando em ${address}`.cyan);
 	});
 };

@@ -138,7 +138,7 @@ module.exports = async (interaction) => {
 				.setColor('Green')
 				.setTimestamp()
 				.setFooter({ text: `${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
-			await interaction.followUp({ content: `${interaction.user}`, embeds: [embed], ephemeral: true });
+			await interaction.reply({ content: `${interaction.user}`, embeds: [embed], ephemeral: true });
 		}
 		else {
 			const embed = new EmbedBuilder()
@@ -147,7 +147,7 @@ module.exports = async (interaction) => {
 				.setColor('Red')
 				.setTimestamp()
 				.setFooter({ text: `${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
-			await interaction.followUp({ content: `${interaction.user}`, embeds: [embed], ephemeral: true });
+			await interaction.reply({ content: `${interaction.user}`, embeds: [embed], ephemeral: true });
 		}
 	}
 };

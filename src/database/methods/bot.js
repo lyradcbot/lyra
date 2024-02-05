@@ -11,12 +11,10 @@ const createBot = async () => {
 const checkBot = async () => {
 	const bot = await BotModel.findOne();
 	if (!bot) {
-		console.log('[DATABASE] Bot não encontrado, criando...'.yellow);
 		await createBot();
 		const bot2 = await getBot();
 		return bot2;
 	}
-	console.log('[DATABASE] Bot encontrado!'.green);
 	return bot;
 };
 

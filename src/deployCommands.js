@@ -42,14 +42,14 @@ const rest = new REST().setToken(config.client.token);
 	try {
 		loadCommands(commands, warnings);
 
-		console.log(`[SLASH] Recarregando ${commands.length} slash commands.`.cyan);
+		console.log(`[SLASH] Recarregando ${commands.length} slash commands.`.white);
 		const data = await rest.put(
 			Routes.applicationCommands(config.client.id),
 			{ body: commands },
 		);
 
 		await db.bot.updateBot({ commands: { commands: data } });
-		console.log(`[SLASH] Recarregados ${data.length} slash commands.`.green);
+		console.log(`[SLASH] Recarregados ${data.length} slash commands.`.america);
 
 		warnings.forEach(warning => console.warn(warning.red));
 	}

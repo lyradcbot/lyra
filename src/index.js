@@ -24,7 +24,7 @@ module.exports = async (shardId, shardCount) => {
 		shardCount: shardCount,
 		shards: [shardId]
 	});
-
+	if (process.env.NODE_ENV === 'dev' || !process.env.NODE_ENV) config.lavalink.nodes = config.lavalink.nodes.filter(node => node.hostname !== 'localmachine');
 	client.vulkava = new Vulkava({
 		nodes: config.lavalink.nodes,
 		defaultSearchSource: 'soundcloud',
