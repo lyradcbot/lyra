@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder } = require('discord.js');
+const { Events, EmbedBuilder, WebhookClient } = require('discord.js');
 const config = require('../config.js');
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
 		const owner = await client.users.cache.get(guild.ownerId) ? client.users.cache.get(guild.ownerId) : await client.users.fetch(guild.ownerId, {
 			force: true
 		});
-		const logChannel = await client.channels.cache.get(config.devLogs.guildLeave);
+		const logChannel = new WebhookClient({ url: config.devLogs.guildLeave });
 		const embed = new EmbedBuilder()
 			.setTitle('Fui removida de um servidor')
 			.setDescription(`Fui removida em **${guild.name}** \`(${guild.id})\`\n**Membros:** ${guild.memberCount.toLocaleString('pt-BR')}\n**Criado em:** ${guild.createdAt.toLocaleString('pt-BR')}`)
@@ -30,6 +30,6 @@ module.exports = {
 			.setColor('Red')
 			.setTimestamp()
 			.setFooter({ text: `${client.user.tag} (${client.user.id})`, iconURL: client.user.avatarURL({ dynamic: true, size: 4096 }) });
-		logChannel.send({ embeds: [embed] });
+		logChannel.send({ embeds: [embed], username: client.user.username, avatarURL: client.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
 	},
 };

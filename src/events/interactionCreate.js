@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder } = require('discord.js');
+const { Events, EmbedBuilder, WebhookClient } = require('discord.js');
 const config = require('../config');
 
 module.exports = {
@@ -60,7 +60,7 @@ module.exports = {
 
 		try {
 			await command.execute(interaction);
-			const logChannel = await interaction.client.channels.cache.get(config.devLogs.commands);
+			const logChannel = new WebhookClient({ url: config.devLogs.commandLog });
 			const embed = new EmbedBuilder()
 				.setTitle('Comando executado')
 				.setDescription(`O comando \`${interaction.commandName}\` foi executado por ${interaction.user} \`(${interaction.user.id})\``)
@@ -72,7 +72,7 @@ module.exports = {
 				.setTimestamp()
 				.setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setColor('#cd949d');
-			await logChannel.send({ embeds: [embed] });
+			await logChannel.send({ embeds: [embed], username: interaction.client.user.username, avatarURL: interaction.client.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
 		}
 		catch (error) {
 			console.error(error);

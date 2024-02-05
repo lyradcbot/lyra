@@ -2,7 +2,7 @@
   "name": "lyra",
   "version": "1.0",
   "description": "Lyra is a Discord Bot",
-  "main": "src/index.js",
+  "main": "src/cluster.js",
   "scripts": {
     "start": "node --optimize_for_size --expose-gc --gc-interval=100 .",
     "prod": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 node --use-strict --harmony --optimize_for_size --no-lazy --no-warnings --no-deprecation  --expose-gc --gc-interval=1 ."

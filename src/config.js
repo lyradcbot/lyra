@@ -12,9 +12,9 @@ module.exports = {
 		uri: process.env.MONGO_URI,
 	},
 	devLogs: {
-		guildJoin: '1194007487557419078',
-		guildLeave: '1194007550002212934',
-		commands: '1194007592863801444'
+		guildJoin: 'https://discord.com/api/webhooks/1204070205488107601/CInIwIU_ePESWbrrHuw52ZiMn47DOqtSE8R74wwmKgXe-IWyUT18tcseNRT8_gjHAH9X',
+		guildLeave: 'https://discord.com/api/webhooks/1204070800869556284/p37Wv2w-H2vO2N4jBaUf562wd3HWm5tCt6wz8U9eqciel43UaklMe56G1LwOY1IH6DyE',
+		commandLog: 'https://discord.com/api/webhooks/1204071004360413255/meEk-iY4C5MD56rD64CQfE5gst1vEniRr3TB0_PYbzyuEUTFmKipZb3W5ptyNNz5TCV8'
 	},
 	lavalink: {
 		nodes: [

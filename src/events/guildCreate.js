@@ -1,4 +1,4 @@
-const { Events, EmbedBuilder, PermissionFlagsBits, ChannelType } = require('discord.js');
+const { Events, EmbedBuilder, PermissionFlagsBits, ChannelType, WebhookClient } = require('discord.js');
 const emoji = require('../modules/emojis.json');
 const config = require('../config.js');
 
@@ -48,7 +48,7 @@ module.exports = {
 		const owner = await client.users.cache.get(guild.ownerId) ? client.users.cache.get(guild.ownerId) : await client.users.fetch(guild.ownerId, {
 			force: true
 		});
-		const logChannel = await client.channels.cache.get(config.devLogs.guildJoin);
+		const logChannel = new WebhookClient({ url: config.devLogs.guildJoin });
 		const embedLog = new EmbedBuilder()
 			.setTitle('Fui adicionada em um servidor')
 			.setDescription(`Fui adicionado em **${guild.name}** \`(${guild.id})\`\n**Membros:** ${guild.memberCount.toLocaleString('pt-BR')}\n**Criado em:** ${guild.createdAt.toLocaleString('pt-BR')}`)
@@ -68,6 +68,6 @@ module.exports = {
 			.setTimestamp()
 			.setFooter({ text: `${client.user.tag} (${client.user.id})`, iconURL: client.user.avatarURL({ dynamic: true, size: 4096 }) })
 			.setColor('#cd949d');
-		await logChannel.send({ embeds: [embedLog] });
+		await logChannel.send({ embeds: [embedLog], username: client.user.username, avatarURL: client.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
 	},
 };
