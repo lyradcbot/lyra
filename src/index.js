@@ -10,7 +10,7 @@ module.exports = async (shardId, shardCount) => {
 		ws: { properties: { browser: 'Discord iOS' }
 		},
 		allowedMentions: {
-			parse: ['users', 'roles'],
+			parse: ['users'],
 			repliedUser: true
 		},
 		intents: [
