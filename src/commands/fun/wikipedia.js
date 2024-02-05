@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const emoji = require('../../modules/emojis.json');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,13 +15,13 @@ module.exports = {
 		const word = interaction.options.getString('termo');
 
 		try {
-			const response = await fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURI(word)}`);
+			const response = await axios.get(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURI(word)}`);
 
-			if (!response.ok) {
+			if (!response.status === 200) {
 				throw new Error(`Erro na requisição: ${response.status}`);
 			}
 
-			const wikipedia = await response.json();
+			const wikipedia = response.data;
 			const embed = new EmbedBuilder()
 				.setTitle(`${emoji.wikipedia} ` + wikipedia.title)
 				.setURL(wikipedia.content_urls.desktop.page)

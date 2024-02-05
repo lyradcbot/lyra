@@ -81,6 +81,8 @@ module.exports = async (interaction) => {
 				.setFooter({ text: `${interaction.user.tag} (${interaction.user.id})`, iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 4096 }) });
 			const fakeAlphanumeric1 = alphanumeric.split('').sort(() => Math.random() - 0.5).slice(0, 6).join('');
 			const fakeAlphanumeric2 = alphanumeric.split('').sort(() => Math.random() - 0.5).slice(0, 6).join('');
+			const fakeAlphanumeric3 = alphanumeric.split('').sort(() => Math.random() - 0.5).slice(0, 6).join('');
+			const fakeAlphanumeric4 = alphanumeric.split('').sort(() => Math.random() - 0.5).slice(0, 6).join('');
 			const array = [
 				{
 					label: randomAlphanumeric,
@@ -95,6 +97,16 @@ module.exports = async (interaction) => {
 				{
 					label: fakeAlphanumeric2,
 					id: 'verify;incorrect2',
+					style: 'Secondary'
+				},
+				{
+					label: fakeAlphanumeric3,
+					id: 'verify;incorrect3',
+					style: 'Secondary'
+				},
+				{
+					label: fakeAlphanumeric4,
+					id: 'verify;incorrect4',
 					style: 'Secondary'
 				}
 			];

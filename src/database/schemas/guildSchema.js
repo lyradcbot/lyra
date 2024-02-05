@@ -6,7 +6,15 @@ const GuildSchema = new Schema({
 	_id: ObjectId,
 	guildId: String,
 	blocked: { type: Boolean, default: false },
-	logsChannel: { type: String, default: null },
+	logs: {
+		enabled: { type: Boolean, default: false },
+		channel: { type: String, default: null },
+		ignoredChannels: { type: Array, default: [] },
+		ignoredUsers: { type: Array, default: [] },
+		ignoredRoles: { type: Array, default: [] },
+		ignoredEvents: { type: Array, default: [] },
+		ignoredCommands: { type: Array, default: [] },
+	},
 	autoThread: {
 		channels: { type: Array, default: [] },
 		enabled: { type: Boolean, default: false },
