@@ -4,7 +4,13 @@ const cluster = require('cluster');
 const os = require('os');
 
 if (cluster.isMaster) {
-	const numCPUs = os.cpus().length;
+	let numCPUs;
+	if (process.env.NODE_ENV === 'dev' || !process.env.NODE_ENV) {
+		numCPUs = 1;
+	}
+	else {
+		numCPUs = os.cpus().length;
+	}
 	const shardCount = numCPUs;
 
 	console.log(`[CLUSTER] Número de núcleos da CPU: ${numCPUs}`.yellow);

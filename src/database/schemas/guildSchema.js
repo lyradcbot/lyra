@@ -9,11 +9,13 @@ const GuildSchema = new Schema({
 	logs: {
 		enabled: { type: Boolean, default: false },
 		channel: { type: String, default: null },
+		webhook: { type: String, default: null },
+		logTypes: { type: Array, default: [] },
+		allLogs: { type: Boolean, default: false },
+		logs: { type: Array, default: [] },
 		ignoredChannels: { type: Array, default: [] },
 		ignoredUsers: { type: Array, default: [] },
 		ignoredRoles: { type: Array, default: [] },
-		ignoredEvents: { type: Array, default: [] },
-		ignoredCommands: { type: Array, default: [] },
 	},
 	autoThread: {
 		channels: { type: Array, default: [] },

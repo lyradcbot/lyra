@@ -1,4 +1,5 @@
 const GuildModel = require('../schemas/guildSchema.js');
+const config = require('../../config.js');
 const mongoose = require('mongoose');
 
 const createGuild = async (guildId) => {
@@ -139,12 +140,6 @@ const addSuggestion = async (guildId, suggestionId) => {
 const removeSuggestion = async (guildId, suggestionId) => {
 	const guild = await getGuild(guildId);
 	guild.suggestions.suggestions = guild.suggestions.suggestions.filter((s) => s !== suggestionId);
-	await guild.save();
-};
-
-const setLogsChannel = async (guildId, channelId) => {
-	const guild = await getGuild(guildId);
-	guild.logsChannel = channelId;
 	await guild.save();
 };
 
@@ -306,6 +301,124 @@ const getVerification = async (guildId) => {
 	return guild.verification;
 };
 
+const setLogs = async (guildId, enabled) => {
+	const guild = await getGuild(guildId);
+	guild.logs.enabled = enabled;
+	await guild.save();
+};
+
+const setLogsChannel = async (guildId, channelId) => {
+	const guild = await getGuild(guildId);
+	guild.logs.channel = channelId;
+	await guild.save();
+};
+
+const setLogsTypes = async (guildId, types) => {
+	const guild = await getGuild(guildId);
+	guild.logs.logTypes = types;
+	await guild.save();
+};
+
+const addLogsType = async (guildId, type) => {
+	const guild = await getGuild(guildId);
+	guild.logs.logTypes.push(type);
+	await guild.save();
+};
+
+const removeLogsType = async (guildId, type) => {
+	const guild = await getGuild(guildId);
+	guild.logs.logTypes = guild.logs.logTypes.filter((t) => t !== type);
+	await guild.save();
+};
+
+const setLogsAll = async (guildId, logs) => {
+	const guild = await getGuild(guildId);
+	const logsa = config.auditLogModules.map((log) => log.id);
+	console.log(logsa);
+	guild.logs.allLogs = logs;
+	if (logs) {
+		guild.logs.logTypes = logsa;
+	}
+	await guild.save();
+};
+
+const addLog = async (guildId, log) => {
+	const guild = await getGuild(guildId);
+	guild.logs.logs.push(log);
+	await guild.save();
+};
+
+const removeLog = async (guildId, log) => {
+	const guild = await getGuild(guildId);
+	guild.logs.logs = guild.logs.logs.filter((l) => l !== log);
+	await guild.save();
+};
+
+const setLogsIgnoredChannels = async (guildId, channels) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredChannels = channels;
+	await guild.save();
+};
+
+const addLogsIgnoredChannel = async (guildId, channel) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredChannels.push(channel);
+	await guild.save();
+};
+
+const removeLogsIgnoredChannel = async (guildId, channel) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredChannels = guild.logs.ignoredChannels.filter((c) => c !== channel);
+	await guild.save();
+};
+
+const setLogsIgnoredUsers = async (guildId, users) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredUsers = users;
+	await guild.save();
+};
+
+const addLogsIgnoredUser = async (guildId, user) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredUsers.push(user);
+	await guild.save();
+};
+
+const removeLogsIgnoredUser = async (guildId, user) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredUsers = guild.logs.ignoredUsers.filter((u) => u !== user);
+	await guild.save();
+};
+
+const setLogsIgnoredRoles = async (guildId, roles) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredRoles = roles;
+	await guild.save();
+};
+
+const addLogsIgnoredRole = async (guildId, role) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredRoles.push(role);
+	await guild.save();
+};
+
+const removeLogsIgnoredRole = async (guildId, role) => {
+	const guild = await getGuild(guildId);
+	guild.logs.ignoredRoles = guild.logs.ignoredRoles.filter((r) => r !== role);
+	await guild.save();
+};
+
+const setWebhook = async (guildId, webhook) => {
+	const guild = await getGuild(guildId);
+	guild.logs.webhook = webhook;
+	await guild.save();
+};
+
+const getLogs = async (guildId) => {
+	const guild = await getGuild(guildId);
+	return guild.logs;
+};
+
 module.exports = {
 	checkGuild,
 	createGuild,
@@ -330,7 +443,6 @@ module.exports = {
 	setSuggestionsChannel,
 	addSuggestion,
 	removeSuggestion,
-	setLogsChannel,
 	setTickets,
 	setTicketsChannel,
 	setTicketsCategory,
@@ -358,4 +470,23 @@ module.exports = {
 	addVerificationRole,
 	removeVerificationRole,
 	getVerification,
+	setLogs,
+	setLogsChannel,
+	setLogsTypes,
+	addLogsType,
+	removeLogsType,
+	setLogsAll,
+	addLog,
+	removeLog,
+	setLogsIgnoredChannels,
+	addLogsIgnoredChannel,
+	removeLogsIgnoredChannel,
+	setLogsIgnoredUsers,
+	addLogsIgnoredUser,
+	removeLogsIgnoredUser,
+	setLogsIgnoredRoles,
+	addLogsIgnoredRole,
+	removeLogsIgnoredRole,
+	setWebhook,
+	getLogs,
 };

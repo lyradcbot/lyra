@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
 		.setName('autothread')
-		.setDescription('Configura o sistema de threads.')
+		.setDescription('Configura o sistema de threads automáticas.')
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName('adicionar')

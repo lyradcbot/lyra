@@ -59,7 +59,7 @@ module.exports = async (shardId, shardCount) => {
 				const { data, execute } = require(filePath);
 
 				if (data && execute) {
-					client.commands.set(data.name, { data, execute });
+					client.commands.set(data.name, { data, execute, autocomplete: require(filePath).autocomplete });
 				}
 				else {
 					console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`.red);
@@ -85,10 +85,10 @@ module.exports = async (shardId, shardCount) => {
 		}
 	};
 
-	process.on('unhandledRejection', (err) => console.log(`${err}`.red));
-	process.on('uncaughtException', (err) => console.log(`${err}`.red));
-	client.on('error', (err) => console.log(`${err}`.red));
-	client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
+	// process.on('unhandledRejection', (err) => console.log(`${err}`.red));
+	// process.on('uncaughtException', (err) => console.log(`${err}`.red));
+	// client.on('error', (err) => console.log(`${err}`.red));
+	// client.on('raw', (packet) => client.vulkava.handleVoiceUpdate(packet));
 
 	const startBot = async () => {
 		try {
