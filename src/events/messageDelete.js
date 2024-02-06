@@ -4,6 +4,7 @@ const emoji = require('../modules/emojis.json');
 module.exports = {
 	name: Events.MessageDelete,
 	async execute (message) {
+		if (message.author.bot) return;
 		const logData = await message.client.db.guild.getLogs(message.guild.id);
 		if (!logData.logTypes.includes('messagesDeleted')) return;
 		if (logData.channel === null) return;
@@ -60,7 +61,7 @@ module.exports = {
 				.setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setFooter({
 					text: `ID do Usuário: ${message.author.id}`,
-					iconURL: message.client.user.displayAvatarURL({ dynamic: true, size: 4096 })
+					iconURL: message.guild.iconURL({ dynamic: true, size: 4096 })
 				})
 				.setTimestamp();
 			await webhook.send({ embeds: [embed], username: message.guild.name, avatarURL: message.guild.iconURL({ dynamic: true, size: 4096 }) }).then(async (m) => {
@@ -107,7 +108,7 @@ module.exports = {
 				.setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setFooter({
 					text: `ID do Usuário: ${message.author.id}`,
-					iconURL: message.client.user.displayAvatarURL({ dynamic: true, size: 4096 })
+					iconURL: message.guild.iconURL({ dynamic: true, size: 4096 })
 				})
 				.setTimestamp();
 			channel.send({ embeds: [embed] }).then(async (m) => {

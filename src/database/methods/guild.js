@@ -334,7 +334,6 @@ const removeLogsType = async (guildId, type) => {
 const setLogsAll = async (guildId, logs) => {
 	const guild = await getGuild(guildId);
 	const logsa = config.auditLogModules.map((log) => log.id);
-	console.log(logsa);
 	guild.logs.allLogs = logs;
 	if (logs) {
 		guild.logs.logTypes = logsa;

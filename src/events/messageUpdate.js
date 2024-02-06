@@ -104,7 +104,7 @@ module.exports = {
 				.setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setFooter({
 					text: `ID do Usuário: ${message.author.id}`,
-					iconURL: message.client.user.displayAvatarURL({ dynamic: true, size: 4096 })
+					iconURL: message.guild.iconURL({ dynamic: true, size: 4096 })
 				})
 				.setTimestamp();
 			const linkButton = new ButtonBuilder()
@@ -163,7 +163,7 @@ module.exports = {
 				.setThumbnail(message.author.displayAvatarURL({ dynamic: true, size: 4096 }))
 				.setFooter({
 					text: `ID do Usuário: ${message.author.id}`,
-					iconURL: message.client.user.displayAvatarURL({ dynamic: true, size: 4096 })
+					iconURL: message.guild.iconURL({ dynamic: true, size: 4096 })
 				})
 				.setTimestamp();
 			const linkButton = new ButtonBuilder()
