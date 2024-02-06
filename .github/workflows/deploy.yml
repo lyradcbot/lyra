@@ -52,6 +52,3 @@ jobs:
         run: ssh prod 'bash -i -c "cd lyra/packages/images && docker compose up -d"'
       - name: Iniciando o novo container (transcript)
         run: ssh prod 'bash -i -c "cd lyra/packages/transcript && docker compose up -d"'
-      # Limpando docker
-      - name: Deletando o cache do docker
-        run: ssh prod 'bash -i -c "docker system prune --all --force"'
