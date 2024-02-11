@@ -9,7 +9,10 @@ module.exports = {
 		.setDescription('teste').addSubcommand(subcommand =>
 			subcommand
 				.setName('play')
-				.setDescription('Quer testar a sua velocidade ao digitar ?')),
+				.setDescription('Quer testar a sua velocidade ao digitar ?')).addSubcommand(subcommand =>
+			subcommand
+				.setName('leaderboard')
+				.setDescription('Veja o rank de jogadores de type')),
 	async execute (interaction) {
 
 		let user = interaction.options.getUser('user') || interaction.user;
