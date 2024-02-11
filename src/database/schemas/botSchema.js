@@ -23,6 +23,14 @@ const botSchema = new Schema({
 		enabled: { type: Boolean, default: false },
 		commands: { type: Array, default: [] },
 	},
+	type: {
+		user:  { type: String, default: 0 },
+		vezessolo:  { type: Number, default: 0 },
+		vezesmult:  { type: Number, default:0 },
+		recordsolo:  { type: Number, default: 0 },
+		score:  { type: Number, default: 0 },
+		recordmult:  { type: Number, default: 0 }
+	}
 });
 
 module.exports = mongoose.model('Bot', botSchema);
