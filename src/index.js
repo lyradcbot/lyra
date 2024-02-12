@@ -105,7 +105,7 @@ module.exports = async (shardId, shardCount) => {
 			await client.login(config.client.token);
 		}
 		catch (error) {
-			console.error(`[ERROR] An error occurred: ${error.message}`.red);
+			console.error(`[ERROR] An error occurred: ${error}`.red);
 			process.exitCode = 1;
 		}
 	};
