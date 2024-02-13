@@ -210,21 +210,29 @@ module.exports = {
 		else {
 			type.find({}).then(async function(resultado) {
 
-				console.log(resultado);
 				const final = [];
 				const ranking = resultado.sort((a, b) => b.score - a.score);
 				const users = ranking.slice(0, 10);
 
+				let z = [];
+				users.forEach((a) => {
+					if(!a.score) return;
+
+					z.push(a);
+
+				});
 				let int = 0;
-				for await(const usuario of users) {
+
+				for await(const usuario of z) {
 					let user;
 					if (!user) {
 						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
 					}
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` **${usuario.recordsolo}** segundos :star:`);
+					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Pontuação: **${usuario.score}** :star:`);
 				}
-				interaction.reply(final.slice(0, 10).join('\n'));
+				interaction.reply({ content: final.slice(0, 10).join('\n') });
+
 			});
 		}
 
