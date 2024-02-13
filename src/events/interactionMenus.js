@@ -51,7 +51,7 @@ module.exports = {
 					const staff = ['942125907877986384', '980156816061255690', '380808927568330754'];
 
 					if (owner.includes(user.id)) {
-						emoji = '<:coroa:1207068622951026798>';
+						emoji = '<:coroa:1028754907509039234>';
 					}
 
 					if (dev.includes(user.id)) {
@@ -98,7 +98,7 @@ module.exports = {
 					const staff = ['942125907877986384', '980156816061255690', '380808927568330754'];
 
 					if (owner.includes(user.id)) {
-						emoji = '<:coroa:1207068622951026798>';
+						emoji = '<:coroa:1028754907509039234>';
 					}
 
 					if (dev.includes(user.id)) {
