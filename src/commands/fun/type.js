@@ -162,9 +162,6 @@ module.exports = {
 
 					type.findOne({ user: user.id }).then(async (data) => {
 
-						let chance = Math.floor(Math.random() * 3000);
-
-
 						let end = new Date().getTime();
 						let e = end - start;
 						let time = Math.round(e / 1000);
@@ -195,7 +192,7 @@ module.exports = {
 						}
 						const desafio3 = new EmbedBuilder()
 							.setColor('#cd949d')
-							.setDescription(`> <:confete:932369805451862056> Parabéns! Você digitou todas essas palavras em \`${time}s\`\n<:way_money_lucro:917458511636627527> Coins recebidos nessa partida: \`${chance}\`\n<:vencedor:932369765975081092> Sua pontuação nessa rodada: \`${record}\``)
+							.setDescription(`> <:confete:932369805451862056> Parabéns! Você digitou todas essas palavras em \`${time}s\`\n<:vencedor:932369765975081092> Sua pontuação nessa rodada: \`${record}\``)
 							.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${user.tag.replace(/`/g, '')}\``)
 							.setFooter({ text: `${Math.floor(Math.random() * 2) == 0 ? 'Você sabia que você pode jogar contra um amigo ? Insira o ID dele nas opções do comando' : 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard'}`, iconURL: user.displayAvatarURL() });
 
@@ -230,7 +227,15 @@ module.exports = {
 						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
 					}
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** :star:`);
+
+					let emoji;
+					const dev = ['742798447253651506', '717766639260532826', '1114578824181592156'];
+
+					if (dev.includes(user.id)) {
+						emoji = '<:Badge_Early_VerifiedBotDeveloper:1107317741410586675>';
+					}
+					else {emoji = ':star:';}
+					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** segundos ${emoji}`);
 				}
 				interaction.reply({ content: final.slice(0, 13).join('\n') });
 
