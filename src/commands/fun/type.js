@@ -219,9 +219,9 @@ module.exports = {
 				const users = ranking.slice(0, 10);
 				let int = 0;
 				for await(const usuario of users) {
-					let user = await interaction.client.users.cache.get(usuario.user);
+					let user;
 					if (!user) {
-						user = await interaction.lient.users.fetch(usuario.user, { cache: true });
+						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
 					}
 					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` **${usuario.recordsolo}** segundos :star:`);
