@@ -232,7 +232,7 @@ module.exports = {
 					}
 					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** :star:`);
 				}
-				interaction.reply({ content: final.slice(0, 10).join('\n') });
+				interaction.reply({ content: final.slice(0, 13).join('\n') });
 
 			});
 		}
