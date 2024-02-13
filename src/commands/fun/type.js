@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const array = require('../../modules/type-words');
 const text = require('../../modules/type-random');
 const type = require('../../database/schemas/type');
@@ -12,7 +12,10 @@ module.exports = {
 				.setDescription('Quer testar a sua velocidade ao digitar ?')).addSubcommand(subcommand =>
 			subcommand
 				.setName('leaderboard')
-				.setDescription('Veja o rank de jogadores de type.')),
+				.setDescription('Veja o rank de jogadores de type.')).addSubcommand(subcommand =>
+			subcommand
+				.setName('estatisticas')
+				.setDescription('Veja as estatísticas de jogadores de type.')),
 	async execute (interaction) {
 
 
@@ -204,42 +207,26 @@ module.exports = {
 				});
 			}
 		}
-		else {
-			type.find({}).then(async function(resultado) {
+		if (interaction.options.getSubcommand() == 'leaderboard') {
 
-				const final = [];
-				const ranking = resultado.sort((a, b) => b.recordsolo - a.recordsolo);
-				ranking.reverse();
-				const users = ranking.slice(0, 13);
+			const pontos = new ButtonBuilder()
+				.setCustomId(`pontos-${interaction.user.id}`)
+				.setLabel('Pontuação')
+				.setStyle(ButtonStyle.Secondary);
 
-				let z = [];
-				users.forEach((a) => {
-					if(!a.recordsolo) return;
+			const tempo = new ButtonBuilder()
+				.setCustomId(`tempo-${interaction.user.id}`)
+				.setLabel('Tempo')
+				.setStyle(ButtonStyle.Secondary);
 
-					z.push(a);
+			const row = new ActionRowBuilder()
+				.addComponents(tempo, pontos);
 
-				});
-				let int = 0;
-
-				for await(const usuario of z) {
-					let user;
-					if (!user) {
-						user = await interaction.client.users.fetch(usuario.user, { cache: true });
-						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
-					}
-
-					let emoji;
-					const dev = ['742798447253651506', '717766639260532826', '1114578824181592156'];
-
-					if (dev.includes(user.id)) {
-						emoji = '<:Badge_Early_VerifiedBotDeveloper:1107317741410586675>';
-					}
-					else {emoji = ':star:';}
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** segundos ${emoji}`);
-				}
-				interaction.reply({ content: final.slice(0, 13).join('\n') });
-
+			interaction.reply({
+				content: 'Qual rank você gostaria de ver?',
+				components: [row],
 			});
+
 		}
 
 	}
