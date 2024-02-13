@@ -212,11 +212,9 @@ module.exports = {
 
 				console.log(resultado);
 				const final = [];
-				const ranking = resultado.sort(function(a, b) {
-					return b - a;
-				});
-				ranking.reverse();
+				const ranking = resultado.sort((a, b) => b.score - a.score);
 				const users = ranking.slice(0, 10);
+
 				let int = 0;
 				for await(const usuario of users) {
 					let user;
