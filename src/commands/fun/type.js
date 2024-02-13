@@ -228,6 +228,37 @@ module.exports = {
 			});
 
 		}
+		if (interaction.options.getSubcommand() == 'estatisticas') {
+			type.findOne({ user: user.id }).then(async (data) => {
 
+				if(!data) return interaction.reply(`** <:way_errado:900128700908060755> » ${interaction.user} Esse usuário nunca jogou type.**`);
+
+				const embed = new EmbedBuilder()
+					.setTitle(`<:way_invite:900127448715382794> » Estatísticas de \`${user.tag}\` » Type Game`)
+					.setColor('#cd949d')
+					.setThumbnail(interaction.client.user.displayAvatarURL());
+
+				if(data.vezessolo) {
+					embed.addFields({ name:'Partidas Solo Jogadas', value:`\`${data.vezessolo}\``, inline: true });
+				}
+				if(data.vezesmult) {
+					embed.addFields({ name:'Partidas Multiplayer (que você ganhou)', value: `\`${data.vezesmult}\``, inline: true });
+				}
+
+				if(data.recordsolo) {
+					embed.addFields({ name: 'Record Solo', value: `\`${data.recordsolo}s\``, inline: true });
+				}
+
+				if(data.recordmult) {
+					embed.addFields({ name: 'Record Multiplayer', value: `\`${data.recordmult}s\``, inline: true });
+				}
+
+				if(data.score) {
+					embed.addFields({ name: 'Sua pontuação', value: `\`${data.score}\``, inline: true });
+				}
+				interaction.reply({ embeds: [embed] });
+			});
+
+		}
 	}
 };
