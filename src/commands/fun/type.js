@@ -9,7 +9,10 @@ module.exports = {
 		.setDescription('teste').addSubcommand(subcommand =>
 			subcommand
 				.setName('play')
-				.setDescription('Quer testar a sua velocidade ao digitar ?')).addSubcommand(subcommand =>
+				.setDescription('Quer ver quem digita primeiro ? Você ou seu amigo ? Desafie ele usando esse comando').addUserOption(option =>
+					option.setName('user')
+					  .setDescription('O usuário a ser desafiado')
+					  .setRequired(false))).addSubcommand(subcommand =>
 			subcommand
 				.setName('leaderboard')
 				.setDescription('Veja o rank de jogadores de type.')).addSubcommand(subcommand =>
@@ -206,7 +209,93 @@ module.exports = {
 
 				});
 			}
+			else {
+
+				const filter = i => i.customId === 'TypeAccept' && i.user.id == user.id;
+				const collector7 = interaction.channel.createMessageComponentCollector({ filter, time: 60000, max: 1 });
+
+				const desafio4 = new EmbedBuilder()
+					.setColor('#f3054f')
+					.setDescription(`> Olá ${user}, o usuário ${interaction.user} (\`${interaction.user.tag}\`) está te chamando para um desafio de quem digita mais rapido! Você aceita esse desafio ? Para aceitar clique no botão`)
+					.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${interaction.user.tag.replace(/`/g, '')}\` e \`${user.tag.replace(/`/g, '')}\``)
+					.setFooter({ text: 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard', iconURL: user.displayAvatarURL() });
+
+				const row7 = new ActionRowBuilder()
+					.addComponents(
+						new ButtonBuilder()
+							.setCustomId('TypeAccept')
+							.setLabel('Aceitar')
+							.setStyle(3),
+					);
+
+				interaction.reply({ content: user.toString(), embeds: [ desafio4 ], components: [row7] });
+
+				collector7.on('collect', (i) => {
+
+					const desafio5 = new EmbedBuilder()
+						.setColor('#f3054f')
+						.setDescription(`Quer ver quem digita mais rápido ? Você ou ${user} ? Escreva exatamente **toda a frase abaixo** antes que ${user} escreva.\n\n\`${t}\`\n\n- Lembre-se se você digitar de forma errada eu vou te ignorar para dar chance do outro usuário continuar digitando e ganhar ou de você corrigir seu texto e mandar novamente.`)
+						.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${interaction.user.tag.replace(/`/g, '')}\` e \`${user.tag.replace(/`/g, '')}\``)
+						.setFooter({ text: 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard', iconURL: user.displayAvatarURL() });
+
+
+					i.reply({ content: `${interaction.user} ${user}`, embeds: [desafio5] });
+
+					let u = [];
+
+					u.push(interaction.user.id);
+					u.push(user.id);
+					sm = sm.replace(/ㅤㅤ/g, '');
+					const filter = m => m.content.toLowerCase() == sm && u.includes(m.author.id);
+
+					const collector = interaction.channel.createMessageCollector({ filter, time: 300000, max: 1 });
+					let start = new Date().getTime();
+					collector.on('collect', (m) => {
+						type.findOne({ user: m.author.id }).then(async (data) => {
+							let end = new Date().getTime();
+							let e = end - start;
+							let time = Math.round(e / 1000);
+
+							if(!data) {
+								new type({
+									user: m.author.id,
+									vezessolo: 0,
+									vezesmult: 1,
+									recordsolo: 0,
+									recordmult: time,
+									score: 0
+								}).save();
+							}
+							else {
+								data.vezesmult = data.vezesmult + 1;
+								if(data.recordmult == 0) {
+									data.recordmult = time;
+								}
+								else if(time < data.recordmult) {
+									m.channel.send(`Parabéns ${m.author}, você superou o seu record no multiplayer de \`${data.recordsolo}s\``);
+									data.recordmult = time;
+								}
+								data.save();
+							}
+
+							u = u.filter(i => i !== m.author.id);
+
+							const desafio6 = new EmbedBuilder()
+								.setColor('#f3054f')
+								.setDescription(`> <:confete:932369805451862056> Parabéns ${m.author} !!!!! Você digitou a frase em: \`${time}s\`, primeiro que <@${u.join('')}>`)
+								.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${user.tag.replace(/`/g, '')}\``)
+								.setFooter({ text: 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard', iconURL: user.displayAvatarURL() });
+							interaction.followUp({ content: `${interaction.user} ${user}`, embeds: [desafio6] });
+						});
+					});
+				});
+
+
+			}
+
+
 		}
+
 		if (interaction.options.getSubcommand() == 'leaderboard') {
 
 			const pontos = new ButtonBuilder()
