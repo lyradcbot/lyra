@@ -211,12 +211,13 @@ module.exports = {
 			type.find({}).then(async function(resultado) {
 
 				const final = [];
-				const ranking = resultado.sort((a, b) => b.score - a.score);
+				const ranking = resultado.sort((a, b) => b.recordsolo - a.recordsolo);
+				ranking.reverse();
 				const users = ranking.slice(0, 10);
 
 				let z = [];
 				users.forEach((a) => {
-					if(!a.score) return;
+					if(!a.recordsolo) return;
 
 					z.push(a);
 
@@ -229,7 +230,7 @@ module.exports = {
 						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
 					}
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Pontuação: **${usuario.score}** :star:`);
+					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** :star:`);
 				}
 				interaction.reply({ content: final.slice(0, 10).join('\n') });
 
