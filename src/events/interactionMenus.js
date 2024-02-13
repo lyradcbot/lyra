@@ -80,13 +80,25 @@ module.exports = {
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
 					}
 
-					let emoji;
-					const dev = ['742798447253651506', '717766639260532826', '1114578824181592156'];
+					let emoji = ':star';
+
+					const owner = ['742798447253651506', '717766639260532826' ];
+					const dev = ['1114578824181592156', '687867247116812378'];
+					const staff = ['942125907877986384', '980156816061255690', '380808927568330754'];
+
+					if (owner.includes(user.id)) {
+						emoji = '<:coroa:1207068622951026798>';
+					}
 
 					if (dev.includes(user.id)) {
-						emoji = '<:Badge_Early_VerifiedBotDeveloper:1107317741410586675>';
+						emoji = '<:Badge_Active_Developer:1107309261878468619>';
 					}
-					else {emoji = ':star:';}
+
+					if (staff.includes(user.id)) {
+						emoji = '<:Badge_Staff:1107309455726616597>';
+					}
+
+
 					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Pontuação: **${usuario.score}** ${emoji}`);
 				}
 				interaction.update({ content: final.slice(0, 10).join('\n'), components: [row] });
