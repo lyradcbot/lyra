@@ -80,9 +80,13 @@ module.exports = {
 
 			if(user.id == interaction.user.id) {
 
+				let visor = interaction.createdTimestamp;
+				visor = Math.round(visor / 1000);
+				visor = Math.round(visor - 3);
+
 				const desafio = new EmbedBuilder()
 					.setColor('#cd949d')
-					.setDescription(`> Você quer testar sua velocidade ??? Escreva exatamente **toda a frase abaixo** o mais rapido que conseguir <:tempo:932311408949993502>\n\n \`${t}\``)
+					.setDescription(`> Você quer testar sua velocidade ??? Escreva exatamente **toda a frase abaixo** o mais rapido que conseguir <:tempo:932311408949993502>\n\n- :timer: Tempo gasto: <t:${visor}:R>\n\n \`${t}\``)
 					.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${user.tag.replace(/`/g, '')}\``)
 					.setFooter({ text: `${Math.floor(Math.random() * 2) == 0 ? 'Você sabia que você pode jogar contra um amigo ? Insira o ID dele nas opções do comando' : 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard'}`, iconURL: user.displayAvatarURL() });
 
@@ -167,6 +171,7 @@ module.exports = {
 					}
 
 					type.findOne({ user: user.id }).then(async (data) => {
+
 
 						let end = new Date().getTime();
 						let e = end - start;
