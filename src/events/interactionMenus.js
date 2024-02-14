@@ -26,7 +26,7 @@ module.exports = {
 				const final = [];
 				const ranking = resultado.sort((a, b) => b.recordsolo - a.recordsolo);
 				ranking.reverse();
-				const users = ranking.slice(0, 13);
+				const users = ranking.slice(0, 14);
 
 				let z = [];
 				users.forEach((a) => {
@@ -73,7 +73,7 @@ module.exports = {
 
 				const final = [];
 				const ranking = resultado.sort((a, b) => b.score - a.score);
-				const users = ranking.slice(0, 10);
+				const users = ranking.slice(0, 14);
 
 				let z = [];
 				users.forEach((a) => {
