@@ -1,13 +1,13 @@
-const getRandomNumber = (length) => Math.floor(Math.random() * length);
-
-const text = (words) => {
-	const response = [];
-
-	for (let i = 0; i <= words.length; i++) {
-		response.push(words[getRandomNumber(words.length)]);
+function text (arrayOriginal) {
+	let arrayAleatoria = arrayOriginal.slice();
+	let novaArray = [];
+	for (let i = 0; i < 20; i++) {
+	  let indiceAleatorio = Math.floor(Math.random() * arrayAleatoria.length);
+	  novaArray.push(arrayAleatoria[indiceAleatorio]);
+	  arrayAleatoria.splice(indiceAleatorio, 1);
 	}
 
-	return response;
-};
+	return novaArray.join('ㅤㅤ');
+}
 
 module.exports = text;

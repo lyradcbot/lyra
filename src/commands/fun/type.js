@@ -27,7 +27,6 @@ module.exports = {
 		if (interaction.options.getSubcommand() == 'play') {
 
 			let sm = text(array);
-
 			let t = sm.replace(/a/g, '𝗮')
 				.replace(/b/g, '𝗯')
 				.replace(/c/g, '𝗰')
@@ -91,7 +90,8 @@ module.exports = {
 					.setFooter({ text: `${Math.floor(Math.random() * 2) == 0 ? 'Você sabia que você pode jogar contra um amigo ? Insira o ID dele nas opções do comando' : 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard'}`, iconURL: user.displayAvatarURL() });
 
 				interaction.reply({ embeds: [desafio] });
-				sm = sm.replace(/ㅤㅤ/g, '');
+				sm = sm.replace(/ㅤㅤ/g, ' ');
+
 				const filter = m => m.author.id == interaction.user.id;
 
 				const collector = interaction.channel.createMessageCollector({ filter, time: 300000, max: 1 });
