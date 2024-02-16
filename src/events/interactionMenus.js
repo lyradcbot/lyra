@@ -62,9 +62,9 @@ module.exports = {
 						emoji = '<:Badge_Staff:1107309455726616597>';
 					}
 
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - Tempo: **${usuario.recordsolo}** segundos ${emoji}`);
+					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - WPS: **${usuario.recordsolo / 20}**  (${usuario.recordsolo} segundos) ${emoji}`);
 				}
-				interaction.update({ content: final.slice(0, 13).join('\n'), components: [row] });
+				interaction.update({ content: `${final.slice(0, 13).join('\n')}\n\n- WPS: Words per second (Palavras por segundo)`, components: [row] });
 
 			});
 		}

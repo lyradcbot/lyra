@@ -85,9 +85,9 @@ module.exports = {
 				visor = Math.round(visor - 3);
 
 				const desafio = new EmbedBuilder()
-					.setColor('#cd949d')
-					.setDescription(`> Você quer testar sua velocidade ??? Escreva exatamente **toda a frase abaixo** o mais rapido que conseguir <:tempo:932311408949993502>\n\n- :timer: Tempo gasto: <t:${visor}:R>\n\n \`${t}\``)
-					.setTitle(`<:teclado2:932311688559091803>  Desafio Type de \`${user.tag.replace(/`/g, '')}\``)
+					.setColor('ff237f')
+					.setDescription(`<:interrogacao:1207439439865978910> Você quer testar sua velocidade ??? Escreva exatamente **toda a frase abaixo** o mais rapido que conseguir <:raio:1207438941159166106> <:cronometro:1207442805014663248>\n\n- <:cronometro:1207442805014663248> Tempo gasto: <t:${visor}:R>\n\n \`${t}\``)
+					.setTitle(`<:lista2:1207443031654006876> <:raio:1207438941159166106> Desafio Type de \`${user.tag.replace(/`/g, '')}\``)
 					.setFooter({ text: `${Math.floor(Math.random() * 2) == 0 ? 'Você sabia que você pode jogar contra um amigo ? Insira o ID dele nas opções do comando' : 'Está com curiosidade de saber quais são os melhores jogadores de type ? Veja em /type-leaderboard'}`, iconURL: user.displayAvatarURL() });
 
 				interaction.reply({ embeds: [desafio] });
