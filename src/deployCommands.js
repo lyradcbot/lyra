@@ -30,7 +30,7 @@ const loadCommands = (commands, warnings) => {
 				}
 			}
 			catch (error) {
-				warnings.push(`[ERROR] Falha ao carregar comando do arquivo ${filePath}: ${error.message}`);
+				warnings.push(`[ERROR] Falha ao carregar comando do arquivo ${filePath}: ${error}`);
 			}
 		}
 	}
