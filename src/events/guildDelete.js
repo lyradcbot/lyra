@@ -7,7 +7,7 @@ module.exports = {
 	async execute (guild) {
 		console.log(`[CLIENT] Fui removida em ${guild.name} (${guild.id})`.red);
 		const client = guild.client;
-		const owner = await client.users.cache.get(guild.ownerId) ? client.users.cache.get(guild.ownerId) : await client.users.fetch(guild.ownerId, {
+		const owner = await client.users.cache.get(guild.ownerId) || await client.users.fetch(guild.ownerId, {
 			force: true
 		});
 		const logChannel = new WebhookClient({ url: config.devLogs.guildLeave });
