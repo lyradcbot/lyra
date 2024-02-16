@@ -11,7 +11,7 @@ if (cluster.isMaster) {
 	else {
 		numCPUs = os.cpus().length;
 	}
-	 const shardCount = 1;
+	 const shardCount = numCPUs;
 
 	console.log(`[CLUSTER] Número de núcleos da CPU: ${numCPUs}`.yellow);
 	console.log(`[CLUSTER] Número de shards: ${shardCount}`.yellow);
