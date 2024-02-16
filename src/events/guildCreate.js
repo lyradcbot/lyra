@@ -38,13 +38,19 @@ module.exports = {
 				iconURL: guild.iconURL({ dynamic: true, size: 4096 })
 			});
 		const channel = await guild.channels.cache.get(guild.systemChannelId);
-		await channel.send({ embeds: [embed] }).catch(() => {
+		await channel.send({ embeds: [embed] }).catch()
+
+/*
+.catch(() => {
 			guild.channels.cache.map(async (channel) => {
 				if (channel.type !== ChannelType.GuildText) return;
 				if (!channel.permissionsFor(client.user.id).has(PermissionFlagsBits.SendMessages)) return;
 				await channel.send({ embeds: [embed] });
 			});
 		});
+
+*/
+
 		const owner = await client.users.cache.get(guild.ownerId) ? client.users.cache.get(guild.ownerId) : await client.users.fetch(guild.ownerId, {
 			force: true
 		});
