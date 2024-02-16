@@ -61,8 +61,8 @@ module.exports = {
 					if (staff.includes(user.id)) {
 						emoji = '<:Badge_Staff:1107309455726616597>';
 					}
-
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - WPS: **${20 / usuario.recordsolo}**  (${usuario.recordsolo} segundos) ${emoji}`);
+					let wps = 20 / usuario.recordsolo;
+					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - WPS: **${Math.round(wps * 100) / 100}**  (${usuario.recordsolo} segundos) ${emoji}`);
 				}
 				interaction.update({ content: `${final.slice(0, 13).join('\n')}\n\n- WPS: Words per second (Palavras por segundo)`, components: [row] });
 
