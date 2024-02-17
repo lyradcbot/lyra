@@ -24,7 +24,7 @@ module.exports = {
 			type.find({}).then(async function(resultado) {
 
 				const final = [];
-				const ranking = resultado.sort((a, b) => b.recordsolo + a.recordsolo);
+				const ranking = resultado.sort((a, b) => a.recordsolo - b.recordsolo);
 				const users = ranking.slice(0, 14);
 
 				let z = [];
