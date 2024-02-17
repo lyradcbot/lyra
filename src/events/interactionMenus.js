@@ -77,6 +77,7 @@ module.exports = {
 
 				let z = [];
 				users.forEach((a) => {
+					console.log(a);
 					if(!a.score) return;
 
 					z.push(a);
