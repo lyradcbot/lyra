@@ -38,7 +38,7 @@ module.exports = {
 				let int = 0;
 
 				for await(const usuario of z) {
-					let user;
+					let user = interaction.client.users.cache.get(usuario.user);
 					if (!user) {
 						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
@@ -85,7 +85,7 @@ module.exports = {
 				let int = 0;
 
 				for await(const usuario of z) {
-					let user;
+					let user = interaction.client.users.cache.get(usuario.user);
 					if (!user) {
 						user = await interaction.client.users.fetch(usuario.user, { cache: true });
 						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
