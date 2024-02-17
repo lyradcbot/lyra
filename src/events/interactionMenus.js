@@ -21,52 +21,52 @@ module.exports = {
 			.addComponents(tempo, pontos);
 
 		if (interaction.customId === `tempo-${interaction.user.id}`) {
-			type.find().then(async function(resultado) {
+			const resultado = await type.find();
 
-				const final = [];
-				const ranking = resultado.sort((a, b) => a.recordsolo - b.recordsolo);
-				console.log(ranking);
-				const users = ranking.slice(0, 14);
+			const final = [];
+			const ranking = resultado.sort((a, b) => a.recordsolo - b.recordsolo);
+			console.log(resultado);
+			const users = ranking.slice(0, 14);
 
-				let z = [];
-				users.forEach((a) => {
-					if(!a.recordsolo) return;
-					console.log(a);
-					z.push(a);
-
-				});
-				let int = 0;
-
-				for await(const usuario of z) {
-					let user = interaction.client.users.cache.get(usuario.user);
-					if (!user) {
-						user = await interaction.client.users.fetch(usuario.user, { cache: true });
-						console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
-					}
-
-					let emoji = ':star:';
-
-					const owner = ['742798447253651506', '717766639260532826' ];
-					const dev = ['1114578824181592156', '687867247116812378'];
-					const staff = ['942125907877986384', '980156816061255690', '380808927568330754'];
-
-					if (owner.includes(user.id)) {
-						emoji = '<:coroa:1028754907509039234>';
-					}
-
-					if (dev.includes(user.id)) {
-						emoji = '<:Badge_Active_Developer:1107309261878468619>';
-					}
-
-					if (staff.includes(user.id)) {
-						emoji = '<:Badge_Staff:1107309455726616597>';
-					}
-					let wps = 20 / usuario.recordsolo;
-					final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - WPS: **${Math.round(wps * 100) / 100}**  (${usuario.recordsolo} segundos) ${emoji}`);
-				}
-				interaction.update({ content: `${final.slice(0, 13).join('\n')}\n\n- WPS: Words per second (Palavras por segundo)`, components: [row] });
+			let z = [];
+			users.forEach((a) => {
+				if(!a.recordsolo) return;
+				console.log(a);
+				z.push(a);
 
 			});
+			let int = 0;
+
+			for await(const usuario of z) {
+				let user = interaction.client.users.cache.get(usuario.user);
+				if (!user) {
+					user = await interaction.client.users.fetch(usuario.user, { cache: true });
+					console.log(`[TYPE-RANK] O usuário ${user.tag} (${user.id}) foi adicionado ao cache`);
+				}
+
+				let emoji = ':star:';
+
+				const owner = ['742798447253651506', '717766639260532826' ];
+				const dev = ['1114578824181592156', '687867247116812378'];
+				const staff = ['942125907877986384', '980156816061255690', '380808927568330754'];
+
+				if (owner.includes(user.id)) {
+					emoji = '<:coroa:1028754907509039234>';
+				}
+
+				if (dev.includes(user.id)) {
+					emoji = '<:Badge_Active_Developer:1107309261878468619>';
+				}
+
+				if (staff.includes(user.id)) {
+					emoji = '<:Badge_Staff:1107309455726616597>';
+				}
+				let wps = 20 / usuario.recordsolo;
+				final.push(`\`[\`${int++ + 1}\`]\` » \`${user.tag}\` - WPS: **${Math.round(wps * 100) / 100}**  (${usuario.recordsolo} segundos) ${emoji}`);
+			}
+			interaction.update({ content: `${final.slice(0, 13).join('\n')}\n\n- WPS: Words per second (Palavras por segundo)`, components: [row] });
+
+
 		}
 		else if (interaction.customId === `pontos-${interaction.user.id}`) {
 			type.find({}).then(async function(resultado) {
