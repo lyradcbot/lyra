@@ -31,7 +31,7 @@ module.exports = {
 				let z = [];
 				users.forEach((a) => {
 					if(!a.recordsolo) return;
-
+					console.log(a);
 					z.push(a);
 
 				});
@@ -77,7 +77,6 @@ module.exports = {
 
 				let z = [];
 				users.forEach((a) => {
-					console.log(a);
 					if(!a.score) return;
 
 					z.push(a);
