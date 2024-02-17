@@ -21,10 +21,11 @@ module.exports = {
 			.addComponents(tempo, pontos);
 
 		if (interaction.customId === `tempo-${interaction.user.id}`) {
-			type.find({}).then(async function(resultado) {
+			type.find().then(async function(resultado) {
 
 				const final = [];
 				const ranking = resultado.sort((a, b) => a.recordsolo - b.recordsolo);
+				console.log(ranking);
 				const users = ranking.slice(0, 14);
 
 				let z = [];
