@@ -26,7 +26,7 @@ module.exports = {
 			const final = [];
 			const ranking = resultado.sort((a, b) => a.recordsolo - b.recordsolo);
 			console.log(resultado);
-			const users = ranking.slice(0, 14);
+			const users = ranking.slice(0, 16);
 
 			let z = [];
 			users.forEach((a) => {
