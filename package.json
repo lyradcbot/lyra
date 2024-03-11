@@ -21,7 +21,7 @@
     "fastify": "^4.26.2",
     "mongoose": "^8.2.0",
     "pidusage": "^3.0.2",
-    "vulkava": "^1.6.2"
+    "vulkava": "^1.6.3"
   },
   "devDependencies": {
     "canvas": "^2.11.2",
