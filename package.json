@@ -12,7 +12,7 @@
   "dependencies": {
     "@fastify/cors": "^9.0.1",
     "axios": "^1.6.7",
-    "canvafy": "^7.0.4",
+    "canvafy": "^7.1.0",
     "colors": "^1.4.0",
     "diff": "^5.2.0",
     "discord-html-transcripts": "^3.2.0",
