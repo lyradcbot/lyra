@@ -1,4 +1,4 @@
-# Lyra
+# Lyra ~ Bot
 - Lyra é um bot multifuncional para o Discord!
 ## Modules:
 - [@lyrabot/api](/src/modules/api/) ~ Responsável por fornecer informações sobre o bot
